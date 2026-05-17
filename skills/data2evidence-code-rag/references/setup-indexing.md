@@ -72,9 +72,9 @@ make reindex
 Only run `make sync` or `make reindex` against a clean Data2Evidence checkout that came directly from GitHub. Before indexing, verify:
 
 ```bash
-git -C ../../../Data2Evidence status --short
-git -C ../../../Data2Evidence remote get-url origin
-git -C ../../../Data2Evidence rev-parse HEAD
+git -C ../../../repos/Data2Evidence status --short
+git -C ../../../repos/Data2Evidence remote get-url origin
+git -C ../../../repos/Data2Evidence rev-parse HEAD
 ```
 
 Do not index if `status --short` has output, if the repo is not the intended GitHub remote, or if the user is asking to index local experimental changes. Ask the user to commit/stash/revert first, or import a known snapshot.

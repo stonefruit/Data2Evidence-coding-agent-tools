@@ -8,9 +8,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if len(PROJECT_ROOT.parents) > 1:
     TOOLS_REPO_ROOT = PROJECT_ROOT.parents[1]
-    DEFAULT_D2E_REPO_PATH = TOOLS_REPO_ROOT.parent / "Data2Evidence"
+    DEFAULT_D2E_REPO_PATH = TOOLS_REPO_ROOT / "repos" / "Data2Evidence"
 else:
-    DEFAULT_D2E_REPO_PATH = PROJECT_ROOT / "../../../Data2Evidence"
+    DEFAULT_D2E_REPO_PATH = PROJECT_ROOT / "../../../repos/Data2Evidence"
 
 
 class Settings(BaseSettings):

@@ -6,7 +6,7 @@ The first goal is a local engineering assistant that can answer questions about 
 
 ## MVP
 
-- Index high-signal Data2Evidence files from `../../../Data2Evidence`
+- Index high-signal Data2Evidence files from `../../../repos/Data2Evidence`
 - Store chunks in Qdrant
 - Query from a CLI or small HTTP API
 - Return answers with source metadata
@@ -74,7 +74,7 @@ embeddings expect an end-of-text token; `code-rag` appends `<|endoftext|>` autom
 The app and Qdrant still run in Docker using Docker's native platform default for the machine.
 The `code-rag` container reaches the host `llama-server` through `host.docker.internal`.
 
-When running through Docker, `../../../Data2Evidence` on the host is mounted read-only at
+When running through Docker, `../../../repos/Data2Evidence` on the host is mounted read-only at
 `/workspace/Data2Evidence` inside the `code-rag` container. So `make config` should show:
 
 ```json
@@ -193,7 +193,7 @@ curl -X POST http://localhost:8088/query \
 ## Scope
 
 The indexer is allowlist-based. In Docker it reads `/workspace/Data2Evidence`, which is the
-mounted form of host path `../../../Data2Evidence`. It starts with:
+mounted form of host path `../../../repos/Data2Evidence`. It starts with:
 
 - `README.md`
 - `env-vars.md`

@@ -8,7 +8,7 @@ services:
       D2E_REPO_PATH: /workspace/Data2Evidence
       EMBEDDING_BASE_URL: http://host.docker.internal:8080/v1
     volumes:
-      - ../../../Data2Evidence:/workspace/Data2Evidence:ro
+      - ../../../repos/Data2Evidence:/workspace/Data2Evidence:ro
       - ./snapshots:/app/snapshots
       - ./qdrant-snapshots:/app/qdrant-snapshots
     ports:
