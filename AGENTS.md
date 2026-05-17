@@ -11,9 +11,9 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Repository Shape
 
 - `tools/`: standalone agent tools, such as code RAG or repo analysis utilities
-- `lima/`: local VM/container setup notes and configs
 - `skills/`: Codex/agent skills for Data2Evidence workflows
-- `docs/`: planning notes and shared design docs
+- `repos/`: local checkouts and user-specific working material (for example, Data2Evidence and personal docs in `repos/docs/`)
+- `lima/`: local VM/container setup notes and configs
 
 ## Tooling Guidelines
 
@@ -25,9 +25,15 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
 
+## Documentation Expectations
+
+- Keep `README.md` and tool-level READMEs in sync when workflows, paths, or commands change.
+- Document both the quick path (`make ...`) and the underlying container command when possible.
+- Prefer concrete examples that can be copy/pasted by another developer.
+- Use `repos/docs/` for personal docs; this may be a normal local folder or a separate personal Git repository.
+
 ## Local Execution
 
 When local execution is simpler for a quick check, it is fine to run it directly, but document the container path as the durable workflow.
 
 If a command fails because of missing local dependencies, prefer adding or improving container setup before asking users to install packages globally.
-
