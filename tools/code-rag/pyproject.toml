@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools==79.0.1", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data2evidence-code-rag"
+version = "0.1.0"
+description = "Repository-aware RAG tooling for the Data2Evidence codebase."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.136.1",
+  "langchain-text-splitters==1.1.2",
+  "openai==2.37.0",
+  "pydantic-settings==2.14.1",
+  "qdrant-client==1.10.1",
+  "typer==0.25.1",
+  "uvicorn[standard]==0.47.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.4.2",
+  "ruff==0.14.8",
+]
+
+[project.scripts]
+code-rag = "app.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

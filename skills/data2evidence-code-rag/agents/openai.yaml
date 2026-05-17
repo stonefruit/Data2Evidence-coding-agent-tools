@@ -1,0 +1,6 @@
+interface:
+  display_name: "Data2Evidence Code RAG"
+  short_description: "Search Data2Evidence with local Qdrant RAG"
+  default_prompt: "Use $data2evidence-code-rag to search the Data2Evidence codebase before answering."
+policy:
+  allow_implicit_invocation: true
