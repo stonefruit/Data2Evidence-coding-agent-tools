@@ -1,6 +1,6 @@
 ---
 name: data2evidence-code-rag
-description: Use this skill when answering questions about the Data2Evidence codebase, doing codebase search, locating implementation details, finding routes/configuration/types/services, or preparing code changes where repository-specific context matters. It requires using the local Qdrant-backed Data2Evidence code RAG before relying on memory or plain text search; if Qdrant, the embedding model, or the index is not ready, explain the setup steps or help run them.
+description: Use this skill when answering questions about the Data2Evidence codebase, doing codebase search, locating implementation details, finding routes/configuration/types/services, or preparing code changes where repository-specific context matters. It requires using the local Qdrant-backed Data2Evidence code RAG before relying on memory or plain text search; if Qdrant, llama.cpp, the embedding model, or the index is not ready, run setup automatically and only fall back with user approval.
 ---
 
 # Data2Evidence Code RAG
@@ -14,6 +14,22 @@ Work from:
 ```bash
 cd tools/code-rag
 ```
+
+Bootstrap embedding prerequisites automatically before querying:
+
+```bash
+which llama-server || brew install llama.cpp
+test -f ../../.models/Qwen3-Embedding-0.6B-f16.gguf || make download-model
+make check-embed
+```
+
+Rules:
+
+- Do not just point to docs when embedding prerequisites are missing; run the bootstrap commands.
+- If `make check-embed` fails, diagnose and retry once after checking `tools/code-rag/docs/llama-cpp-setup.md`.
+- Only ask the user to approve a fallback to plain-text search if embedding setup remains blocked after retry.
+- Prefer `make start-llama` before multiple queries and `make stop-llama` when done.
+- `make check-embed`, `make query`, `make sync`, and `make web` reuse a healthy host `llama-server` when available, otherwise they auto-start a temporary one via `scripts/run_with_llama.sh`.
 
 Start Qdrant and check whether an index is present:
 
@@ -40,4 +56,6 @@ make query q="Where are the data mapping routes and generate suggestions endpoin
 
 ## Load More Only When Needed
 
-Read [setup-indexing.md](references/setup-indexing.md) only if Qdrant, the embedding model, or the index is missing/stale, or if the user asks about setup, model download, sync/reindex, snapshots, or the web UI.
+Read [setup-indexing.md](references/setup-indexing.md) when Qdrant, the embedding model, or the index is missing/stale, or when the user asks about setup, model download, sync/reindex, snapshots, or the web UI.
+
+Read `tools/code-rag/docs/llama-cpp-setup.md` when the embedding runtime is not ready (for example `llama-server` missing, embedding endpoint unreachable, or `make check-embed` fails). Follow that guide to install/start `llama.cpp` and verify embeddings before retrying RAG queries.

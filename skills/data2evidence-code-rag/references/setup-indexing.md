@@ -4,6 +4,9 @@ Use this reference only when the default query workflow cannot proceed, the inde
 
 ## Embedding Model
 
+For the full host-native `llama.cpp` setup, see
+`/Users/stonefruit/Dev/Data4Life/Data2Evidence-coding-agent-tools/tools/code-rag/docs/llama-cpp-setup.md`.
+
 The f16 GGUF model should live at:
 
 ```text
@@ -22,17 +25,10 @@ Wrapper command:
 make download-model
 ```
 
-Start host-native `llama.cpp` on the M-series Mac:
+Start a reusable host-native `llama.cpp` server when running multiple queries:
 
 ```bash
-llama-server \
-  -m ../../.models/Qwen3-Embedding-0.6B-f16.gguf \
-  --embedding \
-  --pooling last \
-  -c 32768 \
-  -ub 8192 \
-  --host 0.0.0.0 \
-  --port 8080
+make start-llama
 ```
 
 Check embeddings:
@@ -42,6 +38,16 @@ make check-embed
 ```
 
 Expected output is `1024`.
+
+Stop the reusable server when finished:
+
+```bash
+make stop-llama
+```
+
+Embedding-dependent commands (`make check-embed`, `make query`, `make sync`, `make reindex`,
+and `make web`) also reuse an already-running server. If one is not running, they start a
+temporary `llama-server` for that command and clean it up afterward.
 
 ## Missing Index
 
@@ -72,9 +78,9 @@ make reindex
 Only run `make sync` or `make reindex` against a clean Data2Evidence checkout that came directly from GitHub. Before indexing, verify:
 
 ```bash
-git -C ../../../repos/Data2Evidence status --short
-git -C ../../../repos/Data2Evidence remote get-url origin
-git -C ../../../repos/Data2Evidence rev-parse HEAD
+git -C ../../repos/Data2Evidence status --short
+git -C ../../repos/Data2Evidence remote get-url origin
+git -C ../../repos/Data2Evidence rev-parse HEAD
 ```
 
 Do not index if `status --short` has output, if the repo is not the intended GitHub remote, or if the user is asking to index local experimental changes. Ask the user to commit/stash/revert first, or import a known snapshot.

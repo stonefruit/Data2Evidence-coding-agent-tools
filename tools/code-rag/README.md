@@ -6,7 +6,7 @@ The first goal is a local engineering assistant that can answer questions about 
 
 ## MVP
 
-- Index high-signal Data2Evidence files from `../../../repos/Data2Evidence`
+- Index high-signal Data2Evidence files from `../../repos/Data2Evidence`
 - Store chunks in Qdrant
 - Query from a CLI or small HTTP API
 - Return answers with source metadata
@@ -14,8 +14,10 @@ The first goal is a local engineering assistant that can answer questions about 
 
 ## Quick Start
 
-Start a host-native `llama.cpp` embedding server first. On an M-series Mac, this keeps
+Install `llama.cpp` and download the embedding model first. On an M-series Mac, this keeps
 inference on Apple Silicon/Metal instead of pushing it through Docker emulation.
+See [docs/llama-cpp-setup.md](docs/llama-cpp-setup.md) for detailed setup and troubleshooting
+notes.
 
 Before starting the server, download an f16 GGUF for `Qwen3-Embedding-0.6B` into the repo-local
 model folder:
@@ -54,15 +56,15 @@ EMBEDDING_APPEND_EOS=true
 Most of these values are code defaults. The checked-in `.env.example` keeps them commented;
 uncomment the optional lines there only when you need to override a default.
 
-One working shape for the embedding server is:
+One stable shape for the embedding server is:
 
 ```bash
 llama-server \
   -m ../../.models/Qwen3-Embedding-0.6B-f16.gguf \
   --embedding \
   --pooling last \
-  -c 32768 \
-  -ub 8192 \
+  -c 8192 \
+  -ub 1024 \
   --host 0.0.0.0 \
   --port 8080
 ```
@@ -74,7 +76,7 @@ embeddings expect an end-of-text token; `code-rag` appends `<|endoftext|>` autom
 The app and Qdrant still run in Docker using Docker's native platform default for the machine.
 The `code-rag` container reaches the host `llama-server` through `host.docker.internal`.
 
-When running through Docker, `../../../repos/Data2Evidence` on the host is mounted read-only at
+When running through Docker, `../../repos/Data2Evidence` on the host is mounted read-only at
 `/workspace/Data2Evidence` inside the `code-rag` container. So `make config` should show:
 
 ```json
@@ -92,10 +94,11 @@ When running through Docker, `../../../repos/Data2Evidence` on the host is mount
 If you run `code-rag` directly on the host instead of through Docker, the repo path will resolve
 to the local filesystem path.
 
-Or use the Makefile wrappers:
+Use the Makefile wrappers:
 
 ```bash
 make qdrant
+make start-llama
 make config
 make check-embed
 make sync
@@ -103,9 +106,19 @@ make status
 make changes
 make query q="Where are Azure OpenAI environment variables configured?"
 make web
+make stop-llama
 ```
 
-The Makefile rebuilds the `code-rag` image before app commands so CLI changes are picked up.
+`make start-llama` starts a reusable host `llama-server`; `make stop-llama` stops the process it
+started. `make check-embed`, `make sync`, `make reindex`, `make query`, and `make web` reuse an
+already-running server when one is healthy. If none is running, they auto-start a temporary one,
+wait for readiness, run the Docker command, and clean it up afterward.
+
+The persistent start is platform-aware: macOS uses `launchctl`, Linux uses `setsid` when present,
+and other Unix-like shells fall back to `nohup`. The macOS path is locally validated; the Linux
+`setsid` path is included for non-macOS hosts but is not exercised on this Mac.
+
+The Makefile still rebuilds the `code-rag` image before app commands so CLI changes are picked up.
 Python dependencies are pinned in `pyproject.toml` and `constraints.txt`; update both together
 when intentionally changing dependency versions.
 
@@ -193,7 +206,7 @@ curl -X POST http://localhost:8088/query \
 ## Scope
 
 The indexer is allowlist-based. In Docker it reads `/workspace/Data2Evidence`, which is the
-mounted form of host path `../../../repos/Data2Evidence`. It starts with:
+mounted form of host path `../../repos/Data2Evidence`. It starts with:
 
 - `README.md`
 - `env-vars.md`

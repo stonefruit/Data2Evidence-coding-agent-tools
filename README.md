@@ -16,11 +16,19 @@ For shared conventions, see [AGENTS.md](AGENTS.md).
 
 ```text
 tools/            # Standalone agent tools (for example code-rag)
-skills/           # Codex/agent skills for Data2Evidence workflows
+skills/           # Shared skill instructions reusable across harnesses
+.codex/skills/    # Codex-specific skill wrappers/frontmatter and UI metadata
 repos/            # Local checkouts used by tools (e.g., Data2Evidence)
 repos/docs/       # Personal docs (normal local folder or separate personal Git repo)
 lima/             # Local VM/container setup notes
 ```
+
+## Skill Packaging Pattern
+
+- Keep canonical skill instructions in `skills/<skill-name>/SKILL.md`.
+- Keep Codex discovery wrappers in `.codex/skills/<skill-name>/SKILL.md`.
+- Keep Codex UI metadata in `.codex/skills/<skill-name>/agents/openai.yaml`.
+- Codex wrappers should point to the shared `skills/` instructions as source of truth.
 
 ## Current Tools
 

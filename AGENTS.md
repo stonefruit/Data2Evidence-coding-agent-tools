@@ -15,6 +15,12 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - `repos/`: local checkouts and user-specific working material (for example, Data2Evidence and personal docs in `repos/docs/`)
 - `lima/`: local VM/container setup notes and configs
 
+## Skill-First Rule
+
+- Before running repository searches or answering codebase-location questions, identify and load any matching skill `SKILL.md` first.
+- If a matching skill says a search workflow is required (for example, Data2Evidence code RAG), run that workflow before using plain-text search tools.
+- Do not silently skip a required skill workflow. If it is blocked (for example, Docker permissions), stop and ask the user whether to unblock it or explicitly allow a fallback.
+
 ## Tooling Guidelines
 
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
@@ -24,6 +30,22 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Do not index or persist secrets, `.env*` files, credentials, certificates, or generated private keys.
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
+
+## Code RAG Required Artifacts
+
+For `tools/code-rag`, treat the following as required prerequisites (not optional):
+
+- Embedding model artifact: `./.models/Qwen3-Embedding-0.6B-f16.gguf`
+- Embedding runtime: host `llama.cpp` server using that Qwen model, reachable from Docker at `http://host.docker.internal:8080/v1`
+- Qdrant data artifact: snapshot bundle in `tools/code-rag/snapshots/` (for example `data2evidence-code-rag-qdrant-<sha>-<timestamp>.tgz`)
+
+Expected workflow:
+
+- Start Qdrant: `cd tools/code-rag && make qdrant`
+- Restore index from snapshot when available: `make import-snapshot bundle=snapshots/<bundle-name>.tgz`
+- Verify index state: `make status` (if `indexed_git_sha` is `null`, the collection is not loaded)
+- If model file is missing, fetch it: `make download-model`
+- If no usable snapshot exists, build index: `make sync`
 
 ## Documentation Expectations
 
