@@ -38,7 +38,17 @@ make qdrant
 make status
 ```
 
-If the index exists, query it with focused natural-language questions:
+If `indexed_git_sha` is `null`, check for a snapshot before attempting sync (snapshot restore is much faster than full indexing):
+
+```bash
+ls -1 snapshots
+make import-snapshot bundle=snapshots/<bundle-name>.tgz
+make status
+```
+
+Only run `make sync` when no usable snapshot is available.
+
+If the index exists (or has been restored), query it with focused natural-language questions:
 
 ```bash
 make query q="Where is the MCP server name and version defined?"
