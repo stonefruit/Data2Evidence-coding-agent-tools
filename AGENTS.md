@@ -67,6 +67,7 @@ Expected workflow:
 - Use `repos/docs/` for personal docs; this may be a normal local folder or a separate personal Git repository.
 - Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
 - Do not write durable knowledge directly to `repos/docs/knowledge/` without following the `knowledge-expert` skill.
+- Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
 
 ## Local Execution
 
