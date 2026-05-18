@@ -9,6 +9,7 @@ This repository is intentionally separate from `Data2Evidence` so experiments ca
 - Prefer Docker-first commands for tooling, indexing, and tests.
 - Keep Data2Evidence path configuration explicit and portable.
 - Keep generated artifacts and model files out of source control.
+- Keep personal/team documentation in `repos/docs/`, which may be a separate local Git repository.
 
 For shared conventions, see [AGENTS.md](AGENTS.md).
 
@@ -18,6 +19,8 @@ For shared conventions, see [AGENTS.md](AGENTS.md).
 tools/            # Standalone agent tools (for example code-rag)
 skills/           # Shared skill instructions reusable across harnesses
 .codex/skills/    # Codex-specific skill wrappers/frontmatter and UI metadata
+.claude/          # Claude-specific thin adapters
+.opencode/        # OpenCode-specific thin adapters
 repos/            # Local checkouts used by tools (e.g., Data2Evidence)
 repos/docs/       # Personal docs (normal local folder or separate personal Git repo)
 lima/             # Local VM/container setup notes
@@ -27,12 +30,24 @@ lima/             # Local VM/container setup notes
 
 - Keep canonical skill instructions in `skills/<skill-name>/SKILL.md`.
 - Keep Codex discovery wrappers in `.codex/skills/<skill-name>/SKILL.md`.
-- Keep Codex UI metadata in `.codex/skills/<skill-name>/agents/openai.yaml`.
-- Codex wrappers should point to the shared `skills/` instructions as source of truth.
+- Keep Claude discovery wrappers in `.claude/skills/<skill-name>/SKILL.md`.
+- Keep OpenCode discovery wrappers in `.opencode/skills/<skill-name>/SKILL.md`.
+- Keep adapter files thin; they should point to the shared `skills/` instructions as source of truth.
+
+## Local Repositories
+
+The main `d2e` repo ignores `repos/` so each developer can use their own local checkouts:
+
+- `repos/Data2Evidence`: main application checkout.
+- `repos/docs`: personal or team documentation checkout.
+- `repos/e2e`: optional isolated checkout for E2E runs.
+
+Scripts and skills should use relative paths by default and allow overrides with environment variables such as `D2E_APP_REPO` and `D2E_DOCS_REPO`.
 
 ## Current Tools
 
 - [Code RAG](tools/code-rag/README.md): local Qdrant-backed retrieval over Data2Evidence source files with citations.
+- [MRI Query Codec](tools/mri-query-codec/package.json): dependency-free Node helper for compressed MRI query payloads.
 
 ## Quick Start (Code RAG)
 

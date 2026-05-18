@@ -5,7 +5,7 @@ Use this reference only when the default query workflow cannot proceed, the inde
 ## Embedding Model
 
 For the full host-native `llama.cpp` setup, see
-`/Users/stonefruit/Dev/Data4Life/Data2Evidence-coding-agent-tools/tools/code-rag/docs/llama-cpp-setup.md`.
+`tools/code-rag/docs/llama-cpp-setup.md`.
 
 The f16 GGUF model should live at:
 

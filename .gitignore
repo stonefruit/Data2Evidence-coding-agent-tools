@@ -8,6 +8,7 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+node_modules/
 .env
 .env.*
 !.env.example
@@ -22,4 +23,7 @@ tools/code-rag/qdrant-snapshots/
 tools/code-rag/run-state/
 tools/code-rag/snapshots/*
 !tools/code-rag/snapshots/.gitkeep
+tools/mri-query-codec/node_modules/
+.claude/settings.local.json
+.opencode/node_modules/
 repos/

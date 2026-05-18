@@ -11,8 +11,10 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Repository Shape
 
 - `tools/`: standalone agent tools, such as code RAG or repo analysis utilities
-- `skills/`: Codex/agent skills for Data2Evidence workflows
-- `repos/`: local checkouts and user-specific working material (for example, Data2Evidence and personal docs in `repos/docs/`)
+- `skills/`: shared Data2Evidence workflow skills used by multiple coding agents
+- `.codex/skills/`, `.claude/skills/`, `.opencode/skills/`: thin agent-specific adapters that point back to `skills/`
+- `repos/`: local checkouts and user-specific working material
+- `repos/docs/`: personal or team docs, usually a separate Git repository and ignored by this repo
 - `lima/`: local VM/container setup notes and configs
 
 ## Skill-First Rule
@@ -25,11 +27,21 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
+- Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/code-rag`.
+- When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.
 - Prefer small, reproducible entrypoints such as `docker compose run`, `make`, or a documented CLI command.
 - Store generated indexes, databases, caches, and model artifacts outside source-controlled paths or under ignored directories.
 - Do not index or persist secrets, `.env*` files, credentials, certificates, or generated private keys.
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
+
+## Cross-Agent Workflow Policy
+
+- Canonical reusable workflows live in `skills/<workflow>/SKILL.md`.
+- Codex, Claude, and OpenCode adapters should be thin pointers to the canonical skill.
+- Do not duplicate long workflow instructions across agent-specific command or skill files.
+- Move fragile shell procedures into `scripts/` or tool directories instead of embedding them in prompts.
+- If an adapter needs tool-specific behavior, keep it short and explain why it cannot live in the shared skill.
 
 ## Code RAG Required Artifacts
 
@@ -53,6 +65,8 @@ Expected workflow:
 - Document both the quick path (`make ...`) and the underlying container command when possible.
 - Prefer concrete examples that can be copy/pasted by another developer.
 - Use `repos/docs/` for personal docs; this may be a normal local folder or a separate personal Git repository.
+- Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
+- Do not write durable knowledge directly to `repos/docs/knowledge/` without following the `knowledge-expert` skill.
 
 ## Local Execution
 

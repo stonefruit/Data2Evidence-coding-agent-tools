@@ -1,8 +1,12 @@
 {
   "folders": [
     {
-      "name": "jerome4life",
+      "name": "d2e",
       "path": ".",
+    },
+    {
+      "name": "docs",
+      "path": "repos/docs",
     },
     {
       "name": "Data2Evidence",

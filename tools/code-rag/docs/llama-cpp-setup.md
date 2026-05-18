@@ -33,7 +33,7 @@ llama-server --help
 From the code-rag tool directory:
 
 ```bash
-cd /Users/stonefruit/Dev/Data4Life/Data2Evidence-coding-agent-tools/tools/code-rag
+cd tools/code-rag
 make download-model
 ```
 
@@ -46,7 +46,7 @@ https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/resolve/main/Qwen3-Embeddi
 Expected local path:
 
 ```text
-/Users/stonefruit/Dev/Data4Life/Data2Evidence-coding-agent-tools/.models/Qwen3-Embedding-0.6B-f16.gguf
+.models/Qwen3-Embedding-0.6B-f16.gguf
 ```
 
 The `.models` directory is intentionally ignored by git except for `.gitkeep`.
@@ -97,7 +97,7 @@ through `scripts/run_with_llama.sh` and clean it up when the command finishes.
 In another terminal:
 
 ```bash
-cd /Users/stonefruit/Dev/Data4Life/Data2Evidence-coding-agent-tools/tools/code-rag
+cd tools/code-rag
 make check-embed
 ```
 
@@ -133,9 +133,9 @@ make sync
 Only run indexing commands against a clean Data2Evidence checkout from GitHub. Check first:
 
 ```bash
-git -C /Users/stonefruit/Dev/Data4Life/Data2Evidence status --short
-git -C /Users/stonefruit/Dev/Data4Life/Data2Evidence remote get-url origin
-git -C /Users/stonefruit/Dev/Data4Life/Data2Evidence rev-parse HEAD
+git -C ../../repos/Data2Evidence status --short
+git -C ../../repos/Data2Evidence remote get-url origin
+git -C ../../repos/Data2Evidence rev-parse HEAD
 ```
 
 Do not index local experimental changes. Commit, stash, or use a clean clone first.

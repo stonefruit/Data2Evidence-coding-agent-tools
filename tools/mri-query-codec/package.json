@@ -1,0 +1,16 @@
+{
+  "name": "mri-query-codec",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Encode and decode compressed MRI query payloads.",
+  "bin": {
+    "mri-query-codec": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
