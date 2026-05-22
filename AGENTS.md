@@ -20,8 +20,8 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Skill-First Rule
 
 - Before running repository searches or answering codebase-location questions, identify and load any matching skill `SKILL.md` first.
-- If a matching skill says a search workflow is required (for example, Data2Evidence code RAG), run that workflow before using plain-text search tools.
-- Do not silently skip a required skill workflow. If it is blocked (for example, Docker permissions), stop and ask the user whether to unblock it or explicitly allow a fallback.
+- Use Data2Evidence code RAG only when the user explicitly requests it. For normal codebase searches, prefer direct inspection and plain-text search tools such as `rg`.
+- If a requested skill workflow is blocked (for example, Docker permissions), stop and ask the user whether to unblock it or choose another path.
 
 ## Tooling Guidelines
 
@@ -43,9 +43,11 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Move fragile shell procedures into `scripts/` or tool directories instead of embedding them in prompts.
 - If an adapter needs tool-specific behavior, keep it short and explain why it cannot live in the shared skill.
 
-## Code RAG Required Artifacts
+## Code RAG On Request
 
-For `tools/code-rag`, treat the following as required prerequisites (not optional):
+`tools/code-rag` is an opt-in workflow. Only use it when the user asks for Data2Evidence code RAG or explicitly requests semantic/code-index search.
+
+When using `tools/code-rag`, treat the following as required prerequisites:
 
 - Embedding model artifact: `./.models/Qwen3-Embedding-0.6B-f16.gguf`
 - Embedding runtime: host `llama.cpp` server using that Qwen model, reachable from Docker at `http://host.docker.internal:8080/v1`

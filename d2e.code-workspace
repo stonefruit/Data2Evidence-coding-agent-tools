@@ -20,6 +20,10 @@
       "name": "e2e",
       "path": "repos/e2e",
     },
+    {
+      "name": "wizards-dashboard",
+      "path": "repos/wizards-dashboard",
+    },
   ],
   "settings": {
     "cSpell.words": [
