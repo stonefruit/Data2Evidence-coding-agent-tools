@@ -40,4 +40,4 @@ D2E uses single-spa to load selected UI plugins as independently built micro-fro
 
 ## Related
 
-- `knowledge/architecture/cdm-config.md`
+- `knowledge/cdm-config.md`

@@ -28,7 +28,7 @@ The goal is to preserve durable, reusable knowledge without turning the reposito
 AGENTS.md
   -> skills/<matching-skill>/SKILL.md
       -> knowledge/INDEX.md
-          -> knowledge/<category>/<specific-topic>.md
+          -> knowledge/<specific-topic>.md
               -> source code, tests, runtime behavior, or official docs for verification
 ```
 
@@ -40,28 +40,28 @@ Each layer has a different job:
 - Individual knowledge files contain the actual reusable facts, patterns, and caveats.
 - Source code and tests remain the final authority.
 
-## Proposed Folder Shape
+## Folder Shape
 
 ```text
 knowledge/
   README.md
   INDEX.md
-  architecture/
-  decisions/
-  patterns/
-  qa/
-  troubleshooting/
-  workflows/
+  cdm-config.md
+  single-spa.md
 ```
 
-Recommended category use:
+Knowledge topic files should live at the top level by default. `INDEX.md` records a lightweight `Type` for each topic so agents can still distinguish architecture, decisions, patterns, QA notes, troubleshooting notes, and workflows without navigating empty category folders.
 
-- `architecture/`: how major D2E systems fit together.
-- `decisions/`: durable architectural or workflow decisions and their rationale.
-- `patterns/`: reusable implementation patterns.
-- `qa/`: expected behavior, false positives, and repeatable verification notes.
-- `troubleshooting/`: recurring symptoms, causes, and fixes.
-- `workflows/`: durable procedures that are not already better represented as skills.
+Use subfolders only after the flat list becomes hard to scan because a real cluster has formed, such as many troubleshooting notes or many QA notes.
+
+Recommended type use:
+
+- `architecture`: how major D2E systems fit together.
+- `decision`: durable architectural or workflow decisions and their rationale.
+- `pattern`: reusable implementation patterns.
+- `qa`: expected behavior, false positives, and repeatable verification notes.
+- `troubleshooting`: recurring symptoms, causes, and fixes.
+- `workflow`: durable procedures that are not already better represented as skills.
 
 If a document mostly tells an agent how to perform a task, prefer putting that procedure in `skills/` or a skill reference file. If a document mostly records facts about D2E, keep it in `knowledge/`.
 
@@ -86,20 +86,22 @@ Example:
 ```md
 # Knowledge Index
 
-## QA
+## Topics
 
 ### Cohorts Expected Behavior
 
-Read `qa/cohorts-expected-behavior.md` when:
+Type: qa
+
+Read `cohorts-expected-behavior.md` when:
 - verifying Cohorts or Patient Analytics UI behavior
 - reviewing QA findings for false positives
 - testing chart filtering, concept set dropdowns, or age chips
 
-## Architecture
-
 ### Portal App Architecture
 
-Read `architecture/portal.md` when:
+Type: architecture
+
+Read `portal.md` when:
 - changing portal routing
 - debugging micro-frontend loading
 - working with single-spa plugin integration
@@ -158,7 +160,7 @@ Short explanation of the durable lesson.
 ## Related
 
 - `skills/example-skill/SKILL.md`
-- `knowledge/other-category/related-topic.md`
+- `knowledge/related-topic.md`
 ```
 
 The most important sections are `Read When`, `Facts`, `Evidence`, and `Recheck When`.
@@ -248,7 +250,7 @@ Use this lightweight workflow when adding or changing knowledge:
 1. Confirm the knowledge is reusable beyond the current task.
 2. Verify it against code, tests, runtime behavior, or reliable docs.
 3. Record the source repository commit or commits the knowledge is verified against.
-4. Add or update a short file under the right category.
+4. Add or update a short top-level file and assign the right `Type` in `knowledge/INDEX.md`.
 5. Update `knowledge/INDEX.md` with load conditions.
 6. Commit the knowledge change with a clear message.
 
@@ -275,8 +277,8 @@ Skill files should not duplicate knowledge content. They should only route to it
 ## Initial Adoption Checklist
 
 - [x] Add this `knowledge/README.md`.
-- [x] Add a small `knowledge/INDEX.md` with empty category headings and usage guidance.
-- [x] Add category folders with `.gitkeep` files.
+- [x] Add a small `knowledge/INDEX.md` with topic entries and usage guidance.
+- [x] Keep topic files flat until real clusters justify subfolders.
 - [x] Update `AGENTS.md` to describe the knowledge progressive disclosure tree.
 - [x] Update relevant skills so they consult `knowledge/INDEX.md` or specific knowledge files at the right time.
 - [ ] Add only a few high-confidence knowledge files first.
@@ -292,6 +294,6 @@ A future `knowledge-check` command can verify:
 - no knowledge file is excessively large
 - every knowledge file includes an `Evidence` section with a source commit when it depends on source code
 - no ignored `repos/` archive paths are referenced as durable knowledge
-- category folders match the agreed folder shape
+- optional subfolders are used only for real topic clusters
 
 The validator should support the workflow without forcing frontmatter or complex metadata.
