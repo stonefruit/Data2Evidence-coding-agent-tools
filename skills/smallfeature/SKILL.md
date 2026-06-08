@@ -9,7 +9,7 @@ Use when the request is clear, limited, and does not need a full PRD. If scope e
 
 ## Workflow
 
-1. Load matching skills and retrieve relevant context from `${D2E_DOCS_REPO:-repos/docs}/knowledge` when useful.
+1. Load matching skills and retrieve relevant context through `knowledge/INDEX.md` when useful.
 2. State a brief approach before editing: files expected, behavior change, verification plan.
 3. Implement narrowly and follow existing patterns.
 4. Run focused tests/builds for the affected subsystem.

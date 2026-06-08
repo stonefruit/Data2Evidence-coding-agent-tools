@@ -1,4 +1,4 @@
-Load and follow the shared workflow skill at `skills/knowledge-expert/SKILL.md`.
+Load and follow the shared workflow skill at `skills/knowledge-curator/SKILL.md`.
 
 Arguments: `$ARGUMENTS`
 

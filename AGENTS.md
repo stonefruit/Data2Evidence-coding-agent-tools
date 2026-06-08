@@ -12,6 +12,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 
 - `tools/`: standalone agent tools, such as code RAG or repo analysis utilities
 - `skills/`: shared Data2Evidence workflow skills used by multiple coding agents
+- `knowledge/`: source-controlled durable D2E knowledge, discovered progressively through `knowledge/INDEX.md`
 - `.codex/skills/`, `.claude/skills/`, `.opencode/skills/`: thin agent-specific adapters that point back to `skills/`
 - `repos/`: local checkouts and user-specific working material
 - `repos/docs/`: personal or team docs, usually a separate Git repository and ignored by this repo
@@ -43,6 +44,15 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Move fragile shell procedures into `scripts/` or tool directories instead of embedding them in prompts.
 - If an adapter needs tool-specific behavior, keep it short and explain why it cannot live in the shared skill.
 
+## Knowledge Progressive Disclosure
+
+- Shared durable knowledge lives in `knowledge/`.
+- Treat `knowledge/INDEX.md` as the routing map; do not scan every knowledge file by default.
+- Load only knowledge files whose route conditions match the current task.
+- Keep knowledge files shallow by default: concise facts, expected behavior, pitfalls, source paths, and verification notes.
+- Prefer inspecting source code for deeper implementation logic unless prose captures durable rationale or a non-obvious lesson.
+- Use Git history as the freshness and trust trail for knowledge files.
+
 ## Code RAG On Request
 
 `tools/code-rag` is an opt-in workflow. Only use it when the user asks for Data2Evidence code RAG or explicitly requests semantic/code-index search.
@@ -66,9 +76,10 @@ Expected workflow:
 - Keep `README.md` and tool-level READMEs in sync when workflows, paths, or commands change.
 - Document both the quick path (`make ...`) and the underlying container command when possible.
 - Prefer concrete examples that can be copy/pasted by another developer.
-- Use `repos/docs/` for personal docs; this may be a normal local folder or a separate personal Git repository.
+- Use `knowledge/` for source-controlled durable agent knowledge.
+- Use `repos/docs/` for personal or team docs; this may be a normal local folder or a separate personal Git repository.
 - Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
-- Do not write durable knowledge directly to `repos/docs/knowledge/` without following the `knowledge-expert` skill.
+- Do not write durable knowledge to `knowledge/` without following the `knowledge-curator` skill.
 - Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
 
 ## Local Execution
