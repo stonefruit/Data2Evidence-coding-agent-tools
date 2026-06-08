@@ -55,6 +55,25 @@ Keywords:
 - `getBackendConfig`
 - `advancedSettings.tableMapping`
 
+### single-spa Portal Integration
+
+Read `architecture/single-spa.md` when:
+- the task mentions single-spa, micro-frontends, import maps, SystemJS, `import-map-overrides`, or plugin apps
+- work touches portal plugin loading, Researcher/System Admin/ETL plugin routes, or `type: "app"` plugin configuration
+- a plugin app fails to mount, mounts in the wrong container, receives stale props, or ignores a local override URL
+
+Related skills:
+- `skills/concept-sets-dev/SKILL.md`
+- `skills/cohorts-dev/SKILL.md`
+
+Keywords:
+- single-spa
+- SystemJS
+- import-map-overrides
+- micro-frontend
+- `SingleSpaAppContainer`
+- `registerSingleSpaApp`
+
 ## Decisions
 
 Use decision knowledge for durable rationale: why a pattern, architecture, workflow, or constraint exists and when it should be revisited.
