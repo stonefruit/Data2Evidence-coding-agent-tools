@@ -42,7 +42,7 @@ lima/             # Local VM/container setup notes
 - Start discovery from `knowledge/INDEX.md`; load only files whose route conditions match the task.
 - Keep knowledge files plain Markdown with no required frontmatter.
 - Keep knowledge shallow by default: facts, pitfalls, expected behavior, source paths, and verification notes.
-- Use Git history as the freshness trail, and verify risky claims against source code, tests, or runtime behavior.
+- Use Git history as the edit trail, record the source commit each knowledge file was verified against, and verify risky claims against source code, tests, or runtime behavior.
 
 ## Local Repositories
 

@@ -11,7 +11,7 @@ The goal is to preserve durable, reusable knowledge without turning the reposito
 - Keep individual knowledge files small, plain, and easy to verify.
 - Keep knowledge shallow by default; include deeper logic only when there is a clear durable reason.
 - Avoid frontmatter-driven discovery, because unloaded files cannot help an agent decide whether to load them.
-- Use Git history as the trust and freshness trail for knowledge files.
+- Use Git history as the edit trail, and record the source commit each knowledge file was verified against.
 
 ## Non-Goals
 
@@ -145,7 +145,9 @@ Short explanation of the durable lesson.
 
 ## Evidence
 
-How this was verified, or what evidence originally established it.
+- Verified against `repos/Data2Evidence` commit `<commit-sha>`.
+- Verified by inspecting `<source path>` or running `<test/command>`.
+- Add additional repository commits when the knowledge depends on more than one repo.
 
 ## Recheck When
 
@@ -200,7 +202,18 @@ git log -1 --format='%cs %h %s' -- knowledge/<path>.md
 git blame knowledge/<path>.md
 ```
 
-This means a knowledge file does not need `status`, `last_verified`, or `updated_at` frontmatter. The latest relevant commit is the verification trail.
+Git history shows when a knowledge file changed. The knowledge file should also state which source commit it was verified against in its `Evidence` section.
+
+For D2E app knowledge, record the app repo commit:
+
+```bash
+git -C repos/Data2Evidence rev-parse HEAD
+git -C repos/Data2Evidence status --short
+```
+
+Prefer verifying against a clean source working tree. If verification depends on uncommitted local changes, say that in the `Evidence` section and recheck before treating the knowledge as durable.
+
+This means a knowledge file does not need `status`, `last_verified`, or `updated_at` frontmatter. Freshness is tracked by the knowledge file Git history plus the source commit recorded in `Evidence`.
 
 Agents should still recheck claims when:
 
@@ -234,9 +247,10 @@ Use this lightweight workflow when adding or changing knowledge:
 
 1. Confirm the knowledge is reusable beyond the current task.
 2. Verify it against code, tests, runtime behavior, or reliable docs.
-3. Add or update a short file under the right category.
-4. Update `knowledge/INDEX.md` with load conditions.
-5. Commit the knowledge change with a clear message.
+3. Record the source repository commit or commits the knowledge is verified against.
+4. Add or update a short file under the right category.
+5. Update `knowledge/INDEX.md` with load conditions.
+6. Commit the knowledge change with a clear message.
 
 When a knowledge file becomes outdated:
 
@@ -276,6 +290,7 @@ A future `knowledge-check` command can verify:
 - every linked file in `knowledge/INDEX.md` exists
 - every Markdown file under `knowledge/` is reachable from the index, except this README
 - no knowledge file is excessively large
+- every knowledge file includes an `Evidence` section with a source commit when it depends on source code
 - no ignored `repos/` archive paths are referenced as durable knowledge
 - category folders match the agreed folder shape
 

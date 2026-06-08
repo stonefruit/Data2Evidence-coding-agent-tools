@@ -51,7 +51,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Load only knowledge files whose route conditions match the current task.
 - Keep knowledge files shallow by default: concise facts, expected behavior, pitfalls, source paths, and verification notes.
 - Prefer inspecting source code for deeper implementation logic unless prose captures durable rationale or a non-obvious lesson.
-- Use Git history as the freshness and trust trail for knowledge files.
+- Use Git history as the edit trail, and record the source commit each knowledge file was verified against.
 
 ## Code RAG On Request
 

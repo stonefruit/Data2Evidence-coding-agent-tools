@@ -4,7 +4,7 @@ This index is the routing map for source-controlled D2E knowledge.
 
 Use it after `AGENTS.md` and the matching skill indicate that durable D2E context may matter. Do not scan every file under `knowledge/` by default. Load only the specific files whose route conditions match the task.
 
-Knowledge files are plain Markdown. They do not require frontmatter. Git history is the freshness and trust trail.
+Knowledge files are plain Markdown. They do not require frontmatter. Git history records when knowledge changed; each knowledge file should record which source commit it was verified against.
 
 ## How To Use This Index
 
@@ -37,7 +37,23 @@ Keywords:
 
 Use architecture knowledge for system shape, ownership boundaries, routing, integration points, and non-obvious interactions between major D2E components.
 
-No entries yet.
+### CDM Config
+
+Read `architecture/cdm-config.md` when:
+- the task mentions CDM config, Clinical Data Model config, CDW config, or `HC/HPH/CDW`
+- work touches Patient Analytics filters, cohorts, domain values, query generation, or backend data model behavior
+- work changes the CDM configuration frontend, validation, activation, assignment, or table placeholder mapping
+
+Related skills:
+- `skills/cohorts-dev/SKILL.md`
+
+Keywords:
+- CDM config
+- Clinical Data Model
+- CDW
+- Patient Analytics
+- `getBackendConfig`
+- `advancedSettings.tableMapping`
 
 ## Decisions
 
@@ -75,6 +91,7 @@ When adding or changing knowledge:
 
 1. Confirm the information is reusable beyond the current task.
 2. Verify it against code, tests, runtime behavior, or reliable docs.
-3. Add or update a short knowledge file in the right category.
-4. Add or update a route entry in this index.
-5. Keep deeper implementation logic in source code unless prose adds durable value.
+3. Record the source repository commit or commits in the knowledge file's `Evidence` section.
+4. Add or update a short knowledge file in the right category.
+5. Add or update a route entry in this index.
+6. Keep deeper implementation logic in source code unless prose adds durable value.
