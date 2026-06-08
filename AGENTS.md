@@ -10,7 +10,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 
 ## Repository Shape
 
-- `tools/`: standalone agent tools, such as code RAG or repo analysis utilities
+- `tools/`: standalone agent tools, such as repo analysis utilities
 - `skills/`: shared Data2Evidence workflow skills used by multiple coding agents
 - `knowledge/`: source-controlled durable D2E knowledge, discovered progressively through `knowledge/INDEX.md`
 - `.codex/skills/`, `.claude/skills/`, `.opencode/skills/`: thin agent-specific adapters that point back to `skills/`
@@ -21,14 +21,13 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Skill-First Rule
 
 - Before running repository searches or answering codebase-location questions, identify and load any matching skill `SKILL.md` first.
-- Use Data2Evidence code RAG only when the user explicitly requests it. For normal codebase searches, prefer direct inspection and plain-text search tools such as `rg`.
 - If a requested skill workflow is blocked (for example, Docker permissions), stop and ask the user whether to unblock it or choose another path.
 
 ## Tooling Guidelines
 
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
-- Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/code-rag`.
+- Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/<tool-name>`.
 - When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.
 - Prefer small, reproducible entrypoints such as `docker compose run`, `make`, or a documented CLI command.
 - Store generated indexes, databases, caches, and model artifacts outside source-controlled paths or under ignored directories.
@@ -52,24 +51,6 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Keep knowledge files shallow by default: concise facts, expected behavior, pitfalls, source paths, and verification notes.
 - Prefer inspecting source code for deeper implementation logic unless prose captures durable rationale or a non-obvious lesson.
 - Use Git history as the edit trail, and record the source commit each knowledge file was verified against.
-
-## Code RAG On Request
-
-`tools/code-rag` is an opt-in workflow. Only use it when the user asks for Data2Evidence code RAG or explicitly requests semantic/code-index search.
-
-When using `tools/code-rag`, treat the following as required prerequisites:
-
-- Embedding model artifact: `./.models/Qwen3-Embedding-0.6B-f16.gguf`
-- Embedding runtime: host `llama.cpp` server using that Qwen model, reachable from Docker at `http://host.docker.internal:8080/v1`
-- Qdrant data artifact: snapshot bundle in `tools/code-rag/snapshots/` (for example `data2evidence-code-rag-qdrant-<sha>-<timestamp>.tgz`)
-
-Expected workflow:
-
-- Start Qdrant: `cd tools/code-rag && make qdrant`
-- Restore index from snapshot when available: `make import-snapshot bundle=snapshots/<bundle-name>.tgz`
-- Verify index state: `make status` (if `indexed_git_sha` is `null`, the collection is not loaded)
-- If model file is missing, fetch it: `make download-model`
-- If no usable snapshot exists, build index: `make sync`
 
 ## Documentation Expectations
 
