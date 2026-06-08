@@ -59,6 +59,29 @@ Keywords:
 - `getBackendConfig`
 - `advancedSettings.tableMapping`
 
+### Cohort Builders
+
+Type: architecture
+
+Read `cohort-builder.md` when:
+- the task mentions the main cohort builder, Patient Analytics, PA-Atlas, Atlas cohort definitions, or `ui/apps/vue-mri-ui-lib`
+- work touches Patient Analytics filter cards, `plugins/ui/apps/vue-mri-ui-lib/src/query-filter`, or Atlas cohort-definition integration
+- debugging filter-card state, cohort definition import/export, concept-set resolution, cohort generation, inclusion reports, or Patient Analytics bookmark integration
+
+Related skills:
+- `skills/cohorts-dev/SKILL.md`
+
+Keywords:
+- cohort builder
+- Patient Analytics
+- filter cards
+- PA-Atlas
+- Atlas cohort definition
+- `query-filter`
+- `QueryFilterModern`
+- `QueryFilterCriteriaManager`
+- `usePaAtlas`
+
 ### single-spa Portal Integration
 
 Type: architecture
