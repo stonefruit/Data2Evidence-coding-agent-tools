@@ -106,6 +106,8 @@ From the D2E workspace:
 scripts/d2e-ui-hot-deploy.sh vue-mri
 ```
 
+Run this outside the sandbox when using Codex tools because it performs an Nx production build and `docker cp` into the running `trex` container. In Codex, request escalation for this command rather than retrying sandboxed if Nx daemon/socket or Docker copy permissions fail.
+
 That script:
 
 - uses `${D2E_APP_REPO:-<workspace>/repos/Data2Evidence}` and `${D2E_UI_DIR:-$D2E_APP_REPO/plugins/ui}`
@@ -116,6 +118,69 @@ That script:
 - recreates `/usr/src/data/plugins/@data2evidence/d2e-ui/resources/mri` from the local build output
 
 After hot deploy, hard-refresh the browser and verify the Cohort Builder scenario. For portal MRI UI5 plugin changes, also follow `skills/cohorts-dev/SKILL.md` because some changes may be served from `mri-ui5` rather than `mri`.
+
+## Fast Playwright Harness
+
+Use standalone Playwright when the in-app Browser blocks localhost or when verifying a deployed UI bundle. Launch local Chrome outside the sandbox. Set `HEADLESS=false` when the user wants to watch the browser.
+
+```js
+const { chromium } = require('/Users/jerome/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+
+const headed = process.env.HEADLESS === 'false';
+const browser = await chromium.launch({
+  headless: !headed,
+  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  slowMo: headed ? 150 : 0,
+  args: ['--no-sandbox'],
+});
+const context = await browser.newContext({
+  ignoreHTTPSErrors: true,
+  viewport: { width: 1440, height: 900 },
+});
+const page = await context.newPage();
+```
+
+Prefer this direct login helper instead of rediscovering the login page every run:
+
+```js
+async function gotoResearcher(page) {
+  await page.goto('https://localhost:41100/d2e/portal/researcher', {
+    waitUntil: 'domcontentloaded',
+    timeout: 30000,
+  });
+  await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
+
+  if (page.url().includes('/sign-in')) {
+    await page.locator('input[type="text"], input[name="identifier"], input[name="username"]').first().fill('admin');
+    await page.locator('input[type="password"]').first().fill('Updatepassword12345');
+    await page.locator('button[type="submit"], button:has-text("Sign in")').first().click();
+    await page.waitForURL('**/d2e/portal/**', { timeout: 30000 });
+    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
+  }
+
+  if (page.url().includes('/no-access')) {
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
+  }
+}
+```
+
+For Cohort Builder verification after hot deploy:
+
+```js
+await gotoResearcher(page);
+await page.locator('text="Demo dataset"').first().click();
+await page.waitForURL('**/d2e/portal/researcher/information**', { timeout: 30000 }).catch(() => {});
+await page.locator('a:has-text("Cohorts"), button:has-text("Cohorts"), text="Cohorts"').first().click();
+await page.waitForURL('**/d2e/portal/researcher/cohort**', { timeout: 30000 }).catch(() => {});
+await page.getByText('Create Cohort test:', { exact: true }).isVisible();
+```
+
+When watching the run, keep the browser open long enough to inspect it:
+
+```js
+if (headed) await page.waitForTimeout(10000);
+```
 
 ## Browser Notes
 

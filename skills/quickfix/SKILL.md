@@ -9,7 +9,7 @@ Use for one small bug fix or obvious change. If the task spans multiple subsyste
 
 ## Workflow
 
-1. Identify the affected subsystem and load any matching skill first. For Data2Evidence code search, use `data2evidence-code-rag` before plain text search.
+1. Identify the affected subsystem and load any matching skill first. For Data2Evidence code search, use direct source inspection with `rg`, `rg --files`, and targeted file reads.
 2. For bug fixes, reproduce the current behavior before editing when a local runtime or browser path is available.
 3. Read the target files and nearby patterns before changing anything.
 4. Make the minimal fix only; record adjacent issues instead of expanding scope.

@@ -1,15 +1,23 @@
 ---
 name: data2evidence-code-rag
-description: Use this skill when answering questions about the Data2Evidence codebase, doing codebase search, locating implementation details, finding routes/configuration/types/services, or preparing code changes where repository-specific context matters. It requires using the local Qdrant-backed Data2Evidence code RAG before relying on memory or plain text search; if Qdrant, llama.cpp, the embedding model, or the index is not ready, run setup automatically and only fall back with user approval.
+description: Deprecated legacy skill for maintaining or explicitly using the Data2Evidence local Qdrant code RAG. Do not use for normal Data2Evidence codebase search, implementation lookup, route/config/type/service discovery, or code changes; use direct source inspection with rg and matching subsystem skills instead. Only load this skill when the user explicitly asks for the legacy code-rag tool, Qdrant index, snapshots, embedding setup, or RAG maintenance.
 ---
 
-# Data2Evidence Code RAG
+# Data2Evidence Code RAG (Deprecated)
 
-## Default Workflow
+This workflow is deprecated because the local RAG has not been useful enough for day-to-day Data2Evidence work.
 
-Before answering Data2Evidence codebase questions, search the Qdrant code index. Use `rg` as a supplement, not as the first or only source, unless the Qdrant toolchain is unavailable and the user chooses not to set it up.
+For normal Data2Evidence codebase questions or code changes:
 
-Work from:
+1. Load any matching subsystem skill first.
+2. Use direct source inspection with `rg`, `rg --files`, and targeted file reads.
+3. Do not bootstrap Qdrant, llama.cpp, embedding models, snapshots, or `make query`.
+
+Use the legacy workflow below only when the user explicitly asks to inspect, run, repair, or maintain the code-rag tool.
+
+## Legacy Workflow
+
+For explicit code-rag maintenance tasks, work from:
 
 ```bash
 cd tools/code-rag

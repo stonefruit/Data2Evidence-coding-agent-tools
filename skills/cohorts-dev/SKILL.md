@@ -17,8 +17,8 @@ Use for Cohorts, Patient Analytics, vue-mri, and MRI UI5 plugin work.
 ## Workflow
 
 1. Reproduce bugs before editing when possible.
-2. Use `data2evidence-code-rag` before locating Data2Evidence implementation details.
-3. Build vue-mri with `scripts/d2e-ui-hot-deploy.sh vue-mri` when deploying to a running trex container.
+2. Use direct source inspection with `rg`, `rg --files`, and targeted file reads when locating Data2Evidence implementation details.
+3. Build vue-mri with `scripts/d2e-ui-hot-deploy.sh vue-mri` when deploying to a running trex container. Run this outside the sandbox in Codex because it builds with Nx and uses `docker cp`.
 4. For portal MRI UI5 plugin changes, also build/deploy the relevant MRI UI5 resources if the changed code is served from `mri-ui5`.
 5. Hard-refresh the browser and verify the scenario.
 

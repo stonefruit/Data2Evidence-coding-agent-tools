@@ -1,9 +1,9 @@
 ---
 name: data2evidence-code-rag
-description: Use this skill when answering questions about the Data2Evidence codebase, doing codebase search, locating implementation details, finding routes/configuration/types/services, or preparing code changes where repository-specific context matters. It requires using the local Qdrant-backed Data2Evidence code RAG before relying on memory or plain text search; if Qdrant, llama.cpp, the embedding model, or the index is not ready, run setup automatically and only fall back with user approval.
+description: Deprecated legacy wrapper for maintaining or explicitly using the Data2Evidence local Qdrant code RAG. Do not use for normal Data2Evidence codebase search, implementation lookup, route/config/type/service discovery, or code changes; use direct source inspection with rg and matching subsystem skills instead. Only load this skill when the user explicitly asks for the legacy code-rag tool, Qdrant index, snapshots, embedding setup, or RAG maintenance.
 ---
 
-# Data2Evidence Code RAG (Codex Wrapper)
+# Data2Evidence Code RAG (Deprecated Codex Wrapper)
 
 This is the Codex-specific wrapper for skill discovery.
 

@@ -17,7 +17,7 @@ For shared conventions, see [AGENTS.md](AGENTS.md).
 ## Repository Layout
 
 ```text
-tools/            # Standalone agent tools (for example code-rag)
+tools/            # Standalone agent tools, including legacy experiments
 skills/           # Shared skill instructions reusable across harnesses
 knowledge/        # Source-controlled durable knowledge, routed through INDEX.md
 .codex/skills/    # Codex-specific skill wrappers/frontmatter and UI metadata
@@ -56,10 +56,14 @@ Scripts and skills should use relative paths by default and allow overrides with
 
 ## Current Tools
 
-- [Code RAG](tools/code-rag/README.md): local Qdrant-backed retrieval over Data2Evidence source files with citations.
+- [Code RAG](tools/code-rag/README.md): deprecated local Qdrant-backed retrieval experiment. Keep it only for legacy maintenance or explicit RAG investigations; use direct source search for normal codebase work.
 - [MRI Query Codec](tools/mri-query-codec/package.json): dependency-free Node helper for compressed MRI query payloads.
 
-## Quick Start (Code RAG)
+## Legacy Tool: Code RAG
+
+Code RAG is deprecated for day-to-day agent workflow because it has not been useful enough compared with direct source inspection.
+
+Use `rg`, `rg --files`, and targeted file reads for normal Data2Evidence codebase search. Only run the legacy flow below when explicitly maintaining or investigating the code-rag tool.
 
 ```bash
 cd tools/code-rag

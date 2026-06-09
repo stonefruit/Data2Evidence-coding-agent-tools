@@ -25,7 +25,7 @@ if [ ! -d "$UI_DIR" ]; then
 fi
 
 cd "$UI_DIR"
-bunx nx build "$PROJECT"
+NX_DAEMON=false bunx nx build "$PROJECT"
 
 RESOURCE_DIR="$UI_DIR/resources/$RESOURCE"
 if [ ! -d "$RESOURCE_DIR" ]; then
