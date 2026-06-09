@@ -66,6 +66,10 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Do not write durable knowledge to `knowledge/` without following the `knowledge-curator` skill.
 - Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
 
+## Personal Instructions
+
+- When working in a user-specific checkout, check for `repos/docs/MY_AGENT.md` and follow any personal preferences there in addition to these shared instructions.
+
 ## Local Execution
 
 When local execution is simpler for a quick check, it is fine to run it directly, but document the container path as the durable workflow.
