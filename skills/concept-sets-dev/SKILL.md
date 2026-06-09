@@ -10,7 +10,7 @@ Use for changes under the Concept Sets UI.
 ## Defaults
 
 - App repo: `${D2E_APP_REPO:-repos/Data2Evidence}`
-- Source area: `repos/Data2Evidence/ui/apps/concept-sets/src`
+- Source area: `repos/Data2Evidence/plugins/ui/apps/concept-sets/src`
 - NX project: `concept-sets`
 - Resource dir: `concept-sets`
 

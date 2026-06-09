@@ -10,7 +10,7 @@ Use for Cohorts, Patient Analytics, vue-mri, and MRI UI5 plugin work.
 ## Defaults
 
 - App repo: `${D2E_APP_REPO:-repos/Data2Evidence}`
-- Source area: `repos/Data2Evidence/ui/apps/vue-mri-ui-lib/src`
+- Source area: `repos/Data2Evidence/plugins/ui/apps/vue-mri-ui-lib/src`
 - NX project: `vue-mri`
 - Resource dir: `mri`
 
