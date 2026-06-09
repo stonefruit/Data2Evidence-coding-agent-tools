@@ -58,8 +58,10 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Keep `README.md` and tool-level READMEs in sync when workflows, paths, or commands change.
 - Document both the quick path (`make ...`) and the underlying container command when possible.
 - Prefer concrete examples that can be copy/pasted by another developer.
+- Do not post investigation notes, status updates, summaries, or comments directly to GitHub issues or pull requests unless the user explicitly asks for that GitHub update.
 - Use `knowledge/` for source-controlled durable agent knowledge.
 - Use `repos/docs/` for personal or team docs; this may be a normal local folder or a separate personal Git repository.
+- Prefer documenting project investigations, issue notes, PR context, and working summaries in `repos/docs/` by default.
 - Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
 - Do not write durable knowledge to `knowledge/` without following the `knowledge-curator` skill.
 - Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
