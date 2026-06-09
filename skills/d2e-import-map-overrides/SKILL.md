@@ -121,11 +121,13 @@ After hot deploy, hard-refresh the browser and verify the Cohort Builder scenari
 
 ## Fast Playwright Harness
 
-Use standalone Playwright when the in-app Browser blocks localhost or when verifying a deployed UI bundle. Launch local Chrome outside the sandbox. Set `HEADLESS=false` when the user wants to watch the browser.
+Use standalone Playwright when the in-app Browser blocks localhost or when verifying a deployed UI bundle. Launch local Chrome outside the sandbox. For visible browser runs, set `headless: false`, add a small `slowMo`, and keep the page open briefly at the end.
 
 ```js
+const fs = require('node:fs');
 const { chromium } = require('/Users/jerome/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 
+const storageState = '/private/tmp/d2e-playwright-login-state.json';
 const headed = process.env.HEADLESS === 'false';
 const browser = await chromium.launch({
   headless: !headed,
@@ -136,11 +138,12 @@ const browser = await chromium.launch({
 const context = await browser.newContext({
   ignoreHTTPSErrors: true,
   viewport: { width: 1440, height: 900 },
+  ...(fs.existsSync(storageState) ? { storageState } : {}),
 });
 const page = await context.newPage();
 ```
 
-Prefer this direct login helper instead of rediscovering the login page every run:
+Use this direct login helper instead of rediscovering the login page each run. It handles already-logged-in sessions because it only fills credentials when the direct `/researcher` navigation redirects to `/sign-in`.
 
 ```js
 async function gotoResearcher(page) {
@@ -165,7 +168,13 @@ async function gotoResearcher(page) {
 }
 ```
 
-For Cohort Builder verification after hot deploy:
+After a successful login, save storage state so future Playwright contexts can skip the login form while the session remains valid:
+
+```js
+await context.storageState({ path: storageState });
+```
+
+For one-off Cohort Builder checks after login:
 
 ```js
 await gotoResearcher(page);
@@ -174,11 +183,6 @@ await page.waitForURL('**/d2e/portal/researcher/information**', { timeout: 30000
 await page.locator('a:has-text("Cohorts"), button:has-text("Cohorts"), text="Cohorts"').first().click();
 await page.waitForURL('**/d2e/portal/researcher/cohort**', { timeout: 30000 }).catch(() => {});
 await page.getByText('Create Cohort test:', { exact: true }).isVisible();
-```
-
-When watching the run, keep the browser open long enough to inspect it:
-
-```js
 if (headed) await page.waitForTimeout(10000);
 ```
 
