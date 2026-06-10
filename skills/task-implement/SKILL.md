@@ -22,7 +22,7 @@ Use when given a specific subphase from a `plan-implementation.md`.
 
 The coordinator owns the target subphase, final working tree, and final summary.
 
-Prefer subagents when available and useful for bounded work, especially to preserve coordinator context during exploration and review:
+Prefer subagents when available and useful for bounded work, especially to preserve coordinator context during exploration and review. Codex requires the user request to explicitly mention subagents, delegation, or parallel agent work before spawning subagents. Tell users to invoke this workflow as `/task-implement <subphase> use subagents` when they want explorer, worker, or reviewer subagents. If the request does not explicitly mention subagents, use the sequential fallback:
 
 - Explorer: answer a specific codebase question before implementation, such as where behavior lives or which existing pattern to follow.
 - Worker: implement a clearly isolated slice only when file or module ownership is disjoint from the coordinator and other workers.

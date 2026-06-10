@@ -22,7 +22,8 @@ For PRDs with meaningful product or architecture uncertainty, run a bounded revi
 
 - The coordinator owns the canonical PRD markdown file.
 - Reviewers produce notes, objections, and proposed edits; they do not directly co-edit the canonical file.
-- Prefer subagents for reviewer passes when subagent tooling is available; this preserves coordinator context and gives an independent review surface. Use sequential named passes only when subagents are unavailable or the task is too small to justify delegation.
+- Prefer subagents for reviewer passes when subagent tooling is available; this preserves coordinator context and gives an independent review surface.
+- Codex requires the user request to explicitly mention subagents, delegation, or parallel agent work before spawning subagents. Tell users to invoke this workflow as `/task-prd <issue-or-project> use subagents` when they want reviewer subagents. If the request does not explicitly mention subagents, use the sequential fallback.
 - Run at most two review rounds. If disagreement remains, capture it as a `Decision Needed` item with the competing options and tradeoffs.
 
 Reviewer roles:
