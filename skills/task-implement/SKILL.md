@@ -10,13 +10,16 @@ Use when given a specific subphase from a `plan-implementation.md`.
 ## Workflow
 
 1. Read the target subphase, acceptance criteria, and testing expectations.
-2. Load matching skills and route through `knowledge/INDEX.md` for relevant knowledge before code search or edits.
-3. Summarize approach, expected files, and risks before implementation when the change is non-trivial.
-4. Prefer test-first where feasible; otherwise document why and add verification afterward.
-5. Implement only the subphase. Do not fix adjacent issues unless explicitly requested.
-6. If implementation reveals the subphase is incorrectly scoped, stop and update the plan or blocked note instead of silently expanding the change.
-7. Run focused tests/builds and summarize results.
-8. If blocked, create a concise blocked note in the project folder using the phase-blocked template when available.
+2. Locate the project folder containing `plan-implementation.md`.
+3. Before code edits, make sure every phase in `plan-implementation.md` has a dedicated markdown file in the project folder, using a stable name such as `phase-01-short-title.md`. Create missing phase files as concise placeholders that link back to `plan-implementation.md`, list the phase scope, subphases, acceptance criteria, verification plan, and current status.
+4. For the target phase, update its phase markdown as implementation proceeds with the active subphase, decisions, verification performed, blockers, and completion state.
+5. Load matching skills and route through `knowledge/INDEX.md` for relevant knowledge before code search or edits.
+6. Summarize approach, expected files, and risks before implementation when the change is non-trivial.
+7. Prefer test-first where feasible; otherwise document why and add verification afterward.
+8. Implement only the subphase. Do not fix adjacent issues unless explicitly requested.
+9. If implementation reveals the subphase is incorrectly scoped, stop and update the plan, target phase markdown, or blocked note instead of silently expanding the change.
+10. Run focused tests/builds and summarize results.
+11. If blocked, create a concise blocked note in the project folder using the phase-blocked template when available, and link it from the target phase markdown.
 
 ## Delegation and Review
 
