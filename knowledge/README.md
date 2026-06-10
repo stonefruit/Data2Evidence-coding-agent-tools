@@ -267,10 +267,10 @@ Skills should point to the index or to specific knowledge files only when that c
 
 Examples:
 
-- `verify-ui` can tell agents to check `knowledge/INDEX.md` for QA and troubleshooting entries before reporting UI bugs.
-- `cohorts-dev` can point directly to Cohorts expected behavior knowledge when verifying Patient Analytics.
-- `prd` and `breakdown` can tell agents to check architecture and decision entries before planning larger work.
-- `quickfix` can tell agents to check troubleshooting entries only when the symptom matches.
+- `dev-ui-verify` can tell agents to check `knowledge/INDEX.md` for QA and troubleshooting entries before reporting UI bugs.
+- `dev-ui-cohorts` can point directly to Cohorts expected behavior knowledge when verifying Patient Analytics.
+- `task-prd` and `task-breakdown` can tell agents to check architecture and decision entries before planning larger work.
+- `task-quickfix` can tell agents to check troubleshooting entries only when the symptom matches.
 
 Skill files should not duplicate knowledge content. They should only route to it.
 

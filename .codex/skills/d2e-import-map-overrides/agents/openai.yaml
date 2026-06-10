@@ -1,4 +1,0 @@
-interface:
-  display_name: "D2E Import Map Overrides"
-  short_description: "Enable D2E single-spa UI overrides"
-  default_prompt: "Use $d2e-import-map-overrides to verify the local Import Map Overrides devtools flow."

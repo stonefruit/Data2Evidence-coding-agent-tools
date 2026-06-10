@@ -49,7 +49,7 @@ Read `cdm-config.md` when:
 - work changes the CDM configuration frontend, validation, activation, assignment, or table placeholder mapping
 
 Related skills:
-- `skills/cohorts-dev/SKILL.md`
+- `skills/dev-ui-cohorts/SKILL.md`
 
 Keywords:
 - CDM config
@@ -69,7 +69,7 @@ Read `cohort-builder.md` when:
 - debugging filter-card state, cohort definition import/export, concept-set resolution, cohort generation, inclusion reports, or Patient Analytics bookmark integration
 
 Related skills:
-- `skills/cohorts-dev/SKILL.md`
+- `skills/dev-ui-cohorts/SKILL.md`
 
 Keywords:
 - cohort builder
@@ -92,8 +92,8 @@ Read `single-spa.md` when:
 - a plugin app fails to mount, mounts in the wrong container, receives stale props, or ignores a local override URL
 
 Related skills:
-- `skills/concept-sets-dev/SKILL.md`
-- `skills/cohorts-dev/SKILL.md`
+- `skills/dev-ui-concept-sets/SKILL.md`
+- `skills/dev-ui-cohorts/SKILL.md`
 
 Keywords:
 - single-spa

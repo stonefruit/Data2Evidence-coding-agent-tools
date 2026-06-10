@@ -26,7 +26,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Tooling Guidelines
 
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
-- Treat `tools/code-rag` and the `data2evidence-code-rag` skill as deprecated for normal codebase work; use direct source inspection with `rg`, `rg --files`, and targeted file reads unless the user explicitly asks for legacy RAG maintenance or investigation.
+- Treat `tools/code-rag` and the `legacy-code-rag` skill as deprecated for normal codebase work; use direct source inspection with `rg`, `rg --files`, and targeted file reads unless the user explicitly asks for legacy RAG maintenance or investigation.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
 - Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/<tool-name>`.
 - When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.
@@ -40,6 +40,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 
 - Canonical reusable workflows live in `skills/<workflow>/SKILL.md`.
 - Codex, Claude, and OpenCode adapters should be thin pointers to the canonical skill.
+- When changing coding-agent setup, skills, commands, adapters, or workflow names, consider all included coding agents (Codex, Claude, and OpenCode) and keep their references aligned unless a difference is intentional and documented.
 - Do not duplicate long workflow instructions across agent-specific command or skill files.
 - Move fragile shell procedures into `scripts/` or tool directories instead of embedding them in prompts.
 - If an adapter needs tool-specific behavior, keep it short and explain why it cannot live in the shared skill.
@@ -63,7 +64,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Use `repos/docs/` for personal or team docs; this may be a normal local folder or a separate personal Git repository.
 - Prefer documenting project investigations, issue notes, PR context, and working summaries in `repos/docs/` by default.
 - Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
-- Do not write durable knowledge to `knowledge/` without following the `knowledge-curator` skill.
+- Do not write durable knowledge to `knowledge/` without following the `maint-knowledge-curator` skill.
 - Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
 
 ## Personal Instructions

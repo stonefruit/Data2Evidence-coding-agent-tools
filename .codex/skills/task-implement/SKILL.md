@@ -1,0 +1,12 @@
+---
+name: task-implement
+description: Use to implement a specific subphase from a D2E implementation plan with scope discipline, testing, and review.
+---
+
+# task-implement
+
+Canonical instructions live in:
+
+`skills/task-implement/SKILL.md`
+
+Load and follow that shared skill file as the source of truth. This wrapper exists only for Codex discovery.

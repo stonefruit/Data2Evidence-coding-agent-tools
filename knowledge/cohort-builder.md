@@ -55,6 +55,6 @@ D2E has two closely related cohort-building paths inside `plugins/ui/apps/vue-mr
 
 ## Related
 
-- `skills/cohorts-dev/SKILL.md`
+- `skills/dev-ui-cohorts/SKILL.md`
 - `knowledge/cdm-config.md`
 - `knowledge/single-spa.md`
