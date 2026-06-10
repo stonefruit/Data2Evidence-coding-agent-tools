@@ -13,6 +13,17 @@ Use for reproducing bugs, verifying UI fixes, checking local pages, or collectin
 - App repo: `${D2E_APP_REPO:-repos/Data2Evidence}`
 - Login for local demo environments: `admin` / `Updatepassword12345`
 
+## Playwright Local SSL Defaults
+
+When using Playwright against the local D2E portal, launch headed Chrome/Chromium with insecure-localhost settings so service workers can run against `https://localhost:41100`:
+
+- Set `ignoreHTTPSErrors: true`.
+- Pass `--ignore-certificate-errors`.
+- Pass `--unsafely-treat-insecure-origin-as-secure=https://localhost:41100`.
+- Prefer a persistent or isolated user data directory under `/tmp`, for example `/tmp/chrome-d2e-insecure-pw`.
+- Do not block service workers when verifying Shiny flows.
+- Capture screenshots, console logs, and video where useful for user-visible verification.
+
 ## Workflow
 
 1. Confirm the platform is running by checking for a trex container.
