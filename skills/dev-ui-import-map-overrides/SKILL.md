@@ -9,6 +9,8 @@ description: Use to enable and verify D2E single-spa Import Map Overrides, point
 
 D2E exposes a single-spa Import Map Overrides UI behind a devtools flag. Use this workflow to log into the local portal, enable the devtools flag, refresh, and verify that the bottom-right ellipsis opens the "Import Map Overrides" panel.
 
+For generic D2E Playwright setup, standalone Chrome defaults, login helpers, screenshot conventions, and route-stubbing guidance, use `skills/dev-ui-verify/SKILL.md`. Do not duplicate that setup here.
+
 ## Workflow
 
 1. Confirm the local D2E stack is running.
@@ -121,115 +123,12 @@ After hot deploy, hard-refresh the browser and verify the Cohort Builder scenari
 
 ## Fast Playwright Harness
 
-Use standalone Playwright when the in-app Browser blocks localhost or when verifying a deployed UI bundle. Launch local Chrome outside the sandbox. For visible browser runs, set `headless: false`, add a small `slowMo`, and keep the page open briefly at the end.
-
-```js
-const fs = require('node:fs');
-const path = require('node:path');
-
-function requirePlaywright() {
-  const candidates = [
-    process.env.PLAYWRIGHT_MODULE,
-    process.env.HOME &&
-      path.join(
-        process.env.HOME,
-        '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'
-      ),
-    'playwright',
-  ].filter(Boolean);
-
-  for (const candidate of candidates) {
-    try {
-      return require(candidate);
-    } catch (error) {
-      if (error.code !== 'MODULE_NOT_FOUND') throw error;
-    }
-  }
-
-  throw new Error('Could not find Playwright. Set PLAYWRIGHT_MODULE to the package path.');
-}
-
-const { chromium } = requirePlaywright();
-
-const storageState = '/private/tmp/d2e-playwright-login-state.json';
-const headed = process.env.HEADLESS === 'false';
-const browser = await chromium.launch({
-  headless: !headed,
-  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  slowMo: headed ? 150 : 0,
-  args: ['--no-sandbox'],
-});
-const context = await browser.newContext({
-  ignoreHTTPSErrors: true,
-  viewport: { width: 1440, height: 900 },
-  ...(fs.existsSync(storageState) ? { storageState } : {}),
-});
-const page = await context.newPage();
-```
-
-Use this direct login helper instead of rediscovering the login page each run. It handles already-logged-in sessions because it only fills credentials when the direct `/researcher` navigation redirects to `/sign-in`.
-
-```js
-async function gotoResearcher(page) {
-  await page.goto('https://localhost:41100/d2e/portal/researcher', {
-    waitUntil: 'domcontentloaded',
-    timeout: 30000,
-  });
-  await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
-
-  if (page.url().includes('/sign-in')) {
-    await page.locator('input[type="text"], input[name="identifier"], input[name="username"]').first().fill('admin');
-    await page.locator('input[type="password"]').first().fill('Updatepassword12345');
-    await page.locator('button[type="submit"], button:has-text("Sign in")').first().click();
-    await page.waitForURL('**/d2e/portal/**', { timeout: 30000 });
-    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
-  }
-
-  if (page.url().includes('/no-access')) {
-    await page.reload({ waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
-  }
-}
-```
-
-After a successful login, save storage state so future Playwright contexts can skip the login form while the session remains valid:
-
-```js
-await context.storageState({ path: storageState });
-```
-
-For one-off Cohort Builder checks after login:
-
-```js
-await gotoResearcher(page);
-await page.locator('text="Demo dataset"').first().click();
-await page.waitForURL('**/d2e/portal/researcher/information**', { timeout: 30000 }).catch(() => {});
-await page.locator('a:has-text("Cohorts"), button:has-text("Cohorts"), text="Cohorts"').first().click();
-await page.waitForURL('**/d2e/portal/researcher/cohort**', { timeout: 30000 }).catch(() => {});
-await page.getByText('Create Cohort test:', { exact: true }).isVisible();
-if (headed) await page.waitForTimeout(10000);
-```
+Load `skills/dev-ui-verify/SKILL.md` for the reusable standalone Playwright harness. Then apply the import-map-specific checks below.
 
 ## Browser Notes
 
-- Prefer the normal D2E UI/browser verification workflow first when available.
-- If the in-app Browser reports `net::ERR_BLOCKED_BY_CLIENT` for `https://localhost:41100/d2e/portal`, use standalone Playwright instead of spending time on alternate URL guesses.
-- In Codex Desktop, call `load_workspace_dependencies` to find the bundled Node and `node_modules` paths. The standalone harness tries the bundled Codex runtime under `$HOME/.cache/codex-runtimes/` first; set `PLAYWRIGHT_MODULE` to another package path if needed.
-- If Playwright's downloaded browser is missing, launch an installed local Chrome/Chromium executable. On the verified macOS setup, this worked:
-
-  ```js
-  const browser = await chromium.launch({
-    headless: true,
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    args: ['--no-sandbox'],
-  });
-  const context = await browser.newContext({
-    ignoreHTTPSErrors: true,
-    viewport: { width: 1280, height: 720 },
-  });
-  ```
-
-- Launching a local GUI/browser binary may require approval outside the sandbox.
+- Prefer standalone Playwright for D2E local portal checks. Use `dev-ui-verify` for launch, login, screenshots, and route-stubbing details.
+- Launching local Chrome or using Docker hot deploy may require approval outside the sandbox.
 
 ## Playwright Checks
 

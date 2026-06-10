@@ -20,7 +20,7 @@ Use for Cohorts, Patient Analytics, vue-mri, and MRI UI5 plugin work.
 2. Use direct source inspection with `rg`, `rg --files`, and targeted file reads when locating Data2Evidence implementation details.
 3. Build vue-mri with `scripts/d2e-ui-hot-deploy.sh vue-mri` when deploying to a running trex container. Run this outside the sandbox in Codex because it builds with Nx and uses `docker cp`.
 4. For portal MRI UI5 plugin changes, also build/deploy the relevant MRI UI5 resources if the changed code is served from `mri-ui5`.
-5. Hard-refresh the browser and verify the scenario.
+5. Hard-refresh and verify with the standalone Playwright workflow in `skills/dev-ui-verify/SKILL.md`. For D2E local portal checks, standalone Playwright is preferred over the sandboxed/in-app browser because Cohort Builder uses the hot-deployed `mri` bundle, local HTTPS, service workers, and sometimes API route stubbing.
 
 ## Known QA Guardrails
 
