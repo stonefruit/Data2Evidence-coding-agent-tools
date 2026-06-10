@@ -17,7 +17,7 @@ Use for reproducing bugs, verifying UI fixes, checking local pages, or collectin
 
 For Data2Evidence local UI verification, prefer standalone Playwright with local Chrome/Chromium over the sandboxed/in-app browser. The local portal uses HTTPS, service workers, redirects, and sometimes route stubbing; standalone Playwright is the more reliable default for D2E checks.
 
-Use the in-app browser only for lightweight visual inspection when standalone Playwright is unnecessary or unavailable. If local Chrome launch or Docker access is blocked by Codex sandboxing, request escalation instead of switching to a less representative path.
+Use the in-app browser only for lightweight visual inspection when standalone Playwright is unnecessary or unavailable. In Codex Desktop, standalone Playwright helper commands that launch Chrome must be run with escalation by default, including headed and headless runs. Do not try a sandboxed Chrome launch first. If a sandboxed run happens anyway and reports `kill EPERM`, `SIGABRT`, or `Target page, context or browser has been closed` during Chrome startup, treat it as a command-sandbox permission issue and rerun the same command with escalation instead of switching to a less representative path.
 
 ## Playwright Local SSL Defaults
 
@@ -35,7 +35,7 @@ When using Playwright against the local D2E portal, launch Chrome/Chromium with 
 
 1. Confirm the platform is running by checking for a trex container.
 2. For updated UI bundles, hot deploy before browser verification with `scripts/d2e-ui-hot-deploy.sh <nx-project> [resource-dir]`. Run this outside the sandbox in Codex because it builds with Nx and may use Docker.
-3. Prefer `tools/d2e-playwright/verify-ui.mjs` for standalone Playwright launch, login, storage-state reuse, common navigation, and screenshots.
+3. Prefer `tools/d2e-playwright/verify-ui.mjs` for standalone Playwright launch, login, storage-state reuse, common navigation, and screenshots. In Codex Desktop, request command escalation before running this helper whenever it will launch Chrome, so Playwright can launch and control local Chrome without the `kill EPERM` sandbox failure.
 4. Navigate to `https://localhost:41100/d2e/portal/researcher`, login if needed, and wait for the portal to settle.
 5. Use stable Playwright locators and scoped selectors. Avoid broad exact-text selectors when repeated labels/descriptions can match the same text.
 6. Use route stubbing for frontend-shell checks when backend metadata is not part of the phase under test. Prefer this over mutating the demo database.
@@ -49,6 +49,12 @@ Use the helper for smoke checks:
 ```bash
 node tools/d2e-playwright/verify-ui.mjs --check researcher
 node tools/d2e-playwright/verify-ui.mjs --check cohorts --screenshot-dir repos/docs/projects/<project-folder>
+```
+
+In Codex Desktop, request command escalation before running these helper commands. Use `--headed` when the user wants to watch the real Chrome window:
+
+```bash
+node tools/d2e-playwright/verify-ui.mjs --check researcher --headed
 ```
 
 For custom checks, import helpers from `tools/d2e-playwright/verify-ui.mjs` and add task-specific route stubs/assertions around `gotoResearcher`, `openCohorts`, and `saveScreenshot`. See `tools/d2e-playwright/README.md`.

@@ -100,6 +100,29 @@ export function requirePlaywright() {
   throw new Error('Could not find Playwright. Set PLAYWRIGHT_MODULE to the package path.')
 }
 
+function isLikelyCodexSandboxLaunchError(error) {
+  const message = `${error?.message || ''}\n${error?.stack || ''}`
+
+  return (
+    message.includes('kill EPERM') ||
+    message.includes('signal=SIGABRT') ||
+    (message.includes('Target page, context or browser has been closed') &&
+      message.includes('<launching>') &&
+      message.includes('Google Chrome'))
+  )
+}
+
+function withLaunchHint(error) {
+  if (!isLikelyCodexSandboxLaunchError(error)) {
+    return error
+  }
+
+  const hint =
+    'Chrome launched but was stopped during Playwright startup. In Codex Desktop, rerun this helper outside the command sandbox with escalation; this is a browser-launch permission issue, not a D2E app failure.'
+  const hinted = new Error(`${hint}\n\nOriginal error:\n${error.message}`)
+  return hinted
+}
+
 export async function launchD2EBrowser(options = {}) {
   const { chromium } = requirePlaywright()
   const headed = options.headed ?? false
@@ -113,16 +136,21 @@ export async function launchD2EBrowser(options = {}) {
     contextOptions.storageState = storageState
   }
 
-  const browser = await chromium.launch({
-    headless: !headed,
-    executablePath: options.chromePath || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    slowMo: headed ? options.slowMo || 150 : 0,
-    args: [
-      '--no-sandbox',
-      '--ignore-certificate-errors',
-      '--unsafely-treat-insecure-origin-as-secure=https://localhost:41100',
-    ],
-  })
+  let browser
+  try {
+    browser = await chromium.launch({
+      headless: !headed,
+      executablePath: options.chromePath || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      slowMo: headed ? options.slowMo || 150 : 0,
+      args: [
+        '--no-sandbox',
+        '--ignore-certificate-errors',
+        '--unsafely-treat-insecure-origin-as-secure=https://localhost:41100',
+      ],
+    })
+  } catch (error) {
+    throw withLaunchHint(error)
+  }
   const context = await browser.newContext(contextOptions)
   const page = await context.newPage()
 

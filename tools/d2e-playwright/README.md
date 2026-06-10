@@ -12,6 +12,8 @@ From the D2E workspace:
 node tools/d2e-playwright/verify-ui.mjs --check researcher
 ```
 
+In Codex Desktop, request command escalation before running this helper so Playwright can launch and control local Chrome. This applies to both headless and headed runs.
+
 Open the demo Cohorts page and save a screenshot:
 
 ```bash
@@ -88,6 +90,6 @@ try {
 
 ## Codex Notes
 
-Launching local Chrome or using Docker hot deploy may require running outside the sandbox. If sandboxing blocks Chrome startup or Docker access, request escalation instead of switching to a less representative browser path.
+Launching local Chrome or using Docker hot deploy may require running outside the sandbox. In Codex Desktop, request escalation before running this helper whenever Chrome launch is needed; do not try a sandboxed Chrome launch first. Without escalation, Chrome can launch and then abort during Playwright startup with `kill EPERM`, `SIGABRT`, or `Target page, context or browser has been closed`. Treat that as a command-sandbox permission issue, not a D2E app failure, and rerun the same helper command with escalation instead of switching to a less representative browser path.
 
 Avoid broad environment dumps while debugging local containers. Use narrow DB/API queries and avoid printing secrets.
