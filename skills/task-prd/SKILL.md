@@ -22,7 +22,7 @@ For PRDs with meaningful product or architecture uncertainty, run a bounded revi
 
 - The coordinator owns the canonical PRD markdown file.
 - Reviewers produce notes, objections, and proposed edits; they do not directly co-edit the canonical file.
-- If subagent tooling is available and the user has approved multi-agent review, request reviewer passes in parallel. Otherwise, perform the same role reviews as sequential named passes.
+- Prefer subagents for reviewer passes when subagent tooling is available; this preserves coordinator context and gives an independent review surface. Use sequential named passes only when subagents are unavailable or the task is too small to justify delegation.
 - Run at most two review rounds. If disagreement remains, capture it as a `Decision Needed` item with the competing options and tradeoffs.
 
 Reviewer roles:

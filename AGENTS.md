@@ -40,6 +40,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Canonical reusable workflows live in `skills/<workflow>/SKILL.md`.
 - Codex, Claude, and OpenCode adapters should be thin pointers to the canonical skill.
 - When changing coding-agent setup, skills, commands, adapters, or workflow names, consider all included coding agents (Codex, Claude, and OpenCode) and keep their references aligned unless a difference is intentional and documented.
+- For workflows with reviewer or delegation roles, prefer available subagent tooling to preserve the coordinator's context; use sequential named passes only when subagents are unavailable or the task is too small to justify delegation.
 - Do not duplicate long workflow instructions across agent-specific command or skill files.
 - Move fragile shell procedures into `scripts/` or tool directories instead of embedding them in prompts.
 - If an adapter needs tool-specific behavior, keep it short and explain why it cannot live in the shared skill.

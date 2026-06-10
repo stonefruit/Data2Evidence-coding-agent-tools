@@ -22,7 +22,7 @@ Use when given a specific subphase from a `plan-implementation.md`.
 
 The coordinator owns the target subphase, final working tree, and final summary.
 
-Use subagents only when available, approved, and useful for bounded work:
+Prefer subagents when available and useful for bounded work, especially to preserve coordinator context during exploration and review:
 
 - Explorer: answer a specific codebase question before implementation, such as where behavior lives or which existing pattern to follow.
 - Worker: implement a clearly isolated slice only when file or module ownership is disjoint from the coordinator and other workers.
