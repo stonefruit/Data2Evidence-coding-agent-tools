@@ -125,7 +125,31 @@ Use standalone Playwright when the in-app Browser blocks localhost or when verif
 
 ```js
 const fs = require('node:fs');
-const { chromium } = require('/Users/jerome/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const path = require('node:path');
+
+function requirePlaywright() {
+  const candidates = [
+    process.env.PLAYWRIGHT_MODULE,
+    process.env.HOME &&
+      path.join(
+        process.env.HOME,
+        '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'
+      ),
+    'playwright',
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    try {
+      return require(candidate);
+    } catch (error) {
+      if (error.code !== 'MODULE_NOT_FOUND') throw error;
+    }
+  }
+
+  throw new Error('Could not find Playwright. Set PLAYWRIGHT_MODULE to the package path.');
+}
+
+const { chromium } = requirePlaywright();
 
 const storageState = '/private/tmp/d2e-playwright-login-state.json';
 const headed = process.env.HEADLESS === 'false';
@@ -190,7 +214,7 @@ if (headed) await page.waitForTimeout(10000);
 
 - Prefer the normal D2E UI/browser verification workflow first when available.
 - If the in-app Browser reports `net::ERR_BLOCKED_BY_CLIENT` for `https://localhost:41100/d2e/portal`, use standalone Playwright instead of spending time on alternate URL guesses.
-- In Codex Desktop, call `load_workspace_dependencies` to find the bundled Node and `node_modules` paths. The bundled Playwright package may exist even when `playwright` is not on the shell `PATH`.
+- In Codex Desktop, call `load_workspace_dependencies` to find the bundled Node and `node_modules` paths. The standalone harness tries the bundled Codex runtime under `$HOME/.cache/codex-runtimes/` first; set `PLAYWRIGHT_MODULE` to another package path if needed.
 - If Playwright's downloaded browser is missing, launch an installed local Chrome/Chromium executable. On the verified macOS setup, this worked:
 
   ```js
