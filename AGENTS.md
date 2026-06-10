@@ -34,6 +34,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Do not index or persist secrets, `.env*` files, credentials, certificates, or generated private keys.
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
+- Do not add unit tests that mount or render UI components just to assert DOM, slots, modal text, button state, or rendered interaction behavior. Prefer composable, service, utility, or pure-function unit tests for state and payload logic; use Playwright for rendered UI behavior, modals, visible controls, screenshots, and end-to-end-style browser flows.
 - When using Playwright, capture screenshots for significant findings. Save them in the related project folder with timestamped, descriptive filenames.
 
 ## Cross-Agent Workflow Policy
