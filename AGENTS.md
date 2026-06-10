@@ -34,6 +34,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Do not index or persist secrets, `.env*` files, credentials, certificates, or generated private keys.
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
+- When using Playwright, capture screenshots for significant findings. Save them in the related project folder with timestamped, descriptive filenames.
 
 ## Cross-Agent Workflow Policy
 
