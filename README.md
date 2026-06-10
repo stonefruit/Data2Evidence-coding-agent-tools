@@ -56,24 +56,4 @@ Scripts and skills should use relative paths by default and allow overrides with
 
 ## Current Tools
 
-- [Code RAG](tools/code-rag/README.md): deprecated local Qdrant-backed retrieval experiment. Keep it only for legacy maintenance or explicit RAG investigations; use direct source search for normal codebase work.
 - [MRI Query Codec](tools/mri-query-codec/package.json): dependency-free Node helper for compressed MRI query payloads.
-
-## Legacy Tool: Code RAG
-
-Code RAG is deprecated for day-to-day agent workflow because it has not been useful enough compared with direct source inspection.
-
-Use `rg`, `rg --files`, and targeted file reads for normal Data2Evidence codebase search. Only run the legacy flow below when explicitly maintaining or investigating the code-rag tool.
-
-```bash
-cd tools/code-rag
-cp .env.example .env
-make qdrant
-make config
-make sync
-make query q="Where are Azure OpenAI environment variables configured?"
-```
-
-This flow runs the app and Qdrant in Docker and uses the configured Data2Evidence checkout from `repos/`.
-
-For full setup, embedding server options, snapshot import/export, and API usage, see [tools/code-rag/README.md](tools/code-rag/README.md).

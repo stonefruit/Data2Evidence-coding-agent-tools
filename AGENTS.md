@@ -26,7 +26,6 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Tooling Guidelines
 
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
-- Treat `tools/code-rag` and the `legacy-code-rag` skill as deprecated for normal codebase work; use direct source inspection with `rg`, `rg --files`, and targeted file reads unless the user explicitly asks for legacy RAG maintenance or investigation.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
 - Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/<tool-name>`.
 - When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.

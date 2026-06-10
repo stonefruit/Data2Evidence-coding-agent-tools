@@ -16,13 +16,7 @@ node_modules/
 *.egg-info/
 dist/
 build/
-qdrant-storage/
-qdrant-snapshots/
 run-state/
-tools/code-rag/qdrant-snapshots/
-tools/code-rag/run-state/
-tools/code-rag/snapshots/*
-!tools/code-rag/snapshots/.gitkeep
 tools/mri-query-codec/node_modules/
 .claude/settings.local.json
 .opencode/node_modules/

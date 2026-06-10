@@ -41,7 +41,7 @@ D2E has two closely related cohort-building paths inside `plugins/ui/apps/vue-mr
 
 - Verified against `repos/Data2Evidence` commit `3d65d00e750d144d5e43a40df631a7cd58f94c25`.
 - The `repos/Data2Evidence` working tree had unrelated uncommitted changes under `plugins/functions/cdw-svc` and `docker-compose.yml`; cohort-builder paths inspected for this note were not listed as modified.
-- Verified by querying the local code RAG index for `vue-mri-ui-lib` cohort-builder entrypoints, MRI config, QueryFilterCriteria, and cohort-definition flow, then inspecting current source files directly.
+- Verified by inspecting current source files directly for `vue-mri-ui-lib` cohort-builder entrypoints, MRI config, QueryFilterCriteria, and cohort-definition flow.
 - Source files inspected include `plugins/ui/PA-ATLAS.md`, `plugins/ui/apps/vue-mri-ui-lib/src/main.ts`, `RootLayout.vue`, `components/PatientAnalytics.vue`, `components/Filters.vue`, `components/FilterCard.vue`, `components/Bookmarks.vue`, `store/modules/bookmark.ts`, `store/modules/cohortDefinition.ts`, `store/modules/query.ts`, and files under `src/query-filter`.
 - Nomenclature clarified by user feedback: `query-filter` is used for the Atlas part of cohort building; the main cohort builder was historically called Patient Analytics, which explains legacy `PA` names.
 
