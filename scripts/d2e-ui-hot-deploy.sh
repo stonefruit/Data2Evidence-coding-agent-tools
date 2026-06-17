@@ -25,7 +25,17 @@ if [ ! -d "$UI_DIR" ]; then
 fi
 
 cd "$UI_DIR"
-NX_DAEMON=false bunx nx build "$PROJECT"
+case "$PROJECT" in
+  concept-sets)
+    (cd "$UI_DIR/apps/concept-sets" && bunx vite build)
+    ;;
+  vue-mri)
+    (cd "$UI_DIR/apps/vue-mri-ui-lib" && bunx vite build)
+    ;;
+  *)
+    NX_DAEMON=false bunx nx build "$PROJECT"
+    ;;
+esac
 
 RESOURCE_DIR="$UI_DIR/resources/$RESOURCE"
 if [ ! -d "$RESOURCE_DIR" ]; then
