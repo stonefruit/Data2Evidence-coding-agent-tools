@@ -48,10 +48,14 @@ if [ -z "$TREX_CONTAINER" ]; then
   exit 1
 fi
 
-TARGET_BASE="/usr/src/data/plugins/@data2evidence/d2e-ui/resources"
-TARGET_DIR="$TARGET_BASE/$RESOURCE"
+TARGET_BASES=(
+  "/usr/src/data/plugins/@data2evidence/d2e-ui/resources"
+  "/usr/src/bundled-plugins/d2e-ui/resources"
+)
 
-docker exec "$TREX_CONTAINER" sh -c "rm -rf '$TARGET_DIR' && mkdir -p '$TARGET_DIR'"
-docker cp "$RESOURCE_DIR/." "$TREX_CONTAINER:$TARGET_DIR"
-
-echo "Deployed $PROJECT resources from $RESOURCE_DIR to $TREX_CONTAINER:$TARGET_DIR"
+for TARGET_BASE in "${TARGET_BASES[@]}"; do
+  TARGET_DIR="$TARGET_BASE/$RESOURCE"
+  docker exec "$TREX_CONTAINER" sh -c "rm -rf '$TARGET_DIR' && mkdir -p '$TARGET_DIR'"
+  docker cp "$RESOURCE_DIR/." "$TREX_CONTAINER:$TARGET_DIR"
+  echo "Deployed $PROJECT resources from $RESOURCE_DIR to $TREX_CONTAINER:$TARGET_DIR"
+done

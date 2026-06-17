@@ -19,5 +19,5 @@ Use for changes under the Concept Sets UI.
 1. Reproduce bugs before editing when possible.
 2. Use direct source inspection with `rg`, `rg --files`, and targeted file reads when locating Data2Evidence implementation details.
 3. Implement narrowly in the Concept Sets app and related shared libraries only when required.
-4. Build and hot deploy with `scripts/d2e-ui-hot-deploy.sh concept-sets`.
+4. Build and hot deploy with `scripts/d2e-ui-hot-deploy.sh concept-sets`. The helper updates both Trex UI resource roots: `/usr/src/data/plugins/@data2evidence/d2e-ui/resources` and `/usr/src/bundled-plugins/d2e-ui/resources`.
 5. Verify in the browser and check console/network output for regressions.
