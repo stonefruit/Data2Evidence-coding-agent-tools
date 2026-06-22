@@ -108,16 +108,16 @@ From the D2E workspace:
 scripts/d2e-ui-hot-deploy.sh vue-mri
 ```
 
-Run this outside the sandbox when using Codex tools because it performs an Nx production build and `docker cp` into the running `trex` container. In Codex, request escalation for this command rather than retrying sandboxed if Nx daemon/socket or Docker copy permissions fail.
+Run this outside the sandbox when using Codex tools because it performs a production build and `docker cp` into the running `trex` container. In Codex, request escalation for this command rather than retrying sandboxed if Nx daemon/socket or Docker copy permissions fail.
 
 That script:
 
 - uses `${D2E_APP_REPO:-<workspace>/repos/Data2Evidence}` and `${D2E_UI_DIR:-$D2E_APP_REPO/plugins/ui}`
-- builds `vue-mri`
-- maps `vue-mri` to resource dir `mri`
+- supports multiple UI targets; run `scripts/d2e-ui-hot-deploy.sh --help` for the current list
+- maps common aliases such as `vue-mri` or `mri` to resource dir `mri`, and `webr-notebook` or `notebook` to resource dir `notebook`
 - finds the running `trex` container
-- copies the local `plugins/ui/resources/mri` build output into `trex` with `docker cp`
-- recreates `/usr/src/data/plugins/@data2evidence/d2e-ui/resources/mri` from the local build output
+- copies the selected local `plugins/ui/resources/<resource>` output into `trex` with `docker cp`
+- recreates matching resource directories under both known Trex UI resource roots
 
 After hot deploy, hard-refresh the browser and verify the Cohort Builder scenario. For portal MRI UI5 plugin changes, also follow `skills/dev-ui-cohorts/SKILL.md` because some changes may be served from `mri-ui5` rather than `mri`.
 
