@@ -82,6 +82,27 @@ Keywords:
 - `QueryFilterCriteriaManager`
 - `usePaAtlas`
 
+### Functions Layer
+
+Type: architecture
+
+Read `functions.md` when:
+- the task touches `repos/Data2Evidence/plugins/functions`
+- mapping backend URLs to function folders, imports, env keys, or service boundaries
+- debugging function-side database credentials, dialect behavior, inter-function calls, or health/readiness behavior
+
+Related skills:
+- `skills/dev-functions/SKILL.md`
+
+Keywords:
+- functions
+- backend functions
+- `plugins/functions`
+- `analytics-svc`
+- `cdw-svc`
+- `dataset`
+- `trex.functions.api`
+
 ### single-spa Portal Integration
 
 Type: architecture

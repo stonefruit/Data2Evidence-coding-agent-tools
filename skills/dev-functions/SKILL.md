@@ -12,9 +12,7 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
 - App repo: `${D2E_APP_REPO:-repos/Data2Evidence}`
 - Functions root: `${D2E_APP_REPO:-repos/Data2Evidence}/plugins/functions`
 - Route map: `${D2E_APP_REPO:-repos/Data2Evidence}/plugins/functions/package.json` under `trex.functions.api` and `trex.functions.init`
-- Useful architecture notes, when deeper context is needed:
-  - `repos/docs/knowledge/architecture/functions.md`
-  - `repos/docs/knowledge/architecture/trex.md`
+- Durable architecture context: route through `knowledge/INDEX.md`; load `knowledge/functions.md` when function routing, service boundaries, or common function-side pitfalls matter.
 
 ## Workflow
 
