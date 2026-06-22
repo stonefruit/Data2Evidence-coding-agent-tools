@@ -7,6 +7,7 @@ import {
   buildCombinedSpec,
   buildServiceSpecs,
   evaluateExpression,
+  extractBackendOperations,
   extractFromFile,
   parseObjectProperties,
   parseSwaggerYaml,
@@ -106,6 +107,15 @@ test("combined spec tags UI-used and backend-only operations", () => {
         baseURL: "system-portal/",
         url: "dataset",
         paramsExpression: "{ datasetId: id }"
+      },
+      {
+        sourcePath: "plugins/ui/apps/portal/src/axios/system-portal.ts",
+        sourceLine: 50,
+        appName: "portal",
+        operationName: "getDataset",
+        method: "get",
+        baseURL: "system-portal/",
+        url: "unmatched"
       }
     ],
     [
@@ -137,6 +147,11 @@ test("combined spec tags UI-used and backend-only operations", () => {
   assert.ok(spec.paths["/system-portal/dataset"].get.tags.includes("ui-used"));
   assert.ok(spec.paths["/system-portal/dataset"].get.tags.includes("backend-implemented"));
   assert.ok(!spec.paths["/system-portal/dataset"].get.tags.includes("backend-only"));
+  assert.ok(spec.paths["/system-portal/unmatched"].get.tags.includes("handler-unresolved"));
+  assert.notEqual(
+    spec.paths["/system-portal/dataset"].get.operationId,
+    spec.paths["/system-portal/unmatched"].get.operationId
+  );
   assert.ok(spec.paths["/system-portal/internal"].post.tags.includes("backend-only"));
   assert.equal(
     spec.tags.find((tag) => tag.name === "ui-used")?.description,
@@ -271,6 +286,16 @@ test("adds d2e-webapi examples with synthetic values", () => {
         baseURL: "d2e-webapi",
         url: "/conceptset/{conceptSetId}/expression",
         paramsExpression: "{ datasetId }"
+      },
+      {
+        sourcePath: "plugins/ui/apps/vue-mri-ui-lib/src/query-filter/services/D2eWebapiService.ts",
+        sourceLine: 40,
+        appName: "vue-mri-ui-lib",
+        operationName: "deleteConceptSet",
+        method: "delete",
+        baseURL: "d2e-webapi",
+        url: "/conceptset/{conceptSetId}",
+        paramsExpression: ""
       }
     ],
     []
@@ -286,6 +311,95 @@ test("adds d2e-webapi examples with synthetic values", () => {
   const expressionOperation = spec.paths["/d2e-webapi/conceptset/{conceptSetId}/expression"].get;
   assert.equal(expressionOperation.parameters.find((param) => param.name === "datasetid")?.example, "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e");
   assert.equal(expressionOperation.responses["200"].content["application/json"].example.items[0].concept.VOCABULARY_ID, "EXAMPLE");
+
+  const deleteOperation = spec.paths["/d2e-webapi/conceptset/{conceptSetId}"].delete;
+  assert.ok(deleteOperation.responses["204"]);
+  assert.ok(!deleteOperation.responses["200"]);
+  assert.ok(!deleteOperation.responses["204"].content);
+  assert.equal(
+    spec.components.schemas.UnknownJson.type,
+    "object"
+  );
+});
+
+test("extracts Danet controller routes as traced backend handlers", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "d2e-openapi-backend-test-"));
+  const functionsRoot = path.join(root, "plugins/functions");
+  const packagePath = path.join(functionsRoot, "package.json");
+  fs.mkdirSync(path.dirname(packagePath), { recursive: true });
+  fs.writeFileSync(
+    packagePath,
+    JSON.stringify({
+      trex: {
+        functions: {
+          api: [{ source: "/system-portal", function: "/portal", env: "portal" }],
+          env: { portal: {} }
+        }
+      }
+    })
+  );
+
+  const controller = path.join(functionsRoot, "portal/src/dataset/dataset.controller.ts");
+  fs.mkdirSync(path.dirname(controller), { recursive: true });
+  fs.writeFileSync(
+    controller,
+    `import { Body, Controller, Get, Param, Post, Query } from "@danet/core";
+     @Controller("system-portal/dataset")
+     export class DatasetController {
+       @Get("release/:id")
+       async getReleaseById(@Param("id") id: number) {
+         return {};
+       }
+
+       @Post(":id/transform-to-webapi")
+       async transformToWebApi(@Param("id") id: string, @Body() body: unknown) {
+         return {};
+       }
+
+       @Get("dashboard-code")
+       async getDatasetDashboardCode(@Query("datasetId") datasetId: string, @Query("type") type: string) {
+         return {};
+       }
+     }`
+  );
+
+  const operations = extractBackendOperations(functionsRoot, root);
+  const release = operations.find((operation) => operation.method === "get" && operation.url === "/system-portal/dataset/release/{id}");
+  const transform = operations.find((operation) => operation.method === "post" && operation.url === "/system-portal/dataset/{id}/transform-to-webapi");
+  const dashboard = operations.find((operation) => operation.method === "get" && operation.url === "/system-portal/dataset/dashboard-code");
+
+  assert.ok(release?.handlerFound);
+  assert.equal(release.openapiParameters.find((param) => param.name === "id")?.schema.type, "number");
+  assert.ok(transform?.dataExpression);
+  assert.deepEqual(dashboard.queryParams, ["datasetId", "type"]);
+});
+
+test("adds system-portal examples and object-shaped UnknownJson fallback", () => {
+  const spec = buildCombinedSpec(
+    [
+      {
+        sourcePath: "plugins/ui/apps/portal/src/axios/system-portal.ts",
+        sourceLine: 42,
+        appName: "portal",
+        operationName: "getDatasets",
+        method: "get",
+        baseURL: "system-portal/",
+        url: "dataset/list",
+        paramsExpression: ""
+      }
+    ],
+    []
+  );
+
+  const operation = spec.paths["/system-portal/dataset/list"].get;
+  const example = operation.responses["200"].content["application/json"].example;
+  assert.equal(example[0].id, "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e");
+  assert.equal(example[0].datasetDetail.name, "Example dataset");
+  assert.deepEqual(spec.components.schemas.UnknownJson, {
+    description: "Shape not inferred from UI or backend source.",
+    type: "object",
+    additionalProperties: true
+  });
 });
 
 function hasD2eExtension(value) {

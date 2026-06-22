@@ -1,0 +1,399 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Demo API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:demo",
+      "description": "Operation is declared by the demo backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:demo",
+      "description": "Operation belongs to the demo service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/demo/progress/{id}": {
+      "get": {
+        "operationId": "getDemoProgressId",
+        "summary": "get Progress",
+        "tags": [
+          "backend-implemented",
+          "backend:demo",
+          "handler-found",
+          "service:demo",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "status": "completed",
+                  "steps": [
+                    {
+                      "step": "setup",
+                      "code": "SETUP",
+                      "message": "Completed",
+                      "status": "completed"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/demo/setup": {
+      "post": {
+        "operationId": "postDemoSetup",
+        "summary": "setup",
+        "tags": [
+          "backend-implemented",
+          "backend:demo",
+          "handler-found",
+          "service:demo",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-progress",
+                  "message": "Demo setup started"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "encryptionKeys": "example-encryption-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/setup-dataset": {
+      "post": {
+        "operationId": "postDemoSetupDataset",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:demo",
+          "handler-found",
+          "service:demo"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-progress",
+                  "message": "Demo setup started"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "encryptionKeys": "example-encryption-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/setup-db": {
+      "post": {
+        "operationId": "postDemoSetupDb",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:demo",
+          "handler-found",
+          "service:demo"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-progress",
+                  "message": "Demo setup started"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "encryptionKeys": "example-encryption-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/setup-httptest-env": {
+      "post": {
+        "operationId": "postDemoSetupHttptestEnv",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:demo",
+          "handler-found",
+          "service:demo"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-progress",
+                  "message": "Demo setup started"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "encryptionKeys": "example-encryption-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/setup-phenotype": {
+      "post": {
+        "operationId": "postDemoSetupPhenotype",
+        "summary": "setup Phenotype",
+        "tags": [
+          "backend-implemented",
+          "backend:demo",
+          "handler-found",
+          "service:demo",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-progress",
+                  "message": "Demo setup started"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "encryptionKeys": "example-encryption-key"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

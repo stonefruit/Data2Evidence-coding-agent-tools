@@ -1,0 +1,100 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Strategus Template API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend:strategus-analysis",
+      "description": "Operation is declared by the strategus-analysis backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:strategus-template",
+      "description": "Operation belongs to the strategus-template service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/strategus/template": {
+      "get": {
+        "operationId": "getStrategusTemplate",
+        "summary": "get Study Viewer Templates",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-template",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "filename": "example-analysis.json",
+                    "content": {
+                      "name": "Example analysis"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

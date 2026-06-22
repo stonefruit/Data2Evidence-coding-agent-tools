@@ -1,0 +1,5371 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Jobplugins API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:jobplugins",
+      "description": "Operation is declared by the jobplugins backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:jobplugins",
+      "description": "Operation belongs to the jobplugins service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:mapping",
+      "description": "Operation is called by the mapping UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/jobplugins": {
+      "get": {
+        "operationId": "getJobplugins",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow": {
+      "post": {
+        "operationId": "postJobpluginsAnalysisflow",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/{id}": {
+      "get": {
+        "operationId": "getJobpluginsAnalysisflowId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteJobpluginsAnalysisflowId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/{id}/{revisionId}": {
+      "delete": {
+        "operationId": "deleteJobpluginsAnalysisflowIdRevisionId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          },
+          {
+            "name": "revisionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/{id}/flow-run-results": {
+      "get": {
+        "operationId": "getJobpluginsAnalysisflowIdFlowRunResults",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/{id}/latest": {
+      "get": {
+        "operationId": "getJobpluginsAnalysisflowIdLatest",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/duplicate/{id}/{revisionId}": {
+      "post": {
+        "operationId": "postJobpluginsAnalysisflowDuplicateIdRevisionId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          },
+          {
+            "name": "revisionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/analysisflow/list": {
+      "get": {
+        "operationId": "getJobpluginsAnalysisflowList",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/cachedb/completed/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsCachedbCompletedFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/cachedb/create-file": {
+      "post": {
+        "operationId": "postJobpluginsCachedbCreateFile",
+        "summary": "create Cache Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/cachedb/results/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsCachedbResultsFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/cohort-survival/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsCohortSurvivalFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/cohort-survival/results/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsCohortSurvivalResultsFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/cohort/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsCohortFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow": {
+      "post": {
+        "operationId": "postJobpluginsDataflow",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}": {
+      "get": {
+        "operationId": "getJobpluginsDataflowId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteJobpluginsDataflowId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}/{revisionId}": {
+      "delete": {
+        "operationId": "deleteJobpluginsDataflowIdRevisionId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          },
+          {
+            "name": "revisionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}/flow-run-results": {
+      "get": {
+        "operationId": "getJobpluginsDataflowIdFlowRunResults",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}/latest": {
+      "get": {
+        "operationId": "getJobpluginsDataflowIdLatest",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}/overwrite-from-remote": {
+      "post": {
+        "operationId": "postJobpluginsDataflowIdOverwriteFromRemote",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/{id}/remote-diff-check": {
+      "get": {
+        "operationId": "getJobpluginsDataflowIdRemoteDiffCheck",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/duplicate/{id}/{revisionId}": {
+      "post": {
+        "operationId": "postJobpluginsDataflowDuplicateIdRevisionId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          },
+          {
+            "name": "revisionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/list": {
+      "get": {
+        "operationId": "getJobpluginsDataflowList",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/node/file": {
+      "post": {
+        "operationId": "postJobpluginsDataflowNodeFile",
+        "summary": "upload Csv",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "file": "example.csv",
+                "username": "example.user",
+                "dataKey": "example-data-key"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getJobpluginsDataflowNodeFile",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteJobpluginsDataflowNodeFile",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/node/file/list": {
+      "get": {
+        "operationId": "getJobpluginsDataflowNodeFileList",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/overwrite-all-from-remote": {
+      "post": {
+        "operationId": "postJobpluginsDataflowOverwriteAllFromRemote",
+        "summary": "POST /jobplugins/dataflow/overwrite-all-from-remote",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/templates": {
+      "get": {
+        "operationId": "getJobpluginsDataflowTemplates",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/templates/{templateId}": {
+      "post": {
+        "operationId": "postJobpluginsDataflowTemplatesTemplateId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "templateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dataflow/templates/fhir": {
+      "get": {
+        "operationId": "getJobpluginsDataflowTemplatesFhir",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision",
+                  "nodes": [],
+                  "edges": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/datamodel/create_datamart_run": {
+      "post": {
+        "operationId": "postJobpluginsDatamodelCreateDatamartRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/datamodel/create_datamodel_run": {
+      "post": {
+        "operationId": "postJobpluginsDatamodelCreateDatamodelRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/datamodel/get_version_info": {
+      "post": {
+        "operationId": "postJobpluginsDatamodelGetVersionInfo",
+        "summary": "create Get Version Info Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/datamodel/list": {
+      "get": {
+        "operationId": "getJobpluginsDatamodelList",
+        "summary": "get Datamodels",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/db-svc/dataset-attributes": {
+      "post": {
+        "operationId": "postJobpluginsDbSvcDatasetAttributes",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "type": "research",
+                  "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                  "tokenStudyCode": "EXAMPLE_DATASET",
+                  "tokenDatasetCode": "EXAMPLE_DATASET",
+                  "dialect": "postgres",
+                  "databaseCode": "example_database",
+                  "cacheId": "example_cache",
+                  "schemaName": "example_cdm",
+                  "vocabSchemaName": "example_vocab",
+                  "dataModel": "omop",
+                  "studyDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples."
+                  },
+                  "datasetDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples.",
+                    "summary": "Synthetic dataset summary.",
+                    "showRequestAccess": false
+                  },
+                  "tenant": {
+                    "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                    "name": "Example tenant",
+                    "system": "example"
+                  },
+                  "dashboards": [
+                    {
+                      "name": "Overview",
+                      "url": "/dashboards/example",
+                      "basePath": "/dashboards"
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attributeId": "data_partner",
+                      "value": "Example partner"
+                    }
+                  ],
+                  "tags": [
+                    {
+                      "id": 1,
+                      "name": "Example tag"
+                    }
+                  ],
+                  "totalSubjects": 1000,
+                  "plugin": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "type": "research",
+                "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                "tokenStudyCode": "EXAMPLE_DATASET",
+                "tokenDatasetCode": "EXAMPLE_DATASET",
+                "dialect": "postgres",
+                "databaseCode": "example_database",
+                "cacheId": "example_cache",
+                "schemaName": "example_cdm",
+                "vocabSchemaName": "example_vocab",
+                "dataModel": "omop",
+                "studyDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples."
+                },
+                "datasetDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples.",
+                  "summary": "Synthetic dataset summary.",
+                  "showRequestAccess": false
+                },
+                "tenant": {
+                  "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                  "name": "Example tenant",
+                  "system": "example"
+                },
+                "dashboards": [
+                  {
+                    "name": "Overview",
+                    "url": "/dashboards/example",
+                    "basePath": "/dashboards"
+                  }
+                ],
+                "attributes": [
+                  {
+                    "attributeId": "data_partner",
+                    "value": "Example partner"
+                  }
+                ],
+                "tags": [
+                  {
+                    "id": 1,
+                    "name": "Example tag"
+                  }
+                ],
+                "totalSubjects": 1000,
+                "plugin": "example"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/db-svc/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsDbSvcFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/{jobType}/flow-run/latest": {
+      "get": {
+        "operationId": "getJobpluginsDqdJobTypeFlowRunLatest",
+        "summary": "get Dataset Latest Flow Run",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "jobType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/{jobType}/release/{releaseId}/flow-run": {
+      "get": {
+        "operationId": "getJobpluginsDqdJobTypeReleaseReleaseIdFlowRun",
+        "summary": "get Dataset Release Flow Run",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "jobType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-release"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsDqdDataCharacterizationFlowRun",
+        "summary": "create Dc Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/flow-run/{flowRunId}/results/{sourceKey}": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataCharacterizationFlowRunFlowRunIdResultsSourceKey",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/flow-run/{flowRunId}/results/{sourceKey}/{conceptId}": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataCharacterizationFlowRunFlowRunIdResultsSourceKeyConceptId",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/flow-run/latest": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataCharacterizationFlowRunLatest",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/release/{releaseId}/flow-run": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataCharacterizationReleaseReleaseIdFlowRun",
+        "summary": "GET /jobplugins/dqd/data-characterization/release/{releaseId}/flow-run",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-release"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-characterization/schema-mapping/list": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataCharacterizationSchemaMappingList",
+        "summary": "GET /jobplugins/dqd/data-characterization/schema-mapping/list",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/category/history": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityCategoryHistory",
+        "summary": "get Historical Data Quality By Category",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/cohort/{cohortDefinitionId}/flow-run/latest": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityCohortCohortDefinitionIdFlowRunLatest",
+        "summary": "use Data Quality Dataset Latest Cohort Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "cohortDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/domain/continuity": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityDomainContinuity",
+        "summary": "get Domain Continuity",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/domain/history": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityDomainHistory",
+        "summary": "get Historical Data Quality By Domain",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsDqdDataQualityFlowRun",
+        "summary": "create Dqd Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/flow-run/{flowRunId}/overview": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityFlowRunFlowRunIdOverview",
+        "summary": "get Data Quality Dataflow Overview",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/flow-run/{flowRunId}/results": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityFlowRunFlowRunIdResults",
+        "summary": "get Data Quality Dataflow Results",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/flow-run/latest": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityFlowRunLatest",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/history": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityHistory",
+        "summary": "get Historical Data Quality",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/dqd/data-quality/release/{releaseId}/flow-run": {
+      "get": {
+        "operationId": "getJobpluginsDqdDataQualityReleaseReleaseIdFlowRun",
+        "summary": "GET /jobplugins/dqd/data-quality/release/{releaseId}/flow-run",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "releaseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-release"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/exec_datamodel/{datamodel}": {
+      "get": {
+        "operationId": "getJobpluginsExecDatamodelDatamodel",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "datamodel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/exec_type/{type}": {
+      "get": {
+        "operationId": "getJobpluginsExecTypeType",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/exec/{name}": {
+      "get": {
+        "operationId": "getJobpluginsExecName",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/job-history/flow-runs": {
+      "get": {
+        "operationId": "getJobpluginsJobHistoryFlowRuns",
+        "summary": "get Flow Runs",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/perseus/artifacts/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsPerseusArtifactsFlowRunId",
+        "summary": "get Source Schema By Flow Run Id",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/perseus/results/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsPerseusResultsFlowRunId",
+        "summary": "get Flow Run Status",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/phenotype/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsPhenotypeFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/analysis-run/{id}": {
+      "post": {
+        "operationId": "postJobpluginsPrefectAnalysisRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow-run",
+                  "flowId": "example-flow",
+                  "status": "COMPLETED",
+                  "createdAt": "2026-01-01T00:00:00.000Z"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/{flowId}/state": {
+      "get": {
+        "operationId": "getJobpluginsPrefectFlowRunFlowIdState",
+        "summary": "get Flow Run State",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "flowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/{flowRunId}/cancellation": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowRunFlowRunIdCancellation",
+        "summary": "cancel Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/{id}": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/{id}/input-auth-token": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowRunIdInputAuthToken",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteJobpluginsPrefectFlowRunIdInputAuthToken",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/deployment": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowRunDeployment",
+        "summary": "execute Flow Run By Deployment",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/metadata": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowRunMetadata",
+        "summary": "create Flow Run By Metadata",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow-run/strategus/remove-results-schema/{tokenStudyCode}": {
+      "delete": {
+        "operationId": "deleteJobpluginsPrefectFlowRunStrategusRemoveResultsSchemaTokenStudyCode",
+        "summary": "create Clean Up Study Schema Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "tokenStudyCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/{id}": {
+      "delete": {
+        "operationId": "deleteJobpluginsPrefectFlowId",
+        "summary": "delete Flow",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/{id}/deployment": {
+      "get": {
+        "operationId": "getJobpluginsPrefectFlowIdDeployment",
+        "summary": "get Deployment By Flow Id",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/default-deployment": {
+      "get": {
+        "operationId": "getJobpluginsPrefectFlowDefaultDeployment",
+        "summary": "get Plugin Upload Status",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowDefaultDeployment",
+        "summary": "trigger Plugin Upload",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/file-deployment": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowFileDeployment",
+        "summary": "add Flow From File Deployment",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "file": "example.csv",
+                "username": "example.user",
+                "dataKey": "example-data-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/git-deployment": {
+      "post": {
+        "operationId": "postJobpluginsPrefectFlowGitDeployment",
+        "summary": "add Flow From Git Url Deployment",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-flow",
+                "name": "Example flow",
+                "revisionId": "example-revision",
+                "nodes": [],
+                "edges": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/list": {
+      "get": {
+        "operationId": "getJobpluginsPrefectFlowList",
+        "summary": "get Flows",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/flow/metadata/list": {
+      "get": {
+        "operationId": "getJobpluginsPrefectFlowMetadataList",
+        "summary": "get Flow Metadata",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-flow",
+                  "name": "Example flow",
+                  "revisionId": "example-revision"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/jupyter-kernel/flow-run/strategus": {
+      "post": {
+        "operationId": "postJobpluginsPrefectJupyterKernelFlowRunStrategus",
+        "summary": "create Study Analysis Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/strategus-results/drop/{tokenStudyCode}/{datasetId}": {
+      "delete": {
+        "operationId": "deleteJobpluginsPrefectStrategusResultsDropTokenStudyCodeDatasetId",
+        "summary": "drop Results From Storage",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "tokenStudyCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/prefect/strategus-results/upload": {
+      "post": {
+        "operationId": "postJobpluginsPrefectStrategusResultsUpload",
+        "summary": "upload Results From Storage",
+        "tags": [
+          "handler-unresolved",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "studyId": "example-study",
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "analysisSpecification": {
+                  "name": "Example analysis"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/researcher/analysis-ui/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsResearcherAnalysisUiFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/researcher/cohort-dqd/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsResearcherCohortDqdFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/researcher/dqd/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsResearcherDqdFlowRun",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/search-embedding/create": {
+      "post": {
+        "operationId": "postJobpluginsSearchEmbeddingCreate",
+        "summary": "create Search Embedding Flow Run",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/shiny-live/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsShinyLiveFlowRun",
+        "summary": "trigger Shiny Live Asset Deployment",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/shiny-live/flow-run/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsShinyLiveFlowRunFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/shiny-live/flow-run/{flowRunId}/poll": {
+      "get": {
+        "operationId": "getJobpluginsShinyLiveFlowRunFlowRunIdPoll",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/strategus-results/delete": {
+      "delete": {
+        "operationId": "deleteJobpluginsStrategusResultsDelete",
+        "summary": "delete Strategus Results File",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-resource.csv"
+          },
+          {
+            "name": "studyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/strategus-results/download": {
+      "get": {
+        "operationId": "getJobpluginsStrategusResultsDownload",
+        "summary": "download Strategus Results File",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-resource.csv"
+          },
+          {
+            "name": "studyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/strategus-results/list": {
+      "get": {
+        "operationId": "getJobpluginsStrategusResultsList",
+        "summary": "list Strategus Results Files",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/strategus-results/upload": {
+      "post": {
+        "operationId": "postJobpluginsStrategusResultsUpload",
+        "summary": "upload Strategus Results File",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "file": "example.csv",
+                "username": "example.user",
+                "dataKey": "example-data-key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/test": {
+      "get": {
+        "operationId": "getJobpluginsTest",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/white-rabbit/artifacts/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsWhiteRabbitArtifactsFlowRunId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/white-rabbit/etl-report/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsWhiteRabbitEtlReportFlowRunId",
+        "summary": "get Etl Report From Artifacts",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "fileName": "example.bin",
+                  "contentType": "application/octet-stream"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/jobplugins/white-rabbit/flow-run": {
+      "post": {
+        "operationId": "postJobpluginsWhiteRabbitFlowRun",
+        "summary": "create Scan Report",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "options": {
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "flowId": "example-flow",
+                  "mode": "example"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jobplugins/white-rabbit/results/{flowRunId}": {
+      "get": {
+        "operationId": "getJobpluginsWhiteRabbitResultsFlowRunId",
+        "summary": "get Flow Run Status",
+        "tags": [
+          "backend-implemented",
+          "backend:jobplugins",
+          "handler-found",
+          "service:jobplugins",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "flowRunId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

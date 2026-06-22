@@ -1,0 +1,173 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Pa Config Svc API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:mri-pa-config",
+      "description": "Operation is declared by the mri-pa-config backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:pa-config-svc",
+      "description": "Operation belongs to the pa-config-svc service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:vue-mri-ui-lib",
+      "description": "Operation is called by the vue-mri-ui-lib UI."
+    }
+  ],
+  "paths": {
+    "/pa-config-svc/enduser": {
+      "post": {
+        "operationId": "postPaConfigSvcEnduser",
+        "summary": "get Backend Config",
+        "tags": [
+          "handler-unresolved",
+          "service:pa-config-svc",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "configId": "example-config",
+                  "config": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pa-config-svc/wizards/config": {
+      "get": {
+        "operationId": "getPaConfigSvcWizardsConfig",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:mri-pa-config",
+          "handler-found",
+          "service:pa-config-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "wizards": [
+                    {
+                      "id": "example-wizard",
+                      "name": "Example wizard"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

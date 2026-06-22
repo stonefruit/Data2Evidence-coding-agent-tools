@@ -66,11 +66,12 @@ Some endpoint descriptions are enriched from traced backend behavior and durable
 ## Update Process
 
 1. Start from a clean understanding of the Data2Evidence source commit to document.
-2. Trace the backend code for the services being documented. Use the generator output as a checklist, not as proof by itself.
-3. Run `npm test` and `npm run generate`.
-4. Review all generated specs as a batch, including tags, examples, missing-backend markers, and licensed terminology safety.
-5. Update the "correct as of" commit SHA in this README to the traced Data2Evidence commit.
-6. Commit the reviewed spec batch and tool/style-guide changes together.
+2. Compare Data2Evidence source changes against the "correct as of" commit SHA above, and use that diff to focus the tracing/review on API-related code that changed since the last reviewed baseline.
+3. Trace the backend code for the services being documented. Use the generator output as a checklist, not as proof by itself.
+4. Run `npm test` and `npm run generate`.
+5. Review all generated specs as a batch, including tags, examples, missing-backend markers, and licensed terminology safety.
+6. Update the "correct as of" commit SHA in this README to the traced Data2Evidence commit.
+7. Commit the reviewed spec batch and tool/style-guide changes together.
 
 ## Test
 

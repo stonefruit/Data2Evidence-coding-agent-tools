@@ -145,6 +145,15 @@ const EXAMPLE_CONCEPT_ID = 100001;
 const EXAMPLE_CHILD_CONCEPT_ID = 100002;
 const EXAMPLE_COHORT_ID = 200001;
 const EXAMPLE_SOURCE_KEY = EXAMPLE_DATASET_ID;
+const EXAMPLE_USER_ID = "example.user";
+const EXAMPLE_TENANT_ID = "f2a4a029-2b73-4d45-9c7a-4127571df0a1";
+const EXAMPLE_STUDY_ID = "example-study";
+const EXAMPLE_FLOW_ID = "example-flow";
+const EXAMPLE_FLOW_RUN_ID = "example-flow-run";
+const EXAMPLE_RELEASE_ID = "example-release";
+const EXAMPLE_RESOURCE_ID = "example-resource";
+const EXAMPLE_DATABASE_CODE = "example_database";
+const EXAMPLE_SCHEMA_NAME = "example_schema";
 const EXAMPLE_CONCEPT = {
   conceptId: EXAMPLE_CONCEPT_ID,
   display: "Example condition",
@@ -240,6 +249,70 @@ const EXAMPLE_SOURCE = {
       priority: 0
     }
   ]
+};
+const EXAMPLE_TENANT = {
+  id: EXAMPLE_TENANT_ID,
+  name: "Example tenant",
+  system: "example"
+};
+const EXAMPLE_PORTAL_DATASET = {
+  id: EXAMPLE_DATASET_ID,
+  type: "research",
+  paConfigId: "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+  tokenStudyCode: "EXAMPLE_DATASET",
+  tokenDatasetCode: "EXAMPLE_DATASET",
+  dialect: "postgres",
+  databaseCode: "example_database",
+  cacheId: "example_cache",
+  schemaName: "example_cdm",
+  vocabSchemaName: "example_vocab",
+  dataModel: "omop",
+  studyDetail: {
+    id: "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+    name: "Example dataset",
+    description: "Synthetic dataset for API documentation examples."
+  },
+  datasetDetail: {
+    id: "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+    name: "Example dataset",
+    description: "Synthetic dataset for API documentation examples.",
+    summary: "Synthetic dataset summary.",
+    showRequestAccess: false
+  },
+  tenant: EXAMPLE_TENANT,
+  dashboards: [{ name: "Overview", url: "/dashboards/example", basePath: "/dashboards" }],
+  attributes: [{ attributeId: "data_partner", value: "Example partner" }],
+  tags: [{ id: 1, name: "Example tag" }],
+  totalSubjects: 1000,
+  plugin: "example"
+};
+const EXAMPLE_PORTAL_FEATURE = {
+  feature: "datasetSearch",
+  name: "Dataset search",
+  nameI18nKey: "FEATURE__DATASET_SEARCH",
+  isEnabled: true
+};
+const EXAMPLE_METADATA_ATTRIBUTE = {
+  id: "data_partner",
+  name: "Data partner",
+  category: "dataset",
+  dataType: "string",
+  isDisplayed: true
+};
+const EXAMPLE_RESOURCE = {
+  name: "example-resource.csv",
+  hash: "example-hash",
+  bytes: 128,
+  content_type: "text/csv",
+  last_modified: "2026-01-01T00:00:00.000Z"
+};
+const EXAMPLE_NOTEBOOK_ID = "example-notebook";
+const EXAMPLE_NOTEBOOK = {
+  id: EXAMPLE_NOTEBOOK_ID,
+  userId: "example.user",
+  name: "Example notebook",
+  notebookContent: { cells: [], metadata: {}, nbformat: 4, nbformat_minor: 5 },
+  isShared: false
 };
 const EXAMPLE_CONCEPT_SET_EXPRESSION = {
   items: [EXAMPLE_WEBAPI_CONCEPT_SET_ITEM]
@@ -536,7 +609,7 @@ const D2E_WEBAPI_EXAMPLES = new Map([
         ["datasetid", "header", EXAMPLE_DATASET_ID],
         ["conceptSetId", "path", 12]
       ],
-      response: null
+      responseStatus: 204
     }
   ],
   [
@@ -672,7 +745,7 @@ const D2E_WEBAPI_EXAMPLES = new Map([
         ["datasetid", "header", EXAMPLE_DATASET_ID],
         ["id", "path", EXAMPLE_COHORT_ID]
       ],
-      response: null
+      responseStatus: 204
     }
   ],
   [
@@ -912,6 +985,66 @@ const D2E_WEBAPI_EXAMPLES = new Map([
   ]
 ]);
 
+const SYSTEM_PORTAL_EXAMPLES = new Map([
+  ["get /system-portal/config/types", { parameters: [["types", "query", "[\"overview-description\"]"]], response: { "overview-description": "Example overview" } }],
+  ["get /system-portal/config/public/types", { parameters: [["types", "query", "[\"overview-description\"]"]], response: { "overview-description": "Example overview" } }],
+  ["get /system-portal/config/public/header-image", { response: { type: "header-image", value: "data:image/png;base64,EXAMPLE" } }],
+  ["get /system-portal/config/public/overview-description", { response: { type: "overview-description", value: "Example overview" } }],
+  [
+    "put /system-portal/config",
+    {
+      request: [{ type: "overview-description", value: "Updated example overview" }],
+      response: { updated: ["overview-description"] }
+    }
+  ],
+  ["get /system-portal/dataset", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID]], response: EXAMPLE_PORTAL_DATASET }],
+  ["get /system-portal/dataset/list", { response: [EXAMPLE_PORTAL_DATASET] }],
+  ["get /system-portal/dataset/list/systemadmin", { response: [EXAMPLE_PORTAL_DATASET] }],
+  ["get /system-portal/dataset/public/list", { response: [EXAMPLE_PORTAL_DATASET] }],
+  ["delete /system-portal/dataset", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID]], response: { id: EXAMPLE_DATASET_ID } }],
+  ["put /system-portal/dataset", { request: EXAMPLE_PORTAL_DATASET, response: EXAMPLE_PORTAL_DATASET }],
+  ["post /system-portal/dataset/detail", { request: EXAMPLE_PORTAL_DATASET, response: EXAMPLE_PORTAL_DATASET }],
+  ["put /system-portal/dataset/detail", { request: EXAMPLE_PORTAL_DATASET, response: EXAMPLE_PORTAL_DATASET }],
+  ["post /system-portal/dataset/{datasetId}/transform-to-webapi", { parameters: [["datasetId", "path", EXAMPLE_DATASET_ID]], response: { sourceId: 1, sourceKey: EXAMPLE_SOURCE_KEY } }],
+  ["get /system-portal/dataset/dashboard-code", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["type", "query", "overview"], ["name", "query", "main"]], response: { datasetId: EXAMPLE_DATASET_ID, type: "overview", name: "main", code: "SELECT 1" } }],
+  ["put /system-portal/dataset/dashboard-code", { request: { datasetId: EXAMPLE_DATASET_ID, type: "overview", name: "main", language: "sql", code: "SELECT 1" }, response: { id: 1 } }],
+  ["get /system-portal/dataset/dashboard-code-query", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["type", "query", "overview"], ["name", "query", "main"], ["queryName", "query", "example"]], response: { queryName: "example", sql: "SELECT 1" } }],
+  ["put /system-portal/dataset/dashboard-code-query", { request: { datasetId: EXAMPLE_DATASET_ID, type: "overview", name: "main", queryName: "example", sql: "SELECT 1" }, response: { id: 1 } }],
+  ["delete /system-portal/dataset/dashboard-code-query", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["type", "query", "overview"], ["name", "query", "main"], ["queryName", "query", "example"]], response: { id: 1 } }],
+  ["get /system-portal/dataset/dashboard-codes", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["type", "query", "overview"]], response: [{ type: "overview", name: "main", code: "SELECT 1", queries: [{ queryName: "example", sql: "SELECT 1" }] }] }],
+  ["get /system-portal/dataset/filter-scopes", { response: { domains: { Condition: "Condition" }, age: { min: 0, max: 100 }, observationYear: { min: 2000, max: 2026 }, cumulativeObservationMonths: { min: 0, max: 240 } } }],
+  ["post /system-portal/dataset/metadata-config/attribute", { request: EXAMPLE_METADATA_ATTRIBUTE, response: EXAMPLE_METADATA_ATTRIBUTE.id }],
+  ["put /system-portal/dataset/metadata-config/attribute", { request: EXAMPLE_METADATA_ATTRIBUTE, response: EXAMPLE_METADATA_ATTRIBUTE.id }],
+  ["delete /system-portal/dataset/metadata-config/attribute/{id}", { parameters: [["id", "path", EXAMPLE_METADATA_ATTRIBUTE.id]], response: EXAMPLE_METADATA_ATTRIBUTE.id }],
+  ["get /system-portal/dataset/metadata-config/attribute/list", { response: [EXAMPLE_METADATA_ATTRIBUTE] }],
+  ["post /system-portal/dataset/metadata-config/tag", { request: { name: "Example tag" }, response: "Example tag" }],
+  ["delete /system-portal/dataset/metadata-config/tag/{name}", { parameters: [["name", "path", "Example tag"]], response: "Example tag" }],
+  ["get /system-portal/dataset/metadata-config/tag/list", { response: ["Example tag"] }],
+  ["post /system-portal/dataset/release", { request: { datasetId: EXAMPLE_DATASET_ID, name: "Example release", releaseDate: "2026-01-01T00:00:00.000Z" }, response: { id: 1, datasetId: EXAMPLE_DATASET_ID, name: "Example release", releaseDate: "2026-01-01T00:00:00.000Z" } }],
+  ["get /system-portal/dataset/release/list", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID]], response: [{ id: 1, datasetId: EXAMPLE_DATASET_ID, name: "Example release", releaseDate: "2026-01-01T00:00:00.000Z" }] }],
+  ["post /system-portal/dataset/resource", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID]], request: { file: "example-resource.csv" }, response: EXAMPLE_RESOURCE }],
+  ["delete /system-portal/dataset/resource/{filename}", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["filename", "path", EXAMPLE_RESOURCE.name]], response: { deleted: EXAMPLE_RESOURCE.name } }],
+  ["get /system-portal/dataset/resource/{filename}/download", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID], ["filename", "path", EXAMPLE_RESOURCE.name]], response: { fileName: EXAMPLE_RESOURCE.name, contentType: "text/csv", contentDisposition: "attachment", data: "ZXhhbXBsZQ==" } }],
+  ["get /system-portal/dataset/resource/list", { parameters: [["datasetId", "query", EXAMPLE_DATASET_ID]], response: { id: EXAMPLE_DATASET_ID, resources: [EXAMPLE_RESOURCE] } }],
+  ["post /system-portal/feature", { request: { features: [EXAMPLE_PORTAL_FEATURE] }, response: { result: [{ id: 1 }] } }],
+  ["get /system-portal/feature/list", { response: [EXAMPLE_PORTAL_FEATURE] }],
+  ["get /system-portal/system/feature/list", { response: [EXAMPLE_PORTAL_FEATURE] }],
+  ["get /system-portal/git-dashboards", { response: [{ name: "Example dashboard", path: "dashboards/example.json" }] }],
+  ["get /system-portal/git-studies/studies", { response: { "example-study": { strategus_json: "strategus/example.json", description: "Example study" } } }],
+  ["get /system-portal/git-studies/study/strategus", { parameters: [["studyId", "query", "example-study"]], response: { analysisSpecification: { name: "Example Strategus analysis" } } }],
+  ["get /system-portal/pa-config/metadata/list", { response: [{ meta: { configId: "example-pa-config", configName: "Example PA config" } }] }],
+  ["get /system-portal/tenant/list", { response: [EXAMPLE_TENANT] }],
+  ["get /system-portal/notebook", { response: [EXAMPLE_NOTEBOOK] }],
+  ["get /system-portal/notebook/templates", { response: [{ id: "example-template", name: "Example template", description: "Synthetic notebook template.", notebookContent: EXAMPLE_NOTEBOOK.notebookContent }] }],
+  ["post /system-portal/notebook", { request: { name: "Example notebook", notebookContent: EXAMPLE_NOTEBOOK.notebookContent }, response: EXAMPLE_NOTEBOOK }],
+  ["post /system-portal/notebook/templates/{templateId}", { parameters: [["templateId", "path", "example-template"]], request: { name: "Example notebook from template" }, response: { ...EXAMPLE_NOTEBOOK, name: "Example notebook from template" } }],
+  ["put /system-portal/notebook", { request: { ...EXAMPLE_NOTEBOOK, name: "Updated example notebook" }, response: { ...EXAMPLE_NOTEBOOK, name: "Updated example notebook" } }],
+  ["delete /system-portal/notebook/{id}", { parameters: [["id", "path", EXAMPLE_NOTEBOOK_ID]], response: EXAMPLE_NOTEBOOK }],
+  ["get /system-portal/notebook/{id}/remote-diff-check", { parameters: [["id", "path", EXAMPLE_NOTEBOOK_ID], ["datasetId", "query", EXAMPLE_DATASET_ID]], response: { hasDifferences: false, reason: "Content is identical to remote" } }],
+  ["post /system-portal/notebook/{id}/overwrite-from-remote", { parameters: [["id", "path", EXAMPLE_NOTEBOOK_ID]], request: { datasetId: EXAMPLE_DATASET_ID }, response: { message: `Successfully overwritten notebook ${EXAMPLE_NOTEBOOK_ID} from remote due to content mismatch`, overwritten: true, notebookId: EXAMPLE_NOTEBOOK_ID } }],
+  ["post /system-portal/notebook/overwrite-all-from-remote", { response: { message: "Successfully overwritten all notebooks from remote", processedCount: 1, results: [{ notebookId: EXAMPLE_NOTEBOOK_ID, name: EXAMPLE_NOTEBOOK.name }] } }]
+]);
+
 export function listSourceFiles(root) {
   const files = [];
   function walk(dir) {
@@ -960,7 +1093,7 @@ export function extractBackendOperations(functionsRoot, appRepoRoot) {
   const files = listSourceFiles(functionsRoot).filter((file) => !/\.(spec|test)\.[jt]sx?$/.test(file));
   const routeMap = readTrexRouteMap(functionsRoot);
   const classMounts = collectClassMounts(files);
-  const functionMounts = collectFunctionMounts(files, functionsRoot);
+  const functionMounts = collectFunctionMounts(files, functionsRoot, routeMap);
   const fastifyPluginMounts = collectFastifyPluginMounts(files);
   const swaggerOperations = extractSwaggerOperations(functionsRoot, appRepoRoot, routeMap);
   const operations = [...swaggerOperations];
@@ -970,6 +1103,7 @@ export function extractBackendOperations(functionsRoot, appRepoRoot) {
     const constants = extractConstants(source);
     const relPath = path.relative(appRepoRoot, file).split(path.sep).join("/");
     const functionName = getFunctionNameFromPath(file, functionsRoot);
+    mergeEnvConstants(constants, source, routeMap.functionEnvConfigs.get(functionName));
     const defaultPrefixes = [
       ...(functionMounts.get(functionName) || []),
       ...(routeMap.functionSources.get(functionName) || [])
@@ -983,6 +1117,24 @@ export function extractBackendOperations(functionsRoot, appRepoRoot) {
         : [pluginPrefix]
     );
     const routePrefixes = [...new Set([...mountedPrefixes, ...composedPluginPrefixes, ...defaultPrefixes, ""])];
+
+    for (const operation of extractDanetControllerRoutes(source, relPath, constants)) {
+      const fullPath = resolveBackendPath(operation.url, routePrefixes);
+      if (!fullPath) continue;
+      operations.push({
+        ...operation,
+        url: fullPath,
+        baseURL: "",
+        sourceKind: "backend",
+        sourcePath: relPath,
+        sourceLine: lineNumberAt(source, operation.index),
+        appName: "backend",
+        backendFunction: functionName,
+        backendEnv: routeMap.functionEnvs.get(functionName) || functionName,
+        handlerFound: true,
+        handlerSources: [`${relPath}:${lineNumberAt(source, operation.index)}`]
+      });
+    }
 
     for (const operation of extractBackendRouteCalls(source, relPath, constants)) {
       const fullPath = resolveBackendPath(operation.url, routePrefixes);
@@ -1035,14 +1187,8 @@ export function buildServiceSpecs(operations, options = {}) {
           schemas: {
             UnknownJson: {
               description: "Shape not inferred from UI source.",
-              oneOf: [
-                { type: "object", additionalProperties: true },
-                { type: "array", items: true },
-                { type: "string" },
-                { type: "number" },
-                { type: "boolean" },
-                { type: "null" }
-              ]
+              type: "object",
+              additionalProperties: true
             }
           }
         },
@@ -1089,14 +1235,8 @@ export function buildCombinedSpec(uiOperations, backendOperations, options = {})
       schemas: {
         UnknownJson: {
           description: "Shape not inferred from UI or backend source.",
-          oneOf: [
-            { type: "object", additionalProperties: true },
-            { type: "array", items: true },
-            { type: "string" },
-            { type: "number" },
-            { type: "boolean" },
-            { type: "null" }
-          ]
+          type: "object",
+          additionalProperties: true
         }
       }
     },
@@ -1132,6 +1272,7 @@ export function buildCombinedSpec(uiOperations, backendOperations, options = {})
       }
       applyBackendKnowledge(operation, method, findOperationPath(spec.paths, pathItem));
       applyOperationExamples(operation, method, findOperationPath(spec.paths, pathItem));
+      applyFallbackExamples(operation, method, findOperationPath(spec.paths, pathItem));
       operation.tags = buildOperationTags(operation);
       removeParameterDescriptions(operation);
       operation.parameters = sortParameters(operation.parameters || []);
@@ -1208,6 +1349,36 @@ export function extractConstants(source) {
     constants.set(match[1], match[3]);
   }
   return constants;
+}
+
+function mergeEnvConstants(constants, source, envConfig = {}) {
+  const aliases = new Map();
+  for (const [key, rawValue] of Object.entries(envConfig || {})) {
+    const value = extractEnvDefaultValue(rawValue);
+    if (!value) continue;
+    aliases.set(key, value);
+    aliases.set(key.replace(/__/g, "_"), value);
+  }
+
+  for (const [key, value] of aliases) {
+    constants.set(`env.${key}`, value);
+  }
+
+  const assignmentRegex = /(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*env\.([A-Z0-9_]+)/g;
+  for (const match of source.matchAll(assignmentRegex)) {
+    const value = aliases.get(match[2]);
+    if (value) constants.set(match[1], value);
+  }
+}
+
+function extractEnvDefaultValue(rawValue) {
+  if (rawValue === null || rawValue === undefined) return "";
+  const value = String(rawValue);
+  if (!value.includes("${")) return value;
+  const defaultMatch = /^\$\{[^}:]+:-(.*)\}$/.exec(value);
+  if (!defaultMatch) return "";
+  const defaultValue = defaultMatch[1];
+  return defaultValue.includes("${") ? "" : defaultValue;
 }
 
 function extractAxiosCreateBaseUrl(source, constants) {
@@ -1504,16 +1675,21 @@ function mergeCombinedMetadata(operation, normalized, original, sourceKind, sour
 function buildOperationTags(operation) {
   const tags = new Set();
   tags.add(operation._serviceTag);
-  if ((operation["x-d2e-ui-sources"] || []).length > 0) {
+  const hasUiSources = (operation["x-d2e-ui-sources"] || []).length > 0;
+  const hasBackendSources = (operation["x-d2e-backend-sources"] || []).length > 0;
+  if (hasUiSources) {
     tags.add("ui-used");
     for (const appTag of operation._apps || []) tags.add(appTag);
   } else {
     tags.add("backend-only");
   }
-  if ((operation["x-d2e-backend-sources"] || []).length > 0) {
+  if (hasBackendSources) {
     tags.add("backend-implemented");
     tags.add(operation["x-d2e-handler-found"] ? "handler-found" : "handler-unresolved");
     for (const functionTag of operation._backendFunctions || []) tags.add(functionTag);
+  }
+  if (!hasBackendSources && hasUiSources) {
+    tags.add("handler-unresolved");
   }
   if (operation["x-d2e-backend-missing"]) {
     tags.add("backend-missing");
@@ -1593,7 +1769,7 @@ function applyBackendKnowledge(operation, method, pathKey) {
 
 function applyOperationExamples(operation, method, pathKey) {
   const key = `${method} ${pathKey}`;
-  const examples = TERMINOLOGY_EXAMPLES.get(key) || D2E_WEBAPI_EXAMPLES.get(key);
+  const examples = TERMINOLOGY_EXAMPLES.get(key) || D2E_WEBAPI_EXAMPLES.get(key) || SYSTEM_PORTAL_EXAMPLES.get(key);
   if (!examples) return;
 
   if (examples.dropParameters?.length) {
@@ -1621,15 +1797,300 @@ function applyOperationExamples(operation, method, pathKey) {
     operation.requestBody.content["application/json"].example = examples.request;
   }
 
-  if (examples.response !== undefined) {
+  if (examples.responseStatus === 204) {
     operation.responses = operation.responses || {};
-    operation.responses["200"] = operation.responses["200"] || { description: "Successful response" };
-    operation.responses["200"].content = operation.responses["200"].content || {};
-    operation.responses["200"].content["application/json"] = operation.responses["200"].content["application/json"] || {
+    delete operation.responses["200"];
+    operation.responses["204"] = { description: "No content" };
+  } else if (examples.response !== undefined) {
+    operation.responses = operation.responses || {};
+    const status = String(examples.responseStatus || 200);
+    operation.responses[status] = operation.responses[status] || { description: "Successful response" };
+    operation.responses[status].content = operation.responses[status].content || {};
+    operation.responses[status].content["application/json"] = operation.responses[status].content["application/json"] || {
       schema: { $ref: "#/components/schemas/UnknownJson" }
     };
-    operation.responses["200"].content["application/json"].example = examples.response;
+    operation.responses[status].content["application/json"].example = examples.response;
   }
+}
+
+function applyFallbackExamples(operation, method, pathKey) {
+  if (!pathKey) return;
+
+  for (const parameter of operation.parameters || []) {
+    if (parameter.example !== undefined) continue;
+    const example = exampleForParameter(parameter.name, parameter.in, pathKey);
+    parameter.example = example;
+    parameter.schema = schemaFromExample(example);
+  }
+
+  if (operation.requestBody && !requestBodyHasExample(operation.requestBody)) {
+    const requestExample = fallbackRequestExample(method, pathKey, operation);
+    const contentType = Object.keys(operation.requestBody.content || {})[0] || "application/json";
+    operation.requestBody.content = operation.requestBody.content || {};
+    operation.requestBody.content[contentType] = operation.requestBody.content[contentType] || {
+      schema: { $ref: "#/components/schemas/UnknownJson" }
+    };
+    operation.requestBody.content[contentType].example = requestExample;
+  }
+
+  if (knownNoContentResponse(method, pathKey)) {
+    operation.responses = { [knownNoContentResponse(method, pathKey)]: { description: "No content" }, default: { description: "Error response" } };
+    return;
+  }
+
+  if (!responseHasExample(operation.responses) && !hasNoContentResponse(operation.responses)) {
+    const responseExample = fallbackResponseExample(method, pathKey, operation);
+    const status = method === "post" && !/\/(query|search|lookup|test|chat|log)\b/i.test(pathKey) ? "201" : "200";
+    operation.responses = operation.responses || {};
+    operation.responses[status] = operation.responses[status] || { description: status === "201" ? "Created" : "Successful response" };
+    operation.responses[status].content = operation.responses[status].content || {};
+    operation.responses[status].content["application/json"] = operation.responses[status].content["application/json"] || {
+      schema: { $ref: "#/components/schemas/UnknownJson" }
+    };
+    operation.responses[status].content["application/json"].example = responseExample;
+  }
+}
+
+function requestBodyHasExample(requestBody) {
+  return Object.values(requestBody?.content || {}).some((mediaType) => mediaType.example !== undefined || mediaType.examples);
+}
+
+function responseHasExample(responses = {}) {
+  return Object.values(responses || {}).some((response) =>
+    Object.values(response?.content || {}).some((mediaType) => mediaType.example !== undefined || mediaType.examples)
+  );
+}
+
+function hasNoContentResponse(responses = {}) {
+  return Object.prototype.hasOwnProperty.call(responses || {}, "204");
+}
+
+function exampleForParameter(name, location, pathKey) {
+  const lower = String(name || "").toLowerCase();
+  if (location === "path" || lower.endsWith("id") || lower.includes("userid")) {
+    if (lower.includes("dataset") || lower === "sourcekey") return EXAMPLE_DATASET_ID;
+    if (lower.includes("tenant")) return EXAMPLE_TENANT_ID;
+    if (lower.includes("study")) return EXAMPLE_STUDY_ID;
+    if (lower.includes("flowrun")) return EXAMPLE_FLOW_RUN_ID;
+    if (lower.includes("flow")) return EXAMPLE_FLOW_ID;
+    if (lower.includes("release")) return EXAMPLE_RELEASE_ID;
+    if (lower.includes("resource")) return EXAMPLE_RESOURCE_ID;
+    if (lower.includes("conversion")) return "example-conversion";
+    if (lower.includes("cohortdefinition")) return EXAMPLE_COHORT_ID;
+    if (lower.includes("conceptset")) return 12;
+    if (lower.includes("concept")) return EXAMPLE_CONCEPT_ID;
+    if (lower.includes("user")) return EXAMPLE_USER_ID;
+    if (lower === "id") {
+      if (pathKey.includes("concept-set") || pathKey.includes("conceptset")) return 12;
+      if (pathKey.includes("cohort")) return EXAMPLE_COHORT_ID;
+      if (pathKey.includes("notebook")) return EXAMPLE_NOTEBOOK_ID;
+      if (pathKey.includes("flow")) return EXAMPLE_FLOW_ID;
+      return "example-id";
+    }
+  }
+  if (lower.includes("locale")) return "en";
+  if (lower.includes("dialect")) return "postgres";
+  if (lower.includes("databasecode")) return EXAMPLE_DATABASE_CODE;
+  if (lower.includes("schema")) return EXAMPLE_SCHEMA_NAME;
+  if (lower.includes("tablename")) return "person";
+  if (lower.includes("filename")) return EXAMPLE_RESOURCE.name;
+  if (lower.includes("name")) return "example";
+  if (lower.includes("type")) return "example-type";
+  if (lower.includes("action")) return "getBackendConfig";
+  if (lower.includes("role")) return "RESEARCHER";
+  if (lower.includes("query") || lower.includes("search") || lower.includes("filter")) return "example";
+  if (lower.includes("page") || lower.includes("offset")) return 0;
+  if (lower.includes("limit") || lower.includes("count") || lower.includes("rows")) return 25;
+  if (lower.includes("overwrite") || lower.includes("refresh")) return false;
+  return "example";
+}
+
+function fallbackRequestExample(method, pathKey, operation) {
+  const service = firstPathSegment(pathKey);
+  if (isMultipartOperation(operation)) {
+    return { file: "example.csv", username: EXAMPLE_USER_ID, dataKey: "example-data-key" };
+  }
+  if (pathKey.startsWith("/code-suggestion/chat")) return { context: "Synthetic table metadata.", userInput: "Suggest a simple query." };
+  if (pathKey.startsWith("/code-suggestion")) return { code: "SELECT * FROM example_table" };
+  if (pathKey.startsWith("/mcp/chat")) return { jsonrpc: "2.0", id: 1, method: "tools/list", params: {} };
+  if (pathKey.startsWith("/demo")) return { encryptionKeys: "example-encryption-key" };
+  if (pathKey.startsWith("/parquet-export")) {
+    return {
+      datasetId: EXAMPLE_DATASET_ID,
+      cohortId: EXAMPLE_COHORT_ID,
+      templateId: "example-template",
+      name: "example-query",
+      format: "json",
+      conceptIds: [EXAMPLE_CONCEPT_ID],
+      yearRange: { from: "2020", to: "2024" }
+    };
+  }
+  if (pathKey.startsWith("/data-mapping")) {
+    return {
+      source_tables: [{ table_name: "source_person", column_list: [{ column_name: "person_id", column_type: "integer" }] }],
+      etl_mapping: {}
+    };
+  }
+  if (pathKey.startsWith("/concept-mapping")) {
+    return { sourceVocabularyId: "EXAMPLE", conceptMappings: "eJyrVkrLz1eyUkpKLFKqBQA8LQYQ" };
+  }
+  if (pathKey.startsWith("/strategus/analysis/code")) return { studyId: EXAMPLE_STUDY_ID, viewerCode: "print('example')" };
+  if (pathKey.startsWith("/strategus/analysis")) {
+    return { studyId: EXAMPLE_STUDY_ID, tokenStudyCode: "EXAMPLE_STUDY", tenantId: EXAMPLE_TENANT_ID, mode: "notebook", analysisSpec: { name: "Example analysis" } };
+  }
+  if (pathKey.startsWith("/strategus-results")) return { studyId: EXAMPLE_STUDY_ID, datasetId: EXAMPLE_DATASET_ID, viewerCode: "print('example')" };
+  if (pathKey.startsWith("/white-rabbit/api/test-connection")) return { databaseCode: EXAMPLE_DATABASE_CODE, schema: EXAMPLE_SCHEMA_NAME };
+  if (pathKey.startsWith("/white-rabbit/api/conversion")) return { flow_run_id: EXAMPLE_FLOW_RUN_ID, file_id: EXAMPLE_RESOURCE_ID, file_name: "scan-report.json" };
+  if (pathKey.includes("/query")) return { datasetId: EXAMPLE_DATASET_ID, query: { type: "example" }, options: {} };
+  if (pathKey.includes("/chat")) return { messages: [{ role: "user", content: "Summarize this synthetic dataset note." }] };
+  if (pathKey.includes("/test-connection") || pathKey.endsWith("/test")) {
+    return { dialect: "postgres", host: "db.example.local", port: 5432, database: "example_database", schema: EXAMPLE_SCHEMA_NAME };
+  }
+  if (pathKey.includes("/mapping")) return { sourceColumns: ["example_source"], targetColumns: ["example_target"] };
+  if (pathKey.includes("/concept-mapping")) return { mappings: [{ source: "EXAMPLE-001", target: EXAMPLE_CONCEPT }] };
+  if (pathKey.includes("/cohort")) return { datasetId: EXAMPLE_DATASET_ID, cohortDefinition: EXAMPLE_COHORT_DEFINITION };
+  if (pathKey.includes("/bookmark")) return { id: "example-bookmark", name: "Example bookmark", bookmark: { filters: [] } };
+  if (pathKey.includes("/dataset")) return { ...EXAMPLE_PORTAL_DATASET, id: EXAMPLE_DATASET_ID };
+  if (pathKey.includes("/user") || pathKey.includes("/member") || pathKey.includes("/tenant")) {
+    return { userId: EXAMPLE_USER_ID, tenantId: EXAMPLE_TENANT_ID, role: "RESEARCHER" };
+  }
+  if (pathKey.includes("/feature")) return { features: [EXAMPLE_PORTAL_FEATURE] };
+  if (pathKey.includes("/config")) return { action: "getBackendConfig", configId: "example-config", data: {} };
+  if (pathKey.includes("/flow-run") || pathKey.includes("/analysis-run")) {
+    return { options: { datasetId: EXAMPLE_DATASET_ID, flowId: EXAMPLE_FLOW_ID, mode: "example" } };
+  }
+  if (pathKey.includes("/flow") || pathKey.includes("/dataflow") || pathKey.includes("/analysisflow")) {
+    return { id: EXAMPLE_FLOW_ID, name: "Example flow", revisionId: "example-revision", nodes: [], edges: [] };
+  }
+  if (pathKey.includes("/strategus")) {
+    return { studyId: EXAMPLE_STUDY_ID, datasetId: EXAMPLE_DATASET_ID, analysisSpecification: { name: "Example analysis" } };
+  }
+  if (pathKey.includes("/white-rabbit")) {
+    return { datasetId: EXAMPLE_DATASET_ID, schemaName: EXAMPLE_SCHEMA_NAME, tables: ["person"] };
+  }
+  if (service === "trex") return { id: "example", name: "Example plugin", version: "0.0.1" };
+  if (method === "delete") return { id: "example-id" };
+  return { id: "example-id", name: "Example request" };
+}
+
+function fallbackResponseExample(method, pathKey, operation) {
+  if (operation.responses?.["200"]?.content?.["application/octet-stream"]) {
+    return { fileName: "example.bin", contentType: "application/octet-stream" };
+  }
+  if (pathKey.endsWith("assets.json")) return { js: ["/assets/index.js"], css: ["/assets/index.css"] };
+  if (pathKey.endsWith("config.json")) return { apiUrl: "/gateway/api", features: { exampleFeature: true } };
+  if (pathKey.startsWith("/prefect/d2e/ui-settings")) return { api_url: "/prefect/d2e/api", csrf_enabled: false, flags: {} };
+  if (pathKey.startsWith("/code-suggestion/chat")) return { stream: "event-stream", message: "Synthetic streamed suggestion." };
+  if (pathKey.startsWith("/code-suggestion")) return { text: "SELECT * FROM example_table;" };
+  if (pathKey.startsWith("/mcp/chat")) return { jsonrpc: "2.0", id: 1, result: { tools: [] } };
+  if (pathKey.startsWith("/demo/progress")) return { status: "completed", steps: [{ step: "setup", code: "SETUP", message: "Completed", status: "completed" }] };
+  if (pathKey.startsWith("/demo")) return { id: "example-progress", message: "Demo setup started" };
+  if (pathKey.startsWith("/backend/api/get_cdm_versions")) return ["5.3.0", "5.4"];
+  if (pathKey.startsWith("/backend/api/get_cdm_schema")) {
+    return [{ table_name: "person", column_list: [{ column_name: "person_id", column_type: "integer", is_column_nullable: false }] }];
+  }
+  if (pathKey.startsWith("/backend/api/lookup/sql")) return { sql: "SELECT * FROM example_lookup" };
+  if (pathKey.startsWith("/backend/api/lookups")) return [{ id: "example-lookup", name: "Example lookup" }];
+  if (pathKey.startsWith("/fhir-gateway/deleteDataset")) return { deleted: true, id: exampleForPathId(pathKey) };
+  if (pathKey.startsWith("/gateway/api/db/test") || pathKey.startsWith("/white-rabbit/api/test-connection")) {
+    return { success: true, message: "Connection successful" };
+  }
+  if (pathKey.startsWith("/gateway/api/db/database-creds/list")) {
+    return [{ id: "example-db", host: "db.example.local", port: 5432, name: EXAMPLE_DATABASE_CODE, dialect: "postgres" }];
+  }
+  if (pathKey.startsWith("/gateway/api/dataset/info")) return { type: "research", tokenStudyCode: "EXAMPLE_STUDY" };
+  if (pathKey.startsWith("/gateway/api/dataset/dashboard/list")) return [{ id: 1, datasetId: EXAMPLE_DATASET_ID, name: "Example dashboard", language: "sql" }];
+  if (pathKey.startsWith("/gateway/api/dataset") && method === "post") return { id: EXAMPLE_DATASET_ID, cacheId: "example-cache", flowRunId: EXAMPLE_FLOW_RUN_ID };
+  if (pathKey.startsWith("/jobplugins") && pathKey.includes("/flow-run")) return { flowRunId: EXAMPLE_FLOW_RUN_ID };
+  if (pathKey.startsWith("/jobplugins") && (pathKey.includes("/dataflow") || pathKey.includes("/analysisflow"))) {
+    return { id: EXAMPLE_FLOW_ID, name: "Example flow", revisionId: "example-revision", nodes: [], edges: [] };
+  }
+  if (pathKey.startsWith("/jobplugins")) return fallbackEntityExample(pathKey);
+  if (pathKey.startsWith("/strategus/template")) return [{ filename: "example-analysis.json", content: { name: "Example analysis" } }];
+  if (pathKey.startsWith("/strategus/analysis") && method === "get" && !/\{[^}]+\}/.test(pathKey)) return [fallbackEntityExample(pathKey)];
+  if (pathKey.startsWith("/strategus/analysis") && method !== "get") return { message: "Strategus analysis saved", analysisId: "example-analysis" };
+  if (pathKey.startsWith("/strategus-results") && pathKey.includes("/status")) return { running: true, message: "Viewer is running" };
+  if (pathKey.startsWith("/strategus-results") && method === "delete") return { stopped: true, message: "Viewer stopped" };
+  if (pathKey.startsWith("/strategus-results")) return { message: "Strategus result viewer started" };
+  if (pathKey.startsWith("/pa-config-svc/wizards/config")) return { wizards: [{ id: "example-wizard", name: "Example wizard" }] };
+  if (pathKey.startsWith("/pa-config-svc")) return { configId: "example-config", config: {} };
+  if (pathKey.startsWith("/parquet-export")) return [{ person_id: 1, value: "example" }];
+  if (pathKey.startsWith("/data-mapping")) {
+    return { data: [{ source_table: "source_person", target_table: "person", columns_mapping: { person_id: "person_id" } }] };
+  }
+  if (pathKey.startsWith("/concept-mapping")) return [{ source_code: "EXAMPLE-001", source_vocabulary_id: "EXAMPLE", target_concept_id: EXAMPLE_CONCEPT_ID }];
+  if (pathKey.startsWith("/files-manager/api/{userDataId}") && method === "get") return { fileName: "example.csv", contentType: "text/csv" };
+  if (pathKey.includes("/translations/") || pathKey.includes("/resources/")) return { example: "Example translation" };
+  if (pathKey.includes("/health") || pathKey.includes("/check-liveness") || pathKey.includes("/check-readiness")) return { status: "ok" };
+  if (pathKey.includes("/status") || pathKey.includes("/state") || pathKey.includes("/progress")) {
+    return { id: exampleForPathId(pathKey), status: "COMPLETED", progress: 100 };
+  }
+  if (method === "delete") return { id: exampleForPathId(pathKey), deleted: true };
+  if (pathKey.includes("/download")) return { fileName: EXAMPLE_RESOURCE.name, contentType: "text/csv", data: "ZXhhbXBsZQ==" };
+  if (pathKey.includes("/list") || pathKey.endsWith("/roles") || pathKey.endsWith("/plugins") || isCollectionGet(method, pathKey)) {
+    return [fallbackEntityExample(pathKey)];
+  }
+  if (pathKey.includes("/count")) return { count: 42 };
+  if (pathKey.includes("/exists") || pathKey.includes("/exist")) return { exists: true };
+  if (pathKey.includes("/query") && method === "post") return { sql: "SELECT 1", parameters: [] };
+  if (pathKey.includes("/chat")) return { message: { role: "assistant", content: "Synthetic response for documentation." } };
+  if (pathKey.includes("/test-connection") || pathKey.endsWith("/test")) return { status: "success", message: "Connection test succeeded" };
+  if (pathKey.includes("/schema") || pathKey.includes("/metadata")) {
+    return { schemas: [{ name: EXAMPLE_SCHEMA_NAME, tables: [{ name: "person", columns: ["person_id"] }] }] };
+  }
+  if (pathKey.includes("/upload")) return { id: EXAMPLE_RESOURCE_ID, fileName: EXAMPLE_RESOURCE.name, uploaded: true };
+  if (method === "post") return { ...fallbackEntityExample(pathKey), created: true };
+  if (method === "put" || method === "patch") return { ...fallbackEntityExample(pathKey), updated: true };
+  return fallbackEntityExample(pathKey);
+}
+
+function knownNoContentResponse(method, pathKey) {
+  if (method === "delete" && pathKey.startsWith("/fhir-gateway/deleteDataset")) return "204";
+  return "";
+}
+
+function isMultipartOperation(operation) {
+  return Object.keys(operation.requestBody?.content || {}).some((contentType) => contentType.includes("multipart/form-data"));
+}
+
+function isCollectionGet(method, pathKey) {
+  if (method !== "get") return false;
+  const tail = pathKey.split("/").filter(Boolean).pop() || "";
+  return /s$/.test(tail) && !/\{[^}]+\}/.test(tail);
+}
+
+function exampleForPathId(pathKey) {
+  if (pathKey.includes("dataset")) return EXAMPLE_DATASET_ID;
+  if (pathKey.includes("flow-run")) return EXAMPLE_FLOW_RUN_ID;
+  if (pathKey.includes("flow")) return EXAMPLE_FLOW_ID;
+  if (pathKey.includes("study")) return EXAMPLE_STUDY_ID;
+  if (pathKey.includes("resource")) return EXAMPLE_RESOURCE_ID;
+  return "example-id";
+}
+
+function fallbackEntityExample(pathKey) {
+  if (pathKey.includes("/dataset")) return EXAMPLE_PORTAL_DATASET;
+  if (pathKey.includes("/cohort")) return { id: EXAMPLE_COHORT_ID, name: "Example cohort", datasetId: EXAMPLE_DATASET_ID };
+  if (pathKey.includes("/bookmark")) return { id: "example-bookmark", name: "Example bookmark", bookmark: { filters: [] } };
+  if (pathKey.includes("/concept-mapping")) return { id: "example-mapping", source: "EXAMPLE-001", target: EXAMPLE_CONCEPT };
+  if (pathKey.includes("/data-mapping")) return { sourceColumn: "example_source", targetColumn: "example_target", confidence: 0.98 };
+  if (pathKey.includes("/user") || pathKey.includes("/member")) return { id: EXAMPLE_USER_ID, username: EXAMPLE_USER_ID, roles: ["RESEARCHER"] };
+  if (pathKey.includes("/tenant")) return EXAMPLE_TENANT;
+  if (pathKey.includes("/feature")) return EXAMPLE_PORTAL_FEATURE;
+  if (pathKey.includes("/config")) return { id: "example-config", type: "example", value: {} };
+  if (pathKey.includes("/flow-run") || pathKey.includes("/analysis-run")) {
+    return { id: EXAMPLE_FLOW_RUN_ID, flowId: EXAMPLE_FLOW_ID, status: "COMPLETED", createdAt: "2026-01-01T00:00:00.000Z" };
+  }
+  if (pathKey.includes("/flow") || pathKey.includes("/dataflow") || pathKey.includes("/analysisflow")) {
+    return { id: EXAMPLE_FLOW_ID, name: "Example flow", revisionId: "example-revision" };
+  }
+  if (pathKey.includes("/strategus")) return { studyId: EXAMPLE_STUDY_ID, datasetId: EXAMPLE_DATASET_ID, status: "READY" };
+  if (pathKey.includes("/white-rabbit")) return { id: "example-scan", status: "COMPLETED", tables: [{ name: "person", rows: 10 }] };
+  if (pathKey.includes("/file") || pathKey.includes("/resource")) return EXAMPLE_RESOURCE;
+  if (pathKey.includes("/db")) return { id: "example-db", dialect: "postgres", databaseCode: EXAMPLE_DATABASE_CODE };
+  if (pathKey.includes("/plugin")) return { name: "example-plugin", version: "0.0.1", status: "installed" };
+  if (pathKey.includes("/lookup")) return { name: "example-lookup", sql: "SELECT 1" };
+  return { id: "example-id", name: "Example item" };
 }
 
 function removeParameterDescriptions(operation) {
@@ -1690,21 +2151,26 @@ function readTrexRouteMap(functionsRoot) {
   const packagePath = path.join(functionsRoot, "package.json");
   const functionSources = new Map();
   const functionEnvs = new Map();
-  if (!fs.existsSync(packagePath)) return { functionSources, functionEnvs };
+  const functionEnvConfigs = new Map();
+  if (!fs.existsSync(packagePath)) return { functionSources, functionEnvs, functionEnvConfigs };
 
   const pkg = JSON.parse(fs.readFileSync(packagePath, "utf8"));
+  const envConfigs = pkg.trex?.functions?.env || {};
   for (const entry of pkg.trex?.functions?.api || []) {
     if (!entry.function || !entry.source) continue;
     const functionName = stripLeadingSlash(entry.function).split("/")[0];
     const source = normalizeBackendRoutePath(entry.source);
     if (!functionSources.has(functionName)) functionSources.set(functionName, []);
     functionSources.get(functionName).push(source);
-    if (entry.env) functionEnvs.set(functionName, entry.env);
+    if (entry.env) {
+      functionEnvs.set(functionName, entry.env);
+      functionEnvConfigs.set(functionName, envConfigs[entry.env] || {});
+    }
   }
   for (const [key, value] of functionSources) {
     functionSources.set(key, [...new Set(value)].sort((a, b) => b.length - a.length));
   }
-  return { functionSources, functionEnvs };
+  return { functionSources, functionEnvs, functionEnvConfigs };
 }
 
 function collectClassMounts(files) {
@@ -1725,14 +2191,16 @@ function collectClassMounts(files) {
   return mounts;
 }
 
-function collectFunctionMounts(files, functionsRoot) {
+function collectFunctionMounts(files, functionsRoot, routeMap) {
   const mounts = new Map();
   const useRegex = /\b(?:app|this\.app)\s*\.\s*use\s*\(\s*([`'"])([^`'"]+)\1\s*,/g;
   for (const file of files) {
     const source = fs.readFileSync(file, "utf8");
     const functionName = getFunctionNameFromPath(file, functionsRoot);
+    const constants = extractConstants(source);
+    mergeEnvConstants(constants, source, routeMap.functionEnvConfigs.get(functionName));
     for (const match of source.matchAll(useRegex)) {
-      const prefix = normalizeBackendRoutePath(match[2]);
+      const prefix = normalizeBackendRoutePath(evaluateExpression(`${match[1]}${match[2]}${match[1]}`, constants));
       if (prefix.includes("check-liveness") || prefix.includes("check-readiness")) continue;
       if (!mounts.has(functionName)) mounts.set(functionName, []);
       mounts.get(functionName).push(prefix);
@@ -2016,6 +2484,91 @@ function swaggerTypeToOpenApi(type) {
   if (type === "integer" || type === "number" || type === "boolean") return type;
   if (type === "array" || type === "object") return type;
   return "string";
+}
+
+function extractDanetControllerRoutes(source, relPath, constants) {
+  const operations = [];
+  const controllerRegex = /@Controller\s*\(\s*([`'"])([\s\S]*?)\1\s*\)/g;
+  for (const controllerMatch of source.matchAll(controllerRegex)) {
+    const controllerBase = evaluateExpression(`${controllerMatch[1]}${controllerMatch[2]}${controllerMatch[1]}`, constants);
+    if (!controllerBase || controllerBase === "{dynamic}") continue;
+    const classMatch = /\bclass\s+([A-Za-z_$][\w$]*)/.exec(source.slice(controllerMatch.index));
+    const classStart = classMatch ? controllerMatch.index + classMatch.index : controllerMatch.index;
+    const nextControllerMatch = /@Controller\s*\(/.exec(source.slice(controllerMatch.index + controllerMatch[0].length));
+    const scanEnd = nextControllerMatch
+      ? controllerMatch.index + controllerMatch[0].length + nextControllerMatch.index
+      : source.length;
+    const classSource = source.slice(classStart, scanEnd);
+    const methodDecoratorRegex = /@(Get|Post|Put|Delete|Patch)\s*(?:\(\s*(?:([`'"])([\s\S]*?)\2)?\s*\))?/g;
+
+    for (const decoratorMatch of classSource.matchAll(methodDecoratorRegex)) {
+      const methodStart = classStart + decoratorMatch.index;
+      const afterDecorator = classStart + decoratorMatch.index + decoratorMatch[0].length;
+      const declarationMatch = /^\s*(?:@[A-Za-z_$][\w$]*(?:\([^)]*\))?\s*)*(?:public\s+|private\s+|protected\s+)?(?:async\s+)?([A-Za-z_$][\w$]*)\s*\(/m.exec(
+        source.slice(afterDecorator)
+      );
+      if (!declarationMatch) continue;
+      const declarationStart = afterDecorator + declarationMatch.index;
+      const methodName = declarationMatch[1];
+      const openParen = source.indexOf("(", declarationStart);
+      const args = readCallArguments(source, openParen) || [];
+      const routePath = decoratorMatch[3]
+        ? evaluateExpression(`${decoratorMatch[2]}${decoratorMatch[3]}${decoratorMatch[2]}`, constants)
+        : "";
+      const fullPath = normalizeBackendRoutePath(joinUrl(controllerBase, routePath));
+      const queryParams = extractDanetQueryParameters(args);
+      const openapiParameters = extractDanetPathParameterSchemas(args);
+      const hasBody = args.some((arg) => /@Body\s*\(/.test(arg));
+      const usesRequestFormData = args.some((arg) => /@Req\s*\(/.test(arg)) && /formData\s*\(/.test(source.slice(declarationStart, declarationStart + 1500));
+
+      operations.push({
+        index: methodStart,
+        operationName: methodName,
+        method: normalizeMethod(decoratorMatch[1]),
+        url: fullPath,
+        paramsExpression: "",
+        dataExpression: hasBody ? "{}" : usesRequestFormData ? "FormData" : "",
+        headersExpression: usesRequestFormData ? "multipart/form-data" : "",
+        responseType: "",
+        description: "",
+        queryParams,
+        openapiParameters,
+        handlerFound: true
+      });
+    }
+  }
+  return operations;
+}
+
+function extractDanetQueryParameters(args) {
+  const queryParams = [];
+  for (const arg of args) {
+    const namedQuery = /@Query\s*\(\s*["'`]([^"'`]+)["'`]\s*\)/.exec(arg);
+    if (namedQuery) queryParams.push(namedQuery[1]);
+  }
+  return [...new Set(queryParams)].sort();
+}
+
+function extractDanetPathParameterSchemas(args) {
+  const parameters = [];
+  for (const arg of args) {
+    const namedParam = /@Param\s*\(\s*["'`]([^"'`]+)["'`]\s*\)/.exec(arg);
+    if (!namedParam) continue;
+    const typeMatch = /:\s*([A-Za-z_$][\w$]*)/.exec(arg);
+    parameters.push({
+      name: namedParam[1],
+      in: "path",
+      required: true,
+      schema: schemaFromTypeName(typeMatch?.[1])
+    });
+  }
+  return parameters;
+}
+
+function schemaFromTypeName(typeName = "string") {
+  if (typeName === "number") return { type: "number" };
+  if (typeName === "boolean") return { type: "boolean" };
+  return { type: "string" };
 }
 
 function extractBackendRouteCalls(source, relPath, constants) {
@@ -2380,9 +2933,8 @@ function findOperationName(source, index) {
   return best?.name || "uiApiCall";
 }
 
-function uniqueOperationId(method, openApiPath, name) {
-  const cleanName = name && name !== "uiApiCall" ? name : `${method}_${openApiPath}`;
-  return cleanName
+function uniqueOperationId(method, openApiPath) {
+  return `${method}_${openApiPath}`
     .replace(/[^A-Za-z0-9]+(.)/g, (_, char) => char.toUpperCase())
     .replace(/[^A-Za-z0-9]/g, "")
     .replace(/^[0-9]/, "_$&");

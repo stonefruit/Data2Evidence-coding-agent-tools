@@ -1,0 +1,584 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence System Portal Notebook API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend:portal",
+      "description": "Operation is declared by the portal backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:system-portal-notebook",
+      "description": "Operation belongs to the system-portal-notebook service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:notebook-ui",
+      "description": "Operation is called by the notebook-ui UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    },
+    {
+      "name": "ui:webr-notebook",
+      "description": "Operation is called by the webr-notebook UI."
+    }
+  ],
+  "paths": {
+    "/system-portal/notebook": {
+      "get": {
+        "operationId": "getSystemPortalNotebook",
+        "summary": "get Notebook List",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-notebook",
+                    "userId": "example.user",
+                    "name": "Example notebook",
+                    "notebookContent": {
+                      "cells": [],
+                      "metadata": {},
+                      "nbformat": 4,
+                      "nbformat_minor": 5
+                    },
+                    "isShared": false
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postSystemPortalNotebook",
+        "summary": "create Notebook",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-notebook",
+                  "userId": "example.user",
+                  "name": "Example notebook",
+                  "notebookContent": {
+                    "cells": [],
+                    "metadata": {},
+                    "nbformat": 4,
+                    "nbformat_minor": 5
+                  },
+                  "isShared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example notebook",
+                "notebookContent": {
+                  "cells": [],
+                  "metadata": {},
+                  "nbformat": 4,
+                  "nbformat_minor": 5
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "putSystemPortalNotebook",
+        "summary": "save Notebook",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-notebook",
+                  "userId": "example.user",
+                  "name": "Updated example notebook",
+                  "notebookContent": {
+                    "cells": [],
+                    "metadata": {},
+                    "nbformat": 4,
+                    "nbformat_minor": 5
+                  },
+                  "isShared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-notebook",
+                "userId": "example.user",
+                "name": "Updated example notebook",
+                "notebookContent": {
+                  "cells": [],
+                  "metadata": {},
+                  "nbformat": 4,
+                  "nbformat_minor": 5
+                },
+                "isShared": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/{id}": {
+      "delete": {
+        "operationId": "deleteSystemPortalNotebookId",
+        "summary": "delete Notebook",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-notebook"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-notebook",
+                  "userId": "example.user",
+                  "name": "Example notebook",
+                  "notebookContent": {
+                    "cells": [],
+                    "metadata": {},
+                    "nbformat": 4,
+                    "nbformat_minor": 5
+                  },
+                  "isShared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/{id}/overwrite-from-remote": {
+      "post": {
+        "operationId": "postSystemPortalNotebookIdOverwriteFromRemote",
+        "summary": "overwrite From Remote",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-notebook"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Successfully overwritten notebook example-notebook from remote due to content mismatch",
+                  "overwritten": true,
+                  "notebookId": "example-notebook"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/{id}/remote-diff-check": {
+      "get": {
+        "operationId": "getSystemPortalNotebookIdRemoteDiffCheck",
+        "summary": "check Remote Diff",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-notebook"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "hasDifferences": false,
+                  "reason": "Content is identical to remote"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/overwrite-all-from-remote": {
+      "post": {
+        "operationId": "postSystemPortalNotebookOverwriteAllFromRemote",
+        "summary": "overwrite All From Remote",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Successfully overwritten all notebooks from remote",
+                  "processedCount": 1,
+                  "results": [
+                    {
+                      "notebookId": "example-notebook",
+                      "name": "Example notebook"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/templates": {
+      "get": {
+        "operationId": "getSystemPortalNotebookTemplates",
+        "summary": "get Templates",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-template",
+                    "name": "Example template",
+                    "description": "Synthetic notebook template.",
+                    "notebookContent": {
+                      "cells": [],
+                      "metadata": {},
+                      "nbformat": 4,
+                      "nbformat_minor": 5
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/system-portal/notebook/templates/{templateId}": {
+      "post": {
+        "operationId": "postSystemPortalNotebookTemplatesTemplateId",
+        "summary": "create Notebook From Template",
+        "tags": [
+          "backend-implemented",
+          "backend:portal",
+          "handler-found",
+          "service:system-portal-notebook",
+          "ui-used",
+          "ui:notebook-ui",
+          "ui:webr-notebook"
+        ],
+        "parameters": [
+          {
+            "name": "templateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-template"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-notebook",
+                  "userId": "example.user",
+                  "name": "Example notebook from template",
+                  "notebookContent": {
+                    "cells": [],
+                    "metadata": {},
+                    "nbformat": 4,
+                    "nbformat_minor": 5
+                  },
+                  "isShared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example notebook from template"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

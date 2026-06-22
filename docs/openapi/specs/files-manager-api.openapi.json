@@ -1,0 +1,249 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Files Manager Api API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:files-manager",
+      "description": "Operation is declared by the files-manager backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:files-manager-api",
+      "description": "Operation belongs to the files-manager-api service/function surface."
+    }
+  ],
+  "paths": {
+    "/files-manager/api": {
+      "post": {
+        "operationId": "postFilesManagerApi",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:files-manager",
+          "handler-found",
+          "service:files-manager-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "name": "example-resource.csv",
+                  "hash": "example-hash",
+                  "bytes": 128,
+                  "content_type": "text/csv",
+                  "last_modified": "2026-01-01T00:00:00.000Z",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files-manager/api/{userDataId}": {
+      "get": {
+        "operationId": "getFilesManagerApiUserDataId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:files-manager",
+          "handler-found",
+          "service:files-manager-api"
+        ],
+        "parameters": [
+          {
+            "name": "userDataId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "fileName": "example.csv",
+                  "contentType": "text/csv"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFilesManagerApiUserDataId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:files-manager",
+          "handler-found",
+          "service:files-manager-api"
+        ],
+        "parameters": [
+          {
+            "name": "userDataId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/files-manager/api/user-data/{userDataId}": {
+      "get": {
+        "operationId": "getFilesManagerApiUserDataUserDataId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:files-manager",
+          "handler-found",
+          "service:files-manager-api"
+        ],
+        "parameters": [
+          {
+            "name": "userDataId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

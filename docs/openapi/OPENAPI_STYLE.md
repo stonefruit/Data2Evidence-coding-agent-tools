@@ -8,6 +8,7 @@ This guide describes how generated or manually curated Data2Evidence OpenAPI fil
 - Keep files small enough to load in Swagger Editor without rendering problems.
 - Use standard OpenAPI fields only. Do not emit Data2Evidence vendor extensions such as `x-d2e-*`.
 - Keep `components.schemas.UnknownJson` for endpoints where the concrete contract is not yet traced.
+- Keep `UnknownJson` object-shaped by default. Avoid broad primitive unions that make renderers show misleading samples such as `true`.
 - Prefer conservative request/response shapes over invented schemas.
 
 ## Tags
@@ -77,6 +78,11 @@ Do not use examples for:
 - secrets, tokens, connection strings, real tenant IDs, or credentials
 - real patient, study, cohort, or user data
 - licensed terminology content, including real SNOMED CT codes, identifiers, and display terms
+- placeholder `null` response bodies when the backend actually returns no content
+
+For no-content responses, document the traced status code such as `204` and omit JSON content instead of emitting `example: null`.
+
+Null values may appear inside an example only when source tracing proves the backend field is nullable and the null is meaningful API behavior.
 
 ## Licensed Terminology Content
 
@@ -136,6 +142,7 @@ npm test
 npm run generate
 rg "x-d2e" ../../docs/openapi/specs
 rg "SNOMED|licensed vocabulary|licensed code|licensed display" ../../docs/openapi/specs
+rg '"example": null' ../../docs/openapi/specs
 ```
 
 Expected:
@@ -144,3 +151,4 @@ Expected:
 - specs regenerate cleanly
 - no `x-d2e-*` fields appear in generated specs
 - no real SNOMED CT example content appears in generated specs
+- no top-level OpenAPI examples are `null`; meaningful nullable fields inside example objects are allowed only when traced

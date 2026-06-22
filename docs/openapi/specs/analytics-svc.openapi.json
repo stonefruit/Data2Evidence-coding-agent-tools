@@ -1,0 +1,2831 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Analytics Svc API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:analytics-svc",
+      "description": "Operation is declared by the analytics-svc backend function."
+    },
+    {
+      "name": "backend:bookmark-svc",
+      "description": "Operation is declared by the bookmark-svc backend function."
+    },
+    {
+      "name": "backend:query-gen-svc",
+      "description": "Operation is declared by the query-gen-svc backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:analytics-svc",
+      "description": "Operation belongs to the analytics-svc service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/analytics-svc/api/services/alpdb/cdmversion": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesAlpdbCdmversion",
+        "summary": "Get CDM Version",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/alpdb/metadata/schemasnapshot": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesAlpdbMetadataSchemasnapshot",
+        "summary": "Get schema metadata for snapshot",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "schemas": [
+                    {
+                      "name": "example_schema",
+                      "tables": [
+                        {
+                          "name": "person",
+                          "columns": [
+                            "person_id"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/alpdb/schema/exists": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesAlpdbSchemaExists",
+        "summary": "Check if schema exists",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "databaseCode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "dialect",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "postgres"
+          },
+          {
+            "name": "schemaName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-id",
+                    "name": "Example item"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/bookmark": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesBookmark",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-bookmark",
+                  "name": "Example bookmark",
+                  "bookmark": {
+                    "filters": []
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesBookmark",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-bookmark",
+                  "name": "Example bookmark",
+                  "bookmark": {
+                    "filters": []
+                  },
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-bookmark",
+                "name": "Example bookmark",
+                "bookmark": {
+                  "filters": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/bookmark/{bookmarkId}": {
+      "put": {
+        "operationId": "putAnalyticsSvcApiServicesBookmarkBookmarkId",
+        "summary": "update a bookmark",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "bookmarkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-bookmark",
+                  "name": "Example bookmark",
+                  "bookmark": {
+                    "filters": []
+                  },
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "id": "example-bookmark",
+                "name": "Example bookmark",
+                "bookmark": {
+                  "filters": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAnalyticsSvcApiServicesBookmarkBookmarkId",
+        "summary": "Deletes a bookmark",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "bookmarkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/bookmark/bookmarkIds": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesBookmarkBookmarkIds",
+        "summary": "get bookmarks based on bookmarkIds",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-bookmark",
+                    "name": "Example bookmark",
+                    "bookmark": {
+                      "filters": []
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/bookmark/favicon.ico": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesBookmarkFaviconIco",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:bookmark-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-bookmark",
+                  "name": "Example bookmark",
+                  "bookmark": {
+                    "filters": []
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/cohort": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesCohort",
+        "summary": "get Cohorts",
+        "tags": [
+          "backend-implemented",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "excludePatientIds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAnalyticsSvcApiServicesCohort",
+        "summary": "delete Cohort",
+        "tags": [
+          "backend-implemented",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "cohortId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesCohort",
+        "summary": "Sends mriquery to patient analytics service to get list of patient from mriquery, extracts all patient ids, then creates cohort definition and cohort entries in database",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/cohort-definition": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesCohortDefinition",
+        "summary": "Get a cohort definition via cohort definition id",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "cohortDefinitionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesCohortDefinition",
+        "summary": "Saves cohort definition to db",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "putAnalyticsSvcApiServicesCohortDefinition",
+        "summary": "Updates a cohort definition",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "cohortDefinition": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/cohort/{filterColumn}/{filterValue}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesCohortFilterColumnFilterValue",
+        "summary": "get Filtered Cohorts",
+        "tags": [
+          "backend-implemented",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "filterColumn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "filterValue",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/customDBs/{schemaName}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesCustomDBsSchemaName",
+        "summary": "Get table names inside the custom schemas",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/customDBs/{schemaName}/{tableName}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesCustomDBsSchemaNameTableName",
+        "summary": "Get table data of the custom schema",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "tableName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "person"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/data-characterization/{databaseCode}/{vocabSchema}/{resultsSchema}/{sourceKey}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDataCharacterizationDatabaseCodeVocabSchemaResultsSchemaSourceKey",
+        "summary": "Returns the results for data characterization run",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "databaseCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "resultsSchema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "vocabSchema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/data-characterization/{databaseCode}/{vocabSchema}/{resultsSchema}/{sourceKey}/{conceptId}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDataCharacterizationDatabaseCodeVocabSchemaResultsSchemaSourceKeyConceptId",
+        "summary": "Returns the drilldown results for data characterization run",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "databaseCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "resultsSchema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "vocabSchema",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/dataset-filter/database-schema-filter": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDatasetFilterDatabaseSchemaFilter",
+        "summary": "Returns database schema filter results",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "datasetsWithSchema",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          },
+          {
+            "name": "filterParams",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "type": "research",
+                  "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                  "tokenStudyCode": "EXAMPLE_DATASET",
+                  "tokenDatasetCode": "EXAMPLE_DATASET",
+                  "dialect": "postgres",
+                  "databaseCode": "example_database",
+                  "cacheId": "example_cache",
+                  "schemaName": "example_cdm",
+                  "vocabSchemaName": "example_vocab",
+                  "dataModel": "omop",
+                  "studyDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples."
+                  },
+                  "datasetDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples.",
+                    "summary": "Synthetic dataset summary.",
+                    "showRequestAccess": false
+                  },
+                  "tenant": {
+                    "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                    "name": "Example tenant",
+                    "system": "example"
+                  },
+                  "dashboards": [
+                    {
+                      "name": "Overview",
+                      "url": "/dashboards/example",
+                      "basePath": "/dashboards"
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attributeId": "data_partner",
+                      "value": "Example partner"
+                    }
+                  ],
+                  "tags": [
+                    {
+                      "id": 1,
+                      "name": "Example tag"
+                    }
+                  ],
+                  "totalSubjects": 1000,
+                  "plugin": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/dataset-filter/filter-scopes": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDatasetFilterFilterScopes",
+        "summary": "Returns dataset filter",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "datasetsWithSchema",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "type": "research",
+                    "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                    "tokenStudyCode": "EXAMPLE_DATASET",
+                    "tokenDatasetCode": "EXAMPLE_DATASET",
+                    "dialect": "postgres",
+                    "databaseCode": "example_database",
+                    "cacheId": "example_cache",
+                    "schemaName": "example_cdm",
+                    "vocabSchemaName": "example_vocab",
+                    "dataModel": "omop",
+                    "studyDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples."
+                    },
+                    "datasetDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples.",
+                      "summary": "Synthetic dataset summary.",
+                      "showRequestAccess": false
+                    },
+                    "tenant": {
+                      "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                      "name": "Example tenant",
+                      "system": "example"
+                    },
+                    "dashboards": [
+                      {
+                        "name": "Overview",
+                        "url": "/dashboards/example",
+                        "basePath": "/dashboards"
+                      }
+                    ],
+                    "attributes": [
+                      {
+                        "attributeId": "data_partner",
+                        "value": "Example partner"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "id": 1,
+                        "name": "Example tag"
+                      }
+                    ],
+                    "totalSubjects": 1000,
+                    "plugin": "example"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/datastream/patient": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDatastreamPatient",
+        "summary": "Returns dataset csv or parquet stream to the frontend",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "cohortId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "dataFormat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "mriquery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "releaseDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "returnOnlyPatientCount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/descendant-concepts": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesDescendantConcepts",
+        "summary": "Retrieves descendant concept/s based on provided concept Id",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-id",
+                    "name": "Example item"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/generate-cohort-definition": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesGenerateCohortDefinition",
+        "summary": "Generates the cohort definition from mriquery",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/kaplan-meier": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesKaplanMeier",
+        "summary": "start Km Analysis",
+        "tags": [
+          "backend-implemented",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesKaplanMeier",
+        "summary": "get Km Analysis Results",
+        "tags": [
+          "backend-implemented",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "flowRunId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-flow-run"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/parquet/{datasetId}/{tableName}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesParquetDatasetIdTableName",
+        "summary": "Returns data parquet stream",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "tableName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "person"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/patient": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesPatient",
+        "summary": "Returns results of analytical queries to the frontend",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "dataFormat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "mriquery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "patientId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "releaseDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/patient/{patientId}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesPatientPatientId",
+        "summary": "Get data for a single patient",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "configId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "configVersion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "dataFormat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "interactionTypes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/patient/cohorts/compare/{chartType}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesPatientCohortsCompareChartType",
+        "summary": "Returns datasets of the supplied cohort ids",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "chartType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "configId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "configVersion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "ids",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "kmeventofinterest",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "kmeventofinterestocc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "kmstartevent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "kmstarteventocc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "xaxis",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "yaxis",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/population/{dataFormat}/{chartType}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesPopulationDataFormatChartType",
+        "summary": "Returns results of analytical queries to the frontend",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "chartType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "dataFormat",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "mriquery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "releaseDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/query": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesQuery",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:query-gen-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT 1",
+                  "parameters": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "query": {
+                  "type": "example"
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Generates SQL/query payloads from Patient Analytics filter-card and IFR requests using the active backend CDM configuration."
+      }
+    },
+    "/analytics-svc/api/services/query/cohort": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesQueryCohort",
+        "summary": "create cohort related queries",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:query-gen-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT 1",
+                  "parameters": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "query": {
+                  "type": "example"
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Generates SQL/query payloads from Patient Analytics filter-card and IFR requests using the active backend CDM configuration."
+      }
+    },
+    "/analytics-svc/api/services/query/cohortCompare": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesQueryCohortCompare",
+        "summary": "create list of bookmark cohort queries",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:query-gen-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT 1",
+                  "parameters": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "query": {
+                  "type": "example"
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Generates SQL/query payloads from Patient Analytics filter-card and IFR requests using the active backend CDM configuration."
+      }
+    },
+    "/analytics-svc/api/services/query/domainvalues": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesQueryDomainvalues",
+        "summary": "create domain values query",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:query-gen-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT 1",
+                  "parameters": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "query": {
+                  "type": "example"
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Generates SQL/query payloads from Patient Analytics filter-card and IFR requests using the active backend CDM configuration."
+      }
+    },
+    "/analytics-svc/api/services/query/pluginendpoint": {
+      "post": {
+        "operationId": "postAnalyticsSvcApiServicesQueryPluginendpoint",
+        "summary": "create plugin endpoint query",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:query-gen-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT 1",
+                  "parameters": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "query": {
+                  "type": "example"
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Generates SQL/query payloads from Patient Analytics filter-card and IFR requests using the active backend CDM configuration."
+      }
+    },
+    "/analytics-svc/api/services/recontact/patient": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesRecontactPatient",
+        "summary": "Returns a cohort of patients with psuedo IDs, meta data (filters)",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "mriquery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/standard-concept-ids": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesStandardConceptIds",
+        "summary": "Retrieves standard concept ids based on provided concept code and vocabulary id",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "conceptCode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "vocabularyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-id",
+                    "name": "Example item"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/summary/patient/{patientId}": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesSummaryPatientPatientId",
+        "summary": "Returns a summary of patient",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "mriquery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/analytics-svc/api/services/values": {
+      "get": {
+        "operationId": "getAnalyticsSvcApiServicesValues",
+        "summary": "domain value service",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [
+          {
+            "name": "attributePath",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "attributeType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "configId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "configVersion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "suggestionLimit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-id",
+                    "name": "Example item"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Returns Patient Analytics domain values for a CDM attribute path using the active backend CDM configuration and selected dataset."
+      }
+    },
+    "/analytics-svc/pa/services/analytics.xsjs/favicon.ico": {
+      "get": {
+        "operationId": "getAnalyticsSvcPaServicesAnalyticsXsjsFaviconIco",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:analytics-svc",
+          "handler-found",
+          "service:analytics-svc"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Hc Hph Config Services API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:cdw-svc",
+      "description": "Operation is declared by the cdw-svc backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:hc-hph-config-services",
+      "description": "Operation belongs to the hc-hph-config-services service/function surface."
+    }
+  ],
+  "paths": {
+    "/hc/hph/config/services/config.xsjs": {
+      "post": {
+        "operationId": "postHcHphConfigServicesConfigXsjs",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:cdw-svc",
+          "handler-found",
+          "service:hc-hph-config-services"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-config",
+                  "type": "example",
+                  "value": {},
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "action": "getBackendConfig",
+                "configId": "example-config",
+                "data": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hc/hph/config/services/global.xsjs": {
+      "post": {
+        "operationId": "postHcHphConfigServicesGlobalXsjs",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:cdw-svc",
+          "handler-found",
+          "service:hc-hph-config-services"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-config",
+                  "type": "example",
+                  "value": {},
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "action": "getBackendConfig",
+                "configId": "example-config",
+                "data": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

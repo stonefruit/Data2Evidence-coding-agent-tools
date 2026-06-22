@@ -1,0 +1,95 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Resources Concept Sets API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:resources-concept-sets",
+      "description": "Operation belongs to the resources-concept-sets service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:concept-sets",
+      "description": "Operation is called by the concept-sets UI."
+    }
+  ],
+  "paths": {
+    "/resources/concept-sets/{locale}.json": {
+      "get": {
+        "operationId": "getResourcesConceptSetsLocaleJson",
+        "summary": "get Translation",
+        "tags": [
+          "handler-unresolved",
+          "service:resources-concept-sets",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "en"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "example": "Example translation"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

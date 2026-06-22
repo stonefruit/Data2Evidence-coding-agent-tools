@@ -1,0 +1,137 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Data Mapping API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend:data-mapping",
+      "description": "Operation is declared by the data-mapping backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:data-mapping",
+      "description": "Operation belongs to the data-mapping service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:mapping",
+      "description": "Operation is called by the mapping UI."
+    }
+  ],
+  "paths": {
+    "/data-mapping": {
+      "post": {
+        "operationId": "postDataMapping",
+        "summary": "get Suggested Mapping",
+        "tags": [
+          "backend-implemented",
+          "backend:data-mapping",
+          "handler-found",
+          "service:data-mapping",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "source_table": "source_person",
+                      "target_table": "person",
+                      "columns_mapping": {
+                        "person_id": "person_id"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "source_tables": [
+                  {
+                    "table_name": "source_person",
+                    "column_list": [
+                      {
+                        "column_name": "person_id",
+                        "column_type": "integer"
+                      }
+                    ]
+                  }
+                ],
+                "etl_mapping": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

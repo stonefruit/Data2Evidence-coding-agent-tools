@@ -1,0 +1,3026 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Usermgmt Api API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:alp-usermgmt",
+      "description": "Operation is declared by the alp-usermgmt backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:usermgmt-api",
+      "description": "Operation belongs to the usermgmt-api service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/usermgmt/api": {
+      "get": {
+        "operationId": "getUsermgmtApi",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postUsermgmtApi",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteUsermgmtApi",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/{action}": {
+      "put": {
+        "operationId": "putUsermgmtApiAction",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getBackendConfig"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/{id}": {
+      "get": {
+        "operationId": "getUsermgmtApiId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteUsermgmtApiId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/{id}/password": {
+      "put": {
+        "operationId": "putUsermgmtApiIdPassword",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/alp-data-admin/register": {
+      "post": {
+        "operationId": "postUsermgmtApiAlpDataAdminRegister",
+        "summary": "register Alp Data Admin Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/alp-data-admin/withdraw": {
+      "post": {
+        "operationId": "postUsermgmtApiAlpDataAdminWithdraw",
+        "summary": "withdraw Alp Data Admin Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/alp-user/register": {
+      "post": {
+        "operationId": "postUsermgmtApiAlpUserRegister",
+        "summary": "register Alp User Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/alp-user/withdraw": {
+      "post": {
+        "operationId": "postUsermgmtApiAlpUserWithdraw",
+        "summary": "withdraw Alp User Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/azure-ad": {
+      "get": {
+        "operationId": "getUsermgmtApiAzureAd",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postUsermgmtApiAzureAd",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/cleanup": {
+      "post": {
+        "operationId": "postUsermgmtApiCleanup",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/group/cleanup": {
+      "post": {
+        "operationId": "postUsermgmtApiGroupCleanup",
+        "summary": "clean Up Groups",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/is_token_valid_internal": {
+      "get": {
+        "operationId": "getUsermgmtApiIsTokenValidInternal",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/list": {
+      "post": {
+        "operationId": "postUsermgmtApiList",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example.user",
+                    "username": "example.user",
+                    "roles": [
+                      "RESEARCHER"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/list/{studyId}": {
+      "get": {
+        "operationId": "getUsermgmtApiListStudyId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example.user",
+                    "username": "example.user",
+                    "roles": [
+                      "RESEARCHER"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/me": {
+      "delete": {
+        "operationId": "deleteUsermgmtApiMe",
+        "summary": "delete My User",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "get": {
+        "operationId": "getUsermgmtApiMe",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/me/password": {
+      "put": {
+        "operationId": "putUsermgmtApiMePassword",
+        "summary": "change My Password",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/me/sync-webapi-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiMeSyncWebapiRoles",
+        "summary": "sync Web Api Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/member/tenant/activate": {
+      "post": {
+        "operationId": "postUsermgmtApiMemberTenantActivate",
+        "summary": "activate User",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/member/tenant/add": {
+      "post": {
+        "operationId": "postUsermgmtApiMemberTenantAdd",
+        "summary": "add User",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/member/tenant/delete": {
+      "delete": {
+        "operationId": "deleteUsermgmtApiMemberTenantDelete",
+        "summary": "delete User",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/overview": {
+      "get": {
+        "operationId": "getUsermgmtApiOverview",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/password": {
+      "put": {
+        "operationId": "putUsermgmtApiPassword",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/register": {
+      "post": {
+        "operationId": "postUsermgmtApiRegister",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/register-study-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiRegisterStudyRoles",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/register-tenant-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiRegisterTenantRoles",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/roles": {
+      "get": {
+        "operationId": "getUsermgmtApiRoles",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example.user",
+                    "username": "example.user",
+                    "roles": [
+                      "RESEARCHER"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/setup/azure-ad": {
+      "get": {
+        "operationId": "getUsermgmtApiSetupAzureAd",
+        "summary": "get Azure Ad Configs",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postUsermgmtApiSetupAzureAd",
+        "summary": "setup Azure Ad",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/study/{studyId}/role/{role}": {
+      "get": {
+        "operationId": "getUsermgmtApiStudyStudyIdRoleRole",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "RESEARCHER"
+          },
+          {
+            "name": "studyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/study/access-request": {
+      "post": {
+        "operationId": "postUsermgmtApiStudyAccessRequest",
+        "summary": "add Study Access Request",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/study/access-request/{action}": {
+      "put": {
+        "operationId": "putUsermgmtApiStudyAccessRequestAction",
+        "summary": "handle Study Access Request",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "getBackendConfig"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/study/access-request/list/{studyId}": {
+      "get": {
+        "operationId": "getUsermgmtApiStudyAccessRequestListStudyId",
+        "summary": "get Study Access Requests",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example.user",
+                    "username": "example.user",
+                    "roles": [
+                      "RESEARCHER"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/study/access-request/me": {
+      "get": {
+        "operationId": "getUsermgmtApiStudyAccessRequestMe",
+        "summary": "get My Study Access Requests",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/sync-all": {
+      "post": {
+        "operationId": "postUsermgmtApiSyncAll",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/sync-roles-to-logto": {
+      "post": {
+        "operationId": "postUsermgmtApiSyncRolesToLogto",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/sync-webapi-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiSyncWebapiRoles",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/tenant/{tenantId}/role/{role}": {
+      "get": {
+        "operationId": "getUsermgmtApiTenantTenantIdRoleRole",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "RESEARCHER"
+          },
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f2a4a029-2b73-4d45-9c7a-4127571df0a1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/tenant/activate": {
+      "post": {
+        "operationId": "postUsermgmtApiTenantActivate",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/tenant/add": {
+      "post": {
+        "operationId": "postUsermgmtApiTenantAdd",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/tenant/delete": {
+      "delete": {
+        "operationId": "deleteUsermgmtApiTenantDelete",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group": {
+      "get": {
+        "operationId": "getUsermgmtApiUserGroup",
+        "summary": "get Users By Study",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/list": {
+      "post": {
+        "operationId": "postUsermgmtApiUserGroupList",
+        "summary": "get User Group List",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example.user",
+                    "username": "example.user",
+                    "roles": [
+                      "RESEARCHER"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/overview": {
+      "get": {
+        "operationId": "getUsermgmtApiUserGroupOverview",
+        "summary": "get Users With Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f2a4a029-2b73-4d45-9c7a-4127571df0a1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/register-study-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiUserGroupRegisterStudyRoles",
+        "summary": "register Study Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/register-tenant-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiUserGroupRegisterTenantRoles",
+        "summary": "register Tenant Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/withdraw-study-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiUserGroupWithdrawStudyRoles",
+        "summary": "withdraw Study Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user-group/withdraw-tenant-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiUserGroupWithdrawTenantRoles",
+        "summary": "withdraw Tenant Roles",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/user/{userId}/password": {
+      "put": {
+        "operationId": "putUsermgmtApiUserUserIdPassword",
+        "summary": "change User Password",
+        "tags": [
+          "handler-unresolved",
+          "service:usermgmt-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example.user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/withdraw": {
+      "post": {
+        "operationId": "postUsermgmtApiWithdraw",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/withdraw-study-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiWithdrawStudyRoles",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usermgmt/api/withdraw-tenant-roles": {
+      "post": {
+        "operationId": "postUsermgmtApiWithdrawTenantRoles",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alp-usermgmt",
+          "handler-found",
+          "service:usermgmt-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example.user",
+                  "username": "example.user",
+                  "roles": [
+                    "RESEARCHER"
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "userId": "example.user",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "role": "RESEARCHER"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

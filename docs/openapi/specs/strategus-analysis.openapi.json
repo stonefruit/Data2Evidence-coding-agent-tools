@@ -1,0 +1,359 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Strategus Analysis API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:strategus-analysis",
+      "description": "Operation is declared by the strategus-analysis backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:strategus-analysis",
+      "description": "Operation belongs to the strategus-analysis service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/strategus/analysis": {
+      "get": {
+        "operationId": "getStrategusAnalysis",
+        "summary": "get All Strategus Analysis",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "studyId": "example-study",
+                    "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "status": "READY"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postStrategusAnalysis",
+        "summary": "create Strategus Analysis",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Strategus analysis saved",
+                  "analysisId": "example-analysis"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "studyId": "example-study",
+                "tokenStudyCode": "EXAMPLE_STUDY",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "mode": "notebook",
+                "analysisSpec": {
+                  "name": "Example analysis"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "putStrategusAnalysis",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Strategus analysis saved",
+                  "analysisId": "example-analysis"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "studyId": "example-study",
+                "tokenStudyCode": "EXAMPLE_STUDY",
+                "tenantId": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                "mode": "notebook",
+                "analysisSpec": {
+                  "name": "Example analysis"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/strategus/analysis/{studyId}": {
+      "get": {
+        "operationId": "getStrategusAnalysisStudyId",
+        "summary": "get Strategus Analysis",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "studyId": "example-study",
+                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "status": "READY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteStrategusAnalysisStudyId",
+        "summary": "delete Strategus Analysis",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "studyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-study"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Strategus analysis saved",
+                  "analysisId": "example-analysis"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/strategus/analysis/code": {
+      "post": {
+        "operationId": "postStrategusAnalysisCode",
+        "summary": "save Stategus Analysis Viewer Code",
+        "tags": [
+          "backend-implemented",
+          "backend:strategus-analysis",
+          "handler-found",
+          "service:strategus-analysis",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "message": "Strategus analysis saved",
+                  "analysisId": "example-analysis"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "studyId": "example-study",
+                "viewerCode": "print('example')"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

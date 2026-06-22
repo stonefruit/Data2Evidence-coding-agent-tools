@@ -12,6 +12,10 @@
   ],
   "tags": [
     {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
       "name": "service:terminology",
       "description": "Operation belongs to the terminology service/function surface."
     },
@@ -35,9 +39,10 @@
   "paths": {
     "/terminology/concept-set": {
       "get": {
-        "operationId": "getConceptSets",
+        "operationId": "getTerminologyConceptSet",
         "summary": "get Concept Sets",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -92,9 +97,10 @@
         }
       },
       "post": {
-        "operationId": "createConceptSet",
+        "operationId": "postTerminologyConceptSet",
         "summary": "create Concept Set",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -159,9 +165,10 @@
     },
     "/terminology/concept-set/{conceptSetId}": {
       "get": {
-        "operationId": "getConceptSet",
+        "operationId": "getTerminologyConceptSetConceptSetId",
         "summary": "get Concept Set",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets",
@@ -224,9 +231,10 @@
         }
       },
       "delete": {
-        "operationId": "removeConceptSet",
+        "operationId": "deleteTerminologyConceptSetConceptSetId",
         "summary": "remove Concept Set",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -269,9 +277,10 @@
         }
       },
       "put": {
-        "operationId": "updateConceptSet",
+        "operationId": "putTerminologyConceptSetConceptSetId",
         "summary": "update Concept Set",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -344,9 +353,10 @@
     },
     "/terminology/concept/count": {
       "get": {
-        "operationId": "getConceptsCount",
+        "operationId": "getTerminologyConceptCount",
         "summary": "get Concepts Count",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -400,9 +410,10 @@
     },
     "/terminology/concept/filter-options": {
       "get": {
-        "operationId": "getAllFilterOptions",
+        "operationId": "getTerminologyConceptFilterOptions",
         "summary": "get All Filter Options",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-mapping",
@@ -484,9 +495,10 @@
     },
     "/terminology/concept/getStandardConcepts": {
       "post": {
-        "operationId": "getStandardConcepts",
+        "operationId": "postTerminologyConceptGetStandardConcepts",
         "summary": "get Standard Concepts",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-mapping",
@@ -545,9 +557,10 @@
     },
     "/terminology/concept/hierarchy": {
       "get": {
-        "operationId": "getConceptHierarchy",
+        "operationId": "getTerminologyConceptHierarchy",
         "summary": "get Concept Hierarchy",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -623,9 +636,10 @@
     },
     "/terminology/concept/recommended/list": {
       "post": {
-        "operationId": "getRecommendedConcepts",
+        "operationId": "postTerminologyConceptRecommendedList",
         "summary": "get Recommended Concepts",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -677,9 +691,10 @@
     },
     "/terminology/concept/searchByCode": {
       "post": {
-        "operationId": "getConceptByCode",
+        "operationId": "postTerminologyConceptSearchByCode",
         "summary": "get Concept By Code",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:vue-mri-ui-lib"
@@ -727,9 +742,10 @@
     },
     "/terminology/concept/searchById": {
       "post": {
-        "operationId": "getConceptById",
+        "operationId": "postTerminologyConceptSearchById",
         "summary": "get Concept By Id",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:vue-mri-ui-lib"
@@ -777,9 +793,10 @@
     },
     "/terminology/concept/searchByName": {
       "post": {
-        "operationId": "getConceptByName",
+        "operationId": "postTerminologyConceptSearchByName",
         "summary": "get Concept By Name",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:vue-mri-ui-lib"
@@ -827,9 +844,10 @@
     },
     "/terminology/fhir/4_0_0/conceptmap/$translate": {
       "get": {
-        "operationId": "getTerminologyConnections",
+        "operationId": "getTerminologyFhir400ConceptmapTranslate",
         "summary": "get Terminology Connections",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -899,9 +917,10 @@
     },
     "/terminology/fhir/4_0_0/valueset/$expand": {
       "get": {
-        "operationId": "getTerminologies",
+        "operationId": "getTerminologyFhir400ValuesetExpand",
         "summary": "get Terminologies",
         "tags": [
+          "handler-unresolved",
           "service:terminology",
           "ui-used",
           "ui:concept-sets"
@@ -1000,28 +1019,8 @@
     "schemas": {
       "UnknownJson": {
         "description": "Shape not inferred from UI or backend source.",
-        "oneOf": [
-          {
-            "type": "object",
-            "additionalProperties": true
-          },
-          {
-            "type": "array",
-            "items": true
-          },
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "null"
-          }
-        ]
+        "type": "object",
+        "additionalProperties": true
       }
     }
   },

@@ -1,0 +1,235 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Gateway Api Db API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:alpdb",
+      "description": "Operation is declared by the alpdb backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:gateway-api-db",
+      "description": "Operation belongs to the gateway-api-db service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/gateway/api/db/database-creds/list": {
+      "get": {
+        "operationId": "getGatewayApiDbDatabaseCredsList",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alpdb",
+          "handler-found",
+          "service:gateway-api-db"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-db",
+                    "host": "db.example.local",
+                    "port": 5432,
+                    "name": "example_database",
+                    "dialect": "postgres"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/db/dataset/version-info": {
+      "get": {
+        "operationId": "getGatewayApiDbDatasetVersionInfo",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:alpdb",
+          "handler-found",
+          "service:gateway-api-db"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "type": "research",
+                  "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                  "tokenStudyCode": "EXAMPLE_DATASET",
+                  "tokenDatasetCode": "EXAMPLE_DATASET",
+                  "dialect": "postgres",
+                  "databaseCode": "example_database",
+                  "cacheId": "example_cache",
+                  "schemaName": "example_cdm",
+                  "vocabSchemaName": "example_vocab",
+                  "dataModel": "omop",
+                  "studyDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples."
+                  },
+                  "datasetDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples.",
+                    "summary": "Synthetic dataset summary.",
+                    "showRequestAccess": false
+                  },
+                  "tenant": {
+                    "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                    "name": "Example tenant",
+                    "system": "example"
+                  },
+                  "dashboards": [
+                    {
+                      "name": "Overview",
+                      "url": "/dashboards/example",
+                      "basePath": "/dashboards"
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attributeId": "data_partner",
+                      "value": "Example partner"
+                    }
+                  ],
+                  "tags": [
+                    {
+                      "id": 1,
+                      "name": "Example tag"
+                    }
+                  ],
+                  "totalSubjects": 1000,
+                  "plugin": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/db/test": {
+      "post": {
+        "operationId": "postGatewayApiDbTest",
+        "summary": "test Connection",
+        "tags": [
+          "backend-implemented",
+          "backend:alpdb",
+          "handler-found",
+          "service:gateway-api-db",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Connection successful"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "dialect": "postgres",
+                "host": "db.example.local",
+                "port": 5432,
+                "database": "example_database",
+                "schema": "example_schema"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

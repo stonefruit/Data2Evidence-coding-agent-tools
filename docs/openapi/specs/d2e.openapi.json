@@ -1,0 +1,234 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence D2e API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:d2e",
+      "description": "Operation belongs to the d2e service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/d2e/gateway/api/dataset/dashboard/list": {
+      "get": {
+        "operationId": "getD2eGatewayApiDatasetDashboardList",
+        "summary": "if",
+        "tags": [
+          "handler-unresolved",
+          "service:d2e",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "type": "research",
+                    "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                    "tokenStudyCode": "EXAMPLE_DATASET",
+                    "tokenDatasetCode": "EXAMPLE_DATASET",
+                    "dialect": "postgres",
+                    "databaseCode": "example_database",
+                    "cacheId": "example_cache",
+                    "schemaName": "example_cdm",
+                    "vocabSchemaName": "example_vocab",
+                    "dataModel": "omop",
+                    "studyDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples."
+                    },
+                    "datasetDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples.",
+                      "summary": "Synthetic dataset summary.",
+                      "showRequestAccess": false
+                    },
+                    "tenant": {
+                      "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                      "name": "Example tenant",
+                      "system": "example"
+                    },
+                    "dashboards": [
+                      {
+                        "name": "Overview",
+                        "url": "/dashboards/example",
+                        "basePath": "/dashboards"
+                      }
+                    ],
+                    "attributes": [
+                      {
+                        "attributeId": "data_partner",
+                        "value": "Example partner"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "id": 1,
+                        "name": "Example tag"
+                      }
+                    ],
+                    "totalSubjects": 1000,
+                    "plugin": "example"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/d2e/gateway/api/dataset/info": {
+      "get": {
+        "operationId": "getD2eGatewayApiDatasetInfo",
+        "summary": "if",
+        "tags": [
+          "handler-unresolved",
+          "service:d2e",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "type": "research",
+                  "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                  "tokenStudyCode": "EXAMPLE_DATASET",
+                  "tokenDatasetCode": "EXAMPLE_DATASET",
+                  "dialect": "postgres",
+                  "databaseCode": "example_database",
+                  "cacheId": "example_cache",
+                  "schemaName": "example_cdm",
+                  "vocabSchemaName": "example_vocab",
+                  "dataModel": "omop",
+                  "studyDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples."
+                  },
+                  "datasetDetail": {
+                    "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                    "name": "Example dataset",
+                    "description": "Synthetic dataset for API documentation examples.",
+                    "summary": "Synthetic dataset summary.",
+                    "showRequestAccess": false
+                  },
+                  "tenant": {
+                    "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                    "name": "Example tenant",
+                    "system": "example"
+                  },
+                  "dashboards": [
+                    {
+                      "name": "Overview",
+                      "url": "/dashboards/example",
+                      "basePath": "/dashboards"
+                    }
+                  ],
+                  "attributes": [
+                    {
+                      "attributeId": "data_partner",
+                      "value": "Example partner"
+                    }
+                  ],
+                  "tags": [
+                    {
+                      "id": 1,
+                      "name": "Example tag"
+                    }
+                  ],
+                  "totalSubjects": 1000,
+                  "plugin": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

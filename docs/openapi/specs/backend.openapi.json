@@ -1,0 +1,246 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Backend API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend:perseus",
+      "description": "Operation is declared by the perseus backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:backend",
+      "description": "Operation belongs to the backend service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:mapping",
+      "description": "Operation is called by the mapping UI."
+    }
+  ],
+  "paths": {
+    "/backend/api/get_cdm_schema": {
+      "get": {
+        "operationId": "getBackendApiGetCdmSchema",
+        "summary": "get CDMSchema",
+        "tags": [
+          "backend-implemented",
+          "backend:perseus",
+          "handler-found",
+          "service:backend",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "cdm_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "table_name": "person",
+                    "column_list": [
+                      {
+                        "column_name": "person_id",
+                        "column_type": "integer",
+                        "is_column_nullable": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/backend/api/get_cdm_versions": {
+      "get": {
+        "operationId": "getBackendApiGetCdmVersions",
+        "summary": "get CDMVersions",
+        "tags": [
+          "backend-implemented",
+          "backend:perseus",
+          "handler-found",
+          "service:backend",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  "5.3.0",
+                  "5.4"
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/backend/api/lookup/sql": {
+      "get": {
+        "operationId": "getBackendApiLookupSql",
+        "summary": "get Lookup SQL",
+        "tags": [
+          "backend-implemented",
+          "backend:perseus",
+          "handler-found",
+          "service:backend",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "lookupType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "sql": "SELECT * FROM example_lookup"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/backend/api/lookups": {
+      "get": {
+        "operationId": "getBackendApiLookups",
+        "summary": "get Lookups",
+        "tags": [
+          "backend-implemented",
+          "backend:perseus",
+          "handler-found",
+          "service:backend",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "lookupType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-lookup",
+                    "name": "Example lookup"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

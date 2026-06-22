@@ -34,6 +34,9 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Do not index or persist secrets, `.env*` files, credentials, certificates, or generated private keys.
 - Keep allowlists tight when scanning the Data2Evidence repo.
 - Add lightweight tests for filtering, path handling, and metadata behavior when a tool reads source files.
+- Use `docs/openapi/specs/` and `tools/d2e-openapi-spec/` as API discovery aids. They can help find endpoints, UI usage, tags, and candidate request/response shapes, but they are not the authority for actual API behavior. Infer behavior from the Data2Evidence source code, route handlers, services, DTOs, schemas, and runtime traces when accuracy matters.
+- Do not update OpenAPI specs opportunistically. Regenerate and update the spec batch only when explicitly asked to do an OpenAPI spec update.
+- When doing an OpenAPI spec batch update, compare Data2Evidence source changes against the `tools/d2e-openapi-spec/README.md` "correct as of" commit SHA and focus tracing/review on code that changed since that baseline.
 - Do not add unit tests that mount or render UI components just to assert DOM, slots, modal text, button state, or rendered interaction behavior. Prefer composable, service, utility, or pure-function unit tests for state and payload logic; use Playwright for rendered UI behavior, modals, visible controls, screenshots, and end-to-end-style browser flows.
 - When using Playwright, capture screenshots for significant findings. Save them in the related project folder with timestamped, descriptive filenames.
 

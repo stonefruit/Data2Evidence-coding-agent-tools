@@ -1,0 +1,524 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Public Webapi Proxy API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:public-webapi-proxy",
+      "description": "Operation belongs to the public-webapi-proxy service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:concept-sets",
+      "description": "Operation is called by the concept-sets UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/public-webapi-proxy/cdmresults/{dataSource}/{sourceKey}/{conceptId}": {
+      "get": {
+        "operationId": "getPublicWebapiProxyCdmresultsDataSourceSourceKeyConceptId",
+        "summary": "get Data Characterization Results",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "dataSource",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/conceptset": {
+      "get": {
+        "operationId": "getPublicWebapiProxyD2eWebapiConceptset",
+        "summary": "get Concept Sets",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postPublicWebapiProxyD2eWebapiConceptset",
+        "summary": "create Concept Set",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/conceptset/{conceptSetId}": {
+      "get": {
+        "operationId": "getPublicWebapiProxyD2eWebapiConceptsetConceptSetId",
+        "summary": "get Concept Set",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "putPublicWebapiProxyD2eWebapiConceptsetConceptSetId",
+        "summary": "update Concept Set",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePublicWebapiProxyD2eWebapiConceptsetConceptSetId",
+        "summary": "delete Concept Set",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/conceptset/{conceptSetId}/exists": {
+      "get": {
+        "operationId": "getPublicWebapiProxyD2eWebapiConceptsetConceptSetIdExists",
+        "summary": "check If Concept Set Exists",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "example-id",
+                    "name": "Example item"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/conceptset/{conceptSetId}/expression": {
+      "get": {
+        "operationId": "getPublicWebapiProxyD2eWebapiConceptsetConceptSetIdExpression",
+        "summary": "get Concept Set Expression",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/conceptset/{conceptSetId}/items": {
+      "put": {
+        "operationId": "putPublicWebapiProxyD2eWebapiConceptsetConceptSetIdItems",
+        "summary": "update Concept Set Items",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "updated": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/public-webapi-proxy/d2e-webapi/vocabulary/{dataSource}/search": {
+      "post": {
+        "operationId": "postPublicWebapiProxyD2eWebapiVocabularyDataSourceSearch",
+        "summary": "get Terminologies",
+        "tags": [
+          "handler-unresolved",
+          "service:public-webapi-proxy",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "dataSource",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-id",
+                  "name": "Example item",
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

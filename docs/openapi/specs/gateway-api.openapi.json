@@ -1,0 +1,667 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Gateway Api API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:alpdb",
+      "description": "Operation is declared by the alpdb backend function."
+    },
+    {
+      "name": "backend:dataset",
+      "description": "Operation is declared by the dataset backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:gateway-api",
+      "description": "Operation belongs to the gateway-api service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:portal",
+      "description": "Operation is called by the portal UI."
+    }
+  ],
+  "paths": {
+    "/gateway/api/dataset": {
+      "post": {
+        "operationId": "postGatewayApiDataset",
+        "summary": "create Dataset",
+        "tags": [
+          "backend-implemented",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "cacheId": "example-cache",
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "type": "research",
+                "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                "tokenStudyCode": "EXAMPLE_DATASET",
+                "tokenDatasetCode": "EXAMPLE_DATASET",
+                "dialect": "postgres",
+                "databaseCode": "example_database",
+                "cacheId": "example_cache",
+                "schemaName": "example_cdm",
+                "vocabSchemaName": "example_vocab",
+                "dataModel": "omop",
+                "studyDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples."
+                },
+                "datasetDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples.",
+                  "summary": "Synthetic dataset summary.",
+                  "showRequestAccess": false
+                },
+                "tenant": {
+                  "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                  "name": "Example tenant",
+                  "system": "example"
+                },
+                "dashboards": [
+                  {
+                    "name": "Overview",
+                    "url": "/dashboards/example",
+                    "basePath": "/dashboards"
+                  }
+                ],
+                "attributes": [
+                  {
+                    "attributeId": "data_partner",
+                    "value": "Example partner"
+                  }
+                ],
+                "tags": [
+                  {
+                    "id": 1,
+                    "name": "Example tag"
+                  }
+                ],
+                "totalSubjects": 1000,
+                "plugin": "example"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/cdm-schema/snapshot/metadata": {
+      "get": {
+        "operationId": "getGatewayApiDatasetCdmSchemaSnapshotMetadata",
+        "summary": "get Cdm Schema Snapshot Metadata",
+        "tags": [
+          "backend-implemented",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "schemas": [
+                    {
+                      "name": "example_schema",
+                      "tables": [
+                        {
+                          "name": "person",
+                          "columns": [
+                            "person_id"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/cohorts": {
+      "get": {
+        "operationId": "getGatewayApiDatasetCohorts",
+        "summary": "get All Cohorts",
+        "tags": [
+          "backend-implemented",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "type": "research",
+                    "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                    "tokenStudyCode": "EXAMPLE_DATASET",
+                    "tokenDatasetCode": "EXAMPLE_DATASET",
+                    "dialect": "postgres",
+                    "databaseCode": "example_database",
+                    "cacheId": "example_cache",
+                    "schemaName": "example_cdm",
+                    "vocabSchemaName": "example_vocab",
+                    "dataModel": "omop",
+                    "studyDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples."
+                    },
+                    "datasetDetail": {
+                      "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                      "name": "Example dataset",
+                      "description": "Synthetic dataset for API documentation examples.",
+                      "summary": "Synthetic dataset summary.",
+                      "showRequestAccess": false
+                    },
+                    "tenant": {
+                      "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                      "name": "Example tenant",
+                      "system": "example"
+                    },
+                    "dashboards": [
+                      {
+                        "name": "Overview",
+                        "url": "/dashboards/example",
+                        "basePath": "/dashboards"
+                      }
+                    ],
+                    "attributes": [
+                      {
+                        "attributeId": "data_partner",
+                        "value": "Example partner"
+                      }
+                    ],
+                    "tags": [
+                      {
+                        "id": 1,
+                        "name": "Example tag"
+                      }
+                    ],
+                    "totalSubjects": 1000,
+                    "plugin": "example"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/dashboard/list": {
+      "get": {
+        "operationId": "getGatewayApiDatasetDashboardList",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "name": "Example dashboard",
+                    "language": "sql"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/info": {
+      "get": {
+        "operationId": "getGatewayApiDatasetInfo",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "type": "research",
+                  "tokenStudyCode": "EXAMPLE_STUDY"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/shiny-live/{resourceId}": {
+      "delete": {
+        "operationId": "deleteGatewayApiDatasetShinyLiveResourceId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api"
+        ],
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-resource"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "deleted": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/dataset/snapshot": {
+      "post": {
+        "operationId": "postGatewayApiDatasetSnapshot",
+        "summary": "copy Dataset",
+        "tags": [
+          "backend-implemented",
+          "backend:dataset",
+          "handler-found",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                  "cacheId": "example-cache",
+                  "flowRunId": "example-flow-run"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "type": "research",
+                "paConfigId": "c5ff7991-5c58-4d7f-a12e-5f70bead42ce",
+                "tokenStudyCode": "EXAMPLE_DATASET",
+                "tokenDatasetCode": "EXAMPLE_DATASET",
+                "dialect": "postgres",
+                "databaseCode": "example_database",
+                "cacheId": "example_cache",
+                "schemaName": "example_cdm",
+                "vocabSchemaName": "example_vocab",
+                "dataModel": "omop",
+                "studyDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples."
+                },
+                "datasetDetail": {
+                  "id": "3a6955c2-8c69-4f74-8d8c-46038eaeec47",
+                  "name": "Example dataset",
+                  "description": "Synthetic dataset for API documentation examples.",
+                  "summary": "Synthetic dataset summary.",
+                  "showRequestAccess": false
+                },
+                "tenant": {
+                  "id": "f2a4a029-2b73-4d45-9c7a-4127571df0a1",
+                  "name": "Example tenant",
+                  "system": "example"
+                },
+                "dashboards": [
+                  {
+                    "name": "Overview",
+                    "url": "/dashboards/example",
+                    "basePath": "/dashboards"
+                  }
+                ],
+                "attributes": [
+                  {
+                    "attributeId": "data_partner",
+                    "value": "Example partner"
+                  }
+                ],
+                "tags": [
+                  {
+                    "id": 1,
+                    "name": "Example tag"
+                  }
+                ],
+                "totalSubjects": 1000,
+                "plugin": "example"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gateway/api/db/{dialect}/{databaseCode}/version-info": {
+      "get": {
+        "operationId": "getGatewayApiDbDialectDatabaseCodeVersionInfo",
+        "summary": "get Schemas Version Information",
+        "tags": [
+          "handler-unresolved",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [
+          {
+            "name": "databaseCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "dialect",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "postgres"
+          },
+          {
+            "name": "schemas",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-db",
+                  "dialect": "postgres",
+                  "databaseCode": "example_database"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/gateway/api/db/schema": {
+      "put": {
+        "operationId": "putGatewayApiDbSchema",
+        "summary": "update Schema",
+        "tags": [
+          "backend-implemented",
+          "backend:alpdb",
+          "handler-found",
+          "service:gateway-api",
+          "ui-used",
+          "ui:portal"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "schemas": [
+                    {
+                      "name": "example_schema",
+                      "tables": [
+                        {
+                          "name": "person",
+                          "columns": [
+                            "person_id"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": "example-id",
+                "name": "Example request"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

@@ -55,7 +55,7 @@
   "paths": {
     "/d2e-webapi/cdmresults/{datasetId}/conceptRecordCount": {
       "post": {
-        "operationId": "getConceptRecordCounts",
+        "operationId": "postD2eWebapiCdmresultsDatasetIdConceptRecordCount",
         "summary": "get Concept Record Counts",
         "tags": [
           "backend-implemented",
@@ -131,7 +131,7 @@
     },
     "/d2e-webapi/cohortdefinition": {
       "get": {
-        "operationId": "function",
+        "operationId": "getD2eWebapiCohortdefinition",
         "summary": "Returns metadata about all cohort definitions in the database",
         "tags": [
           "backend-implemented",
@@ -234,7 +234,7 @@
         "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
       },
       "post": {
-        "operationId": "function",
+        "operationId": "postD2eWebapiCohortdefinition",
         "summary": "Creates a cohort definition in the database.",
         "tags": [
           "backend-implemented",
@@ -392,7 +392,7 @@
     },
     "/d2e-webapi/cohortdefinition/{cohortDefinitionId}/info": {
       "get": {
-        "operationId": "getCohortInfo",
+        "operationId": "getD2eWebapiCohortdefinitionCohortDefinitionIdInfo",
         "summary": "get Cohort Info",
         "tags": [
           "backend-implemented",
@@ -459,7 +459,7 @@
     },
     "/d2e-webapi/cohortdefinition/{cohortDefinitionId}/report/{sourceKey}": {
       "get": {
-        "operationId": "getInclusionReport",
+        "operationId": "getD2eWebapiCohortdefinitionCohortDefinitionIdReportSourceKey",
         "summary": "get Inclusion Report",
         "tags": [
           "backend-missing",
@@ -836,16 +836,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnknownJson"
-                },
-                "example": null
-              }
-            }
+          "204": {
+            "description": "No content"
           },
           "default": {
             "description": "Error response"
@@ -1262,7 +1254,7 @@
     },
     "/d2e-webapi/cohortdefinition/sql": {
       "post": {
-        "operationId": "function",
+        "operationId": "postD2eWebapiCohortdefinitionSql",
         "summary": "Returns OHDSI template SQL for a given cohort definition",
         "tags": [
           "backend-implemented",
@@ -1359,7 +1351,7 @@
     },
     "/d2e-webapi/conceptset": {
       "get": {
-        "operationId": "getConceptSets",
+        "operationId": "getD2eWebapiConceptset",
         "summary": "get Concept Sets",
         "tags": [
           "backend-implemented",
@@ -1421,7 +1413,7 @@
         "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
       },
       "post": {
-        "operationId": "createConceptSet",
+        "operationId": "postD2eWebapiConceptset",
         "summary": "create Concept Set",
         "tags": [
           "backend-implemented",
@@ -1498,7 +1490,7 @@
     },
     "/d2e-webapi/conceptset/{conceptSetId}": {
       "get": {
-        "operationId": "getConceptSet",
+        "operationId": "getD2eWebapiConceptsetConceptSetId",
         "summary": "get Concept Set",
         "tags": [
           "backend-implemented",
@@ -1566,7 +1558,7 @@
         "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
       },
       "put": {
-        "operationId": "updateConceptSet",
+        "operationId": "putD2eWebapiConceptsetConceptSetId",
         "summary": "update Concept Set",
         "tags": [
           "backend-implemented",
@@ -1630,7 +1622,7 @@
         "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
       },
       "delete": {
-        "operationId": "deleteConceptSet",
+        "operationId": "deleteD2eWebapiConceptsetConceptSetId",
         "summary": "delete Concept Set",
         "tags": [
           "backend-implemented",
@@ -1661,16 +1653,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UnknownJson"
-                },
-                "example": null
-              }
-            }
+          "204": {
+            "description": "No content"
           },
           "default": {
             "description": "Error response"
@@ -1681,7 +1665,7 @@
     },
     "/d2e-webapi/conceptset/{conceptSetId}/exists": {
       "get": {
-        "operationId": "checkIfConceptSetExists",
+        "operationId": "getD2eWebapiConceptsetConceptSetIdExists",
         "summary": "check If Concept Set Exists",
         "tags": [
           "backend-implemented",
@@ -1741,7 +1725,7 @@
     },
     "/d2e-webapi/conceptset/{conceptSetId}/expression": {
       "get": {
-        "operationId": "getConceptSetExpression",
+        "operationId": "getD2eWebapiConceptsetConceptSetIdExpression",
         "summary": "get Concept Set Expression",
         "tags": [
           "backend-implemented",
@@ -1824,7 +1808,7 @@
     },
     "/d2e-webapi/conceptset/{conceptSetId}/items": {
       "put": {
-        "operationId": "updateConceptSetItems",
+        "operationId": "putD2eWebapiConceptsetConceptSetIdItems",
         "summary": "update Concept Set Items",
         "tags": [
           "backend-implemented",
@@ -1894,7 +1878,7 @@
     },
     "/d2e-webapi/conceptset/check": {
       "post": {
-        "operationId": "function",
+        "operationId": "postD2eWebapiConceptsetCheck",
         "summary": "Checks a concept set for diagnostic problems. At this time, this appears to be an endpoint used to check to see which tags are applied to a concept set.",
         "tags": [
           "backend-implemented",
@@ -1974,7 +1958,7 @@
     },
     "/d2e-webapi/health": {
       "get": {
-        "operationId": "function",
+        "operationId": "getD2eWebapiHealth",
         "summary": "Get health status of function",
         "tags": [
           "backend-implemented",
@@ -2007,7 +1991,7 @@
     },
     "/d2e-webapi/i18n": {
       "get": {
-        "operationId": "function",
+        "operationId": "getD2eWebapiI18n",
         "summary": "Get i18n config for query lang",
         "tags": [
           "backend-implemented",
@@ -2072,7 +2056,7 @@
     },
     "/d2e-webapi/notifications": {
       "get": {
-        "operationId": "getNotifications",
+        "operationId": "getD2eWebapiNotifications",
         "summary": "get Notifications",
         "tags": [
           "backend-implemented",
@@ -2132,7 +2116,7 @@
     },
     "/d2e-webapi/source/daimon/priority": {
       "get": {
-        "operationId": "function",
+        "operationId": "getD2eWebapiSourceDaimonPriority",
         "summary": "Get the first daimon (ad associated source) that has priority. In the event of a tie, the first source searched wins.",
         "tags": [
           "backend-implemented",
@@ -2205,7 +2189,7 @@
     },
     "/d2e-webapi/source/sources": {
       "get": {
-        "operationId": "getSources",
+        "operationId": "getD2eWebapiSourceSources",
         "summary": "get Sources",
         "tags": [
           "backend-implemented",
@@ -2252,7 +2236,7 @@
     },
     "/d2e-webapi/vocabulary/{datasetId}/concept/{conceptId}": {
       "get": {
-        "operationId": "requestPromise",
+        "operationId": "getD2eWebapiVocabularyDatasetIdConceptConceptId",
         "summary": "request Promise",
         "tags": [
           "backend-implemented",
@@ -2325,7 +2309,7 @@
     },
     "/d2e-webapi/vocabulary/{datasetId}/search": {
       "post": {
-        "operationId": "if",
+        "operationId": "postD2eWebapiVocabularyDatasetIdSearch",
         "summary": "if",
         "tags": [
           "backend-implemented",
@@ -2589,7 +2573,7 @@
     },
     "/d2e-webapi/vocabulary/{sourceKey}/included-concepts/count": {
       "post": {
-        "operationId": "function",
+        "operationId": "postD2eWebapiVocabularySourceKeyIncludedConceptsCount",
         "summary": "Resolve a concept set expression to get the count of included concepts using the selected vocabulary source.",
         "tags": [
           "backend-implemented",
@@ -2672,7 +2656,7 @@
     },
     "/d2e-webapi/vocabulary/{sourceKey}/info": {
       "get": {
-        "operationId": "function",
+        "operationId": "getD2eWebapiVocabularySourceKeyInfo",
         "summary": "Get the vocabulary version using the dataset id",
         "tags": [
           "backend-implemented",
@@ -3034,7 +3018,7 @@
     },
     "/d2e-webapi/vocabulary/{sourceKey}/resolveConceptSetExpression": {
       "post": {
-        "operationId": "function",
+        "operationId": "postD2eWebapiVocabularySourceKeyResolveConceptSetExpression",
         "summary": "Resolve a concept set expression into a collection of concept identifiers using the selected vocabulary source.",
         "tags": [
           "backend-implemented",
@@ -3262,28 +3246,8 @@
     "schemas": {
       "UnknownJson": {
         "description": "Shape not inferred from UI or backend source.",
-        "oneOf": [
-          {
-            "type": "object",
-            "additionalProperties": true
-          },
-          {
-            "type": "array",
-            "items": true
-          },
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "null"
-          }
-        ]
+        "type": "object",
+        "additionalProperties": true
       }
     }
   },

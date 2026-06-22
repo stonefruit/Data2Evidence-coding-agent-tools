@@ -1,0 +1,196 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Concept Mapping API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend:concept-mapping",
+      "description": "Operation is declared by the concept-mapping backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "service:concept-mapping",
+      "description": "Operation belongs to the concept-mapping service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:concept-mapping",
+      "description": "Operation is called by the concept-mapping UI."
+    }
+  ],
+  "paths": {
+    "/concept-mapping": {
+      "get": {
+        "operationId": "getConceptMapping",
+        "summary": "get Concept Mappings",
+        "tags": [
+          "backend-implemented",
+          "backend:concept-mapping",
+          "handler-found",
+          "service:concept-mapping",
+          "ui-used",
+          "ui:concept-mapping"
+        ],
+        "parameters": [
+          {
+            "name": "databaseCode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "schemaName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "source_code": "EXAMPLE-001",
+                    "source_vocabulary_id": "EXAMPLE",
+                    "target_concept_id": 100001
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "postConceptMapping",
+        "summary": "save Concept Mappings",
+        "tags": [
+          "backend-implemented",
+          "backend:concept-mapping",
+          "handler-found",
+          "service:concept-mapping",
+          "ui-used",
+          "ui:concept-mapping"
+        ],
+        "parameters": [
+          {
+            "name": "databaseCode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_database"
+          },
+          {
+            "name": "schemaName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example_schema"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "source_code": "EXAMPLE-001",
+                    "source_vocabulary_id": "EXAMPLE",
+                    "target_concept_id": 100001
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "sourceVocabularyId": "EXAMPLE",
+                "conceptMappings": "eJyrVkrLz1eyUkpKLFKqBQA8LQYQ"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

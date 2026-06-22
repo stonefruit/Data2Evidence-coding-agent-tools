@@ -1,0 +1,377 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence White Rabbit Api API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:white-rabbit",
+      "description": "Operation is declared by the white-rabbit backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:white-rabbit-api",
+      "description": "Operation belongs to the white-rabbit-api service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:mapping",
+      "description": "Operation is called by the mapping UI."
+    }
+  ],
+  "paths": {
+    "/white-rabbit/api/conversion": {
+      "post": {
+        "operationId": "postWhiteRabbitApiConversion",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:white-rabbit",
+          "handler-found",
+          "service:white-rabbit-api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ],
+                  "created": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "flow_run_id": "example-flow-run",
+                "file_id": "example-resource",
+                "file_name": "scan-report.json"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/white-rabbit/api/result-as-resource/{conversionId}": {
+      "get": {
+        "operationId": "getWhiteRabbitApiResultAsResourceConversionId",
+        "summary": "catch",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:white-rabbit",
+          "handler-found",
+          "service:white-rabbit-api"
+        ],
+        "parameters": [
+          {
+            "name": "conversionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-conversion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/white-rabbit/api/result/{conversionId}": {
+      "get": {
+        "operationId": "getWhiteRabbitApiResultConversionId",
+        "summary": "register Routes",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:white-rabbit",
+          "handler-found",
+          "service:white-rabbit-api"
+        ],
+        "parameters": [
+          {
+            "name": "conversionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-conversion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/white-rabbit/api/scan-report/result-as-resource/{id}": {
+      "get": {
+        "operationId": "getWhiteRabbitApiScanReportResultAsResourceId",
+        "summary": "get Scan Report",
+        "tags": [
+          "handler-unresolved",
+          "service:white-rabbit-api",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "fileName": "example.bin",
+                  "contentType": "application/octet-stream"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/white-rabbit/api/scan-report/result/{id}": {
+      "get": {
+        "operationId": "getWhiteRabbitApiScanReportResultId",
+        "summary": "get Scan Result",
+        "tags": [
+          "handler-unresolved",
+          "service:white-rabbit-api",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": "example-scan",
+                  "status": "COMPLETED",
+                  "tables": [
+                    {
+                      "name": "person",
+                      "rows": 10
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/white-rabbit/api/test-connection": {
+      "post": {
+        "operationId": "postWhiteRabbitApiTestConnection",
+        "summary": "test DBConnection",
+        "tags": [
+          "backend-implemented",
+          "backend:white-rabbit",
+          "handler-found",
+          "service:white-rabbit-api",
+          "ui-used",
+          "ui:mapping"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Connection successful"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "databaseCode": "example_database",
+                "schema": "example_schema"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
