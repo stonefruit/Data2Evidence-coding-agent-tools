@@ -1,0 +1,3295 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence D2e Webapi API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "backend-implemented",
+      "description": "A backend route declaration was found for this operation."
+    },
+    {
+      "name": "backend-missing",
+      "description": "A UI call was found, but backend tracing did not find a matching route."
+    },
+    {
+      "name": "backend-only",
+      "description": "A backend route exists, but no current UI call was found."
+    },
+    {
+      "name": "backend:d2e-webapi",
+      "description": "Operation is declared by the d2e-webapi backend function."
+    },
+    {
+      "name": "handler-found",
+      "description": "The backend route was traced to a concrete controller/router handler."
+    },
+    {
+      "name": "handler-unresolved",
+      "description": "The route is known from UI or route metadata, but no concrete backend handler was found."
+    },
+    {
+      "name": "service:d2e-webapi",
+      "description": "Operation belongs to the d2e-webapi service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:concept-sets",
+      "description": "Operation is called by the concept-sets UI."
+    },
+    {
+      "name": "ui:vue-mri-ui-lib",
+      "description": "Operation is called by the vue-mri-ui-lib UI."
+    }
+  ],
+  "paths": {
+    "/d2e-webapi/cdmresults/{datasetId}/conceptRecordCount": {
+      "post": {
+        "operationId": "getConceptRecordCounts",
+        "summary": "get Concept Record Counts",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "datasetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "100001": [
+                      120,
+                      240
+                    ],
+                    "100002": [
+                      30,
+                      60
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": [
+                100001,
+                100002
+              ]
+            }
+          }
+        },
+        "description": "Returns concept record counts for the selected dataset. The sourceKey path value is accepted for Atlas compatibility, while datasetid drives backend lookup."
+      }
+    },
+    "/d2e-webapi/cohortdefinition": {
+      "get": {
+        "operationId": "function",
+        "summary": "Returns metadata about all cohort definitions in the database",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "atlas"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": 200001,
+                    "name": "Example cohort definition",
+                    "description": "Synthetic cohort definition for API documentation examples.",
+                    "expressionType": "SIMPLE_EXPRESSION",
+                    "expression": {
+                      "ConceptSets": [
+                        {
+                          "id": 12,
+                          "name": "Example condition set",
+                          "expression": {
+                            "items": [
+                              {
+                                "concept": {
+                                  "CONCEPT_CLASS_ID": "Example Class",
+                                  "CONCEPT_CODE": "EXAMPLE-001",
+                                  "CONCEPT_ID": 100001,
+                                  "CONCEPT_NAME": "Example condition",
+                                  "DOMAIN_ID": "Condition",
+                                  "INVALID_REASON": null,
+                                  "INVALID_REASON_CAPTION": "Valid",
+                                  "STANDARD_CONCEPT": "S",
+                                  "STANDARD_CONCEPT_CAPTION": "Standard",
+                                  "VOCABULARY_ID": "EXAMPLE",
+                                  "VALID_START_DATE": "2000-01-01",
+                                  "VALID_END_DATE": "2099-12-31"
+                                },
+                                "isExcluded": false,
+                                "includeDescendants": true,
+                                "includeMapped": false
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "PrimaryCriteria": {
+                        "CriteriaList": []
+                      },
+                      "QualifiedLimit": {
+                        "Type": "First"
+                      },
+                      "ExpressionLimit": {
+                        "Type": "First"
+                      },
+                      "InclusionRules": []
+                    },
+                    "createdBy": "example.user",
+                    "createdDate": 1735689600000,
+                    "modifiedBy": "example.user",
+                    "modifiedDate": 1735689600000,
+                    "tags": [],
+                    "hasWriteAccess": true,
+                    "hasReadAccess": true
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      },
+      "post": {
+        "operationId": "function",
+        "summary": "Creates a cohort definition in the database.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": 200001,
+                "name": "Example cohort definition",
+                "description": "Synthetic cohort definition for API documentation examples.",
+                "expressionType": "SIMPLE_EXPRESSION",
+                "expression": {
+                  "ConceptSets": [
+                    {
+                      "id": 12,
+                      "name": "Example condition set",
+                      "expression": {
+                        "items": [
+                          {
+                            "concept": {
+                              "CONCEPT_CLASS_ID": "Example Class",
+                              "CONCEPT_CODE": "EXAMPLE-001",
+                              "CONCEPT_ID": 100001,
+                              "CONCEPT_NAME": "Example condition",
+                              "DOMAIN_ID": "Condition",
+                              "INVALID_REASON": null,
+                              "INVALID_REASON_CAPTION": "Valid",
+                              "STANDARD_CONCEPT": "S",
+                              "STANDARD_CONCEPT_CAPTION": "Standard",
+                              "VOCABULARY_ID": "EXAMPLE",
+                              "VALID_START_DATE": "2000-01-01",
+                              "VALID_END_DATE": "2099-12-31"
+                            },
+                            "isExcluded": false,
+                            "includeDescendants": true,
+                            "includeMapped": false
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "PrimaryCriteria": {
+                    "CriteriaList": []
+                  },
+                  "QualifiedLimit": {
+                    "Type": "First"
+                  },
+                  "ExpressionLimit": {
+                    "Type": "First"
+                  },
+                  "InclusionRules": []
+                },
+                "createdBy": "example.user",
+                "createdDate": 1735689600000,
+                "modifiedBy": "example.user",
+                "modifiedDate": 1735689600000,
+                "tags": [],
+                "hasWriteAccess": true,
+                "hasReadAccess": true
+              }
+            }
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{cohortDefinitionId}/info": {
+      "get": {
+        "operationId": "getCohortInfo",
+        "summary": "get Cohort Info",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "cohortDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": {
+                      "cohortDefinitionId": 200001,
+                      "sourceId": 1
+                    },
+                    "startTime": 1735689600000,
+                    "executionDuration": 1200,
+                    "status": "COMPLETE",
+                    "isValid": true,
+                    "isCanceled": false,
+                    "failMessage": null,
+                    "personCount": 100,
+                    "recordCount": 250,
+                    "createdBy": "example.user"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics.\n\nBackend placeholder: returns static compatibility info."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{cohortDefinitionId}/report/{sourceKey}": {
+      "get": {
+        "operationId": "getInclusionReport",
+        "summary": "get Inclusion Report",
+        "tags": [
+          "backend-missing",
+          "handler-unresolved",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "cohortDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "summary": {
+                    "baseCount": 100,
+                    "finalCount": 80
+                  },
+                  "inclusionRuleStats": [
+                    {
+                      "id": 1,
+                      "name": "Example rule",
+                      "personCount": 80
+                    }
+                  ],
+                  "treemapData": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "UI-called PA-Atlas inclusion-report endpoint. No matching d2e-webapi backend route was found in the traced source, so this is currently documented as UI-used and handler-unresolved."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{id}": {
+      "get": {
+        "operationId": "getD2eWebapiCohortdefinitionId",
+        "summary": "Returns the 'raw' cohort definition for the given id.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      },
+      "put": {
+        "operationId": "putD2eWebapiCohortdefinitionId",
+        "summary": "Saves the cohort definition for the given id.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200001,
+                  "name": "Example cohort definition, reviewed",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": 200001,
+                "name": "Example cohort definition",
+                "description": "Synthetic cohort definition for API documentation examples.",
+                "expressionType": "SIMPLE_EXPRESSION",
+                "expression": {
+                  "ConceptSets": [
+                    {
+                      "id": 12,
+                      "name": "Example condition set",
+                      "expression": {
+                        "items": [
+                          {
+                            "concept": {
+                              "CONCEPT_CLASS_ID": "Example Class",
+                              "CONCEPT_CODE": "EXAMPLE-001",
+                              "CONCEPT_ID": 100001,
+                              "CONCEPT_NAME": "Example condition",
+                              "DOMAIN_ID": "Condition",
+                              "INVALID_REASON": null,
+                              "INVALID_REASON_CAPTION": "Valid",
+                              "STANDARD_CONCEPT": "S",
+                              "STANDARD_CONCEPT_CAPTION": "Standard",
+                              "VOCABULARY_ID": "EXAMPLE",
+                              "VALID_START_DATE": "2000-01-01",
+                              "VALID_END_DATE": "2099-12-31"
+                            },
+                            "isExcluded": false,
+                            "includeDescendants": true,
+                            "includeMapped": false
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "PrimaryCriteria": {
+                    "CriteriaList": []
+                  },
+                  "QualifiedLimit": {
+                    "Type": "First"
+                  },
+                  "ExpressionLimit": {
+                    "Type": "First"
+                  },
+                  "InclusionRules": []
+                },
+                "createdBy": "example.user",
+                "createdDate": 1735689600000,
+                "modifiedBy": "example.user",
+                "modifiedDate": 1735689600000,
+                "tags": [],
+                "hasWriteAccess": true,
+                "hasReadAccess": true
+              }
+            }
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      },
+      "delete": {
+        "operationId": "deleteD2eWebapiCohortdefinitionId",
+        "summary": "Deletes the specified cohort definition",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": null
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{id}/copy": {
+      "get": {
+        "operationId": "getD2eWebapiCohortdefinitionIdCopy",
+        "summary": "Copies the specified cohort definition.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 200002,
+                  "name": "Copy of example cohort definition",
+                  "description": "Synthetic cohort definition for API documentation examples.",
+                  "expressionType": "SIMPLE_EXPRESSION",
+                  "expression": {
+                    "ConceptSets": [
+                      {
+                        "id": 12,
+                        "name": "Example condition set",
+                        "expression": {
+                          "items": [
+                            {
+                              "concept": {
+                                "CONCEPT_CLASS_ID": "Example Class",
+                                "CONCEPT_CODE": "EXAMPLE-001",
+                                "CONCEPT_ID": 100001,
+                                "CONCEPT_NAME": "Example condition",
+                                "DOMAIN_ID": "Condition",
+                                "INVALID_REASON": null,
+                                "INVALID_REASON_CAPTION": "Valid",
+                                "STANDARD_CONCEPT": "S",
+                                "STANDARD_CONCEPT_CAPTION": "Standard",
+                                "VOCABULARY_ID": "EXAMPLE",
+                                "VALID_START_DATE": "2000-01-01",
+                                "VALID_END_DATE": "2099-12-31"
+                              },
+                              "isExcluded": false,
+                              "includeDescendants": true,
+                              "includeMapped": false
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "PrimaryCriteria": {
+                      "CriteriaList": []
+                    },
+                    "QualifiedLimit": {
+                      "Type": "First"
+                    },
+                    "ExpressionLimit": {
+                      "Type": "First"
+                    },
+                    "InclusionRules": []
+                  },
+                  "createdBy": "example.user",
+                  "createdDate": 1735689600000,
+                  "modifiedBy": "example.user",
+                  "modifiedDate": 1735689600000,
+                  "tags": [],
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{id}/exists": {
+      "get": {
+        "operationId": "getD2eWebapiCohortdefinitionIdExists",
+        "summary": "Check that a cohort exists. <br> This method checks to see if a cohort definition name exists. The id parameter is used to 'ignore' a cohort definition from checking. This is used when you have an existing cohort definition which should be ignored when checking if the name already exists.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Example cohort definition"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 0
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{id}/generate/{sourceKey}": {
+      "get": {
+        "operationId": "getD2eWebapiCohortdefinitionIdGenerateSourceKey",
+        "summary": "Queues up a generate cohort task for the specified cohort definition id.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "status": "STARTING",
+                  "startDate": null,
+                  "endDate": null,
+                  "exitStatus": "UNKNOWN",
+                  "executionId": "example-execution-id",
+                  "jobInstance": {
+                    "instanceId": "example-instance-id",
+                    "name": "generateCohort"
+                  },
+                  "jobParameters": {
+                    "jobName": "Generate example cohort",
+                    "generate_stats": "true",
+                    "jobAuthor": "example.user",
+                    "sessionId": "example-session",
+                    "cohort_definition_id": 200001,
+                    "source_id": "1",
+                    "time": 1735689600000,
+                    "target_database_schema": "example_results"
+                  },
+                  "ownerType": null
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/{id}/version": {
+      "get": {
+        "operationId": "getD2eWebapiCohortdefinitionIdVersion",
+        "summary": "Get list of versions of Cohort Definition",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 200001
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "assetId": 200001,
+                    "version": 1,
+                    "archived": false,
+                    "createdDate": 1735689600000
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics.\n\nBackend placeholder: returns static compatibility version data."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/checkV2": {
+      "post": {
+        "operationId": "postD2eWebapiCohortdefinitionCheckV2",
+        "summary": "Checks the cohort definition for logic issues. <br> This method runs a series of logical checks on a cohort definition and returns the set of warning, info and error messages. <br> This method is similar to /check except this method accepts a ChortDTO which includes tags.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "warnings": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": 200001,
+                "name": "Example cohort definition",
+                "description": "Synthetic cohort definition for API documentation examples.",
+                "expressionType": "SIMPLE_EXPRESSION",
+                "expression": {
+                  "ConceptSets": [
+                    {
+                      "id": 12,
+                      "name": "Example condition set",
+                      "expression": {
+                        "items": [
+                          {
+                            "concept": {
+                              "CONCEPT_CLASS_ID": "Example Class",
+                              "CONCEPT_CODE": "EXAMPLE-001",
+                              "CONCEPT_ID": 100001,
+                              "CONCEPT_NAME": "Example condition",
+                              "DOMAIN_ID": "Condition",
+                              "INVALID_REASON": null,
+                              "INVALID_REASON_CAPTION": "Valid",
+                              "STANDARD_CONCEPT": "S",
+                              "STANDARD_CONCEPT_CAPTION": "Standard",
+                              "VOCABULARY_ID": "EXAMPLE",
+                              "VALID_START_DATE": "2000-01-01",
+                              "VALID_END_DATE": "2099-12-31"
+                            },
+                            "isExcluded": false,
+                            "includeDescendants": true,
+                            "includeMapped": false
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "PrimaryCriteria": {
+                    "CriteriaList": []
+                  },
+                  "QualifiedLimit": {
+                    "Type": "First"
+                  },
+                  "ExpressionLimit": {
+                    "Type": "First"
+                  },
+                  "InclusionRules": []
+                },
+                "createdBy": "example.user",
+                "createdDate": 1735689600000,
+                "modifiedBy": "example.user",
+                "modifiedDate": 1735689600000,
+                "tags": [],
+                "hasWriteAccess": true,
+                "hasReadAccess": true
+              }
+            }
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics."
+      }
+    },
+    "/d2e-webapi/cohortdefinition/sql": {
+      "post": {
+        "operationId": "function",
+        "summary": "Returns OHDSI template SQL for a given cohort definition",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "templateSql": "/* synthetic SQL template */ SELECT 1;"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "expression": {
+                  "ConceptSets": [
+                    {
+                      "id": 12,
+                      "name": "Example condition set",
+                      "expression": {
+                        "items": [
+                          {
+                            "concept": {
+                              "CONCEPT_CLASS_ID": "Example Class",
+                              "CONCEPT_CODE": "EXAMPLE-001",
+                              "CONCEPT_ID": 100001,
+                              "CONCEPT_NAME": "Example condition",
+                              "DOMAIN_ID": "Condition",
+                              "INVALID_REASON": null,
+                              "INVALID_REASON_CAPTION": "Valid",
+                              "STANDARD_CONCEPT": "S",
+                              "STANDARD_CONCEPT_CAPTION": "Standard",
+                              "VOCABULARY_ID": "EXAMPLE",
+                              "VALID_START_DATE": "2000-01-01",
+                              "VALID_END_DATE": "2099-12-31"
+                            },
+                            "isExcluded": false,
+                            "includeDescendants": true,
+                            "includeMapped": false
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "PrimaryCriteria": {
+                    "CriteriaList": []
+                  },
+                  "QualifiedLimit": {
+                    "Type": "First"
+                  },
+                  "ExpressionLimit": {
+                    "Type": "First"
+                  },
+                  "InclusionRules": []
+                },
+                "options": {}
+              }
+            }
+          }
+        },
+        "description": "Creates, retrieves, updates, deletes, copies, validates, and generates PA-Atlas/OHDSI Atlas cohort definitions stored as user artifacts and embedded in Patient Analytics.\n\nBackend placeholder: route exists but does not generate SQL."
+      }
+    },
+    "/d2e-webapi/conceptset": {
+      "get": {
+        "operationId": "getConceptSets",
+        "summary": "get Concept Sets",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "createdDate": 1735689600000,
+                    "createdBy": {
+                      "name": "Example User",
+                      "id": 1001,
+                      "login": "example.user"
+                    },
+                    "modifiedDate": 1735689600000,
+                    "modifiedBy": {
+                      "name": "Example User",
+                      "id": 1001,
+                      "login": "example.user"
+                    },
+                    "hasWriteAccess": true,
+                    "hasReadAccess": true,
+                    "description": "Synthetic concept set for API documentation examples.",
+                    "id": 12,
+                    "name": "Example condition set",
+                    "shared": false
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      },
+      "post": {
+        "operationId": "createConceptSet",
+        "summary": "create Concept Set",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "createdDate": 1735689600000,
+                  "createdBy": {
+                    "name": "Example User",
+                    "id": 1001,
+                    "login": "example.user"
+                  },
+                  "modifiedDate": 1735689600000,
+                  "modifiedBy": {
+                    "name": "Example User",
+                    "id": 1001,
+                    "login": "example.user"
+                  },
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true,
+                  "description": "Synthetic concept set for API documentation examples.",
+                  "id": 12,
+                  "name": "Example condition set",
+                  "shared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example condition set",
+                "description": "Synthetic concept set for API documentation examples.",
+                "shared": false
+              }
+            }
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      }
+    },
+    "/d2e-webapi/conceptset/{conceptSetId}": {
+      "get": {
+        "operationId": "getConceptSet",
+        "summary": "get Concept Set",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "createdDate": 1735689600000,
+                  "createdBy": {
+                    "name": "Example User",
+                    "id": 1001,
+                    "login": "example.user"
+                  },
+                  "modifiedDate": 1735689600000,
+                  "modifiedBy": {
+                    "name": "Example User",
+                    "id": 1001,
+                    "login": "example.user"
+                  },
+                  "hasWriteAccess": true,
+                  "hasReadAccess": true,
+                  "description": "Synthetic concept set for API documentation examples.",
+                  "id": 12,
+                  "name": "Example condition set",
+                  "shared": false
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      },
+      "put": {
+        "operationId": "updateConceptSet",
+        "summary": "update Concept Set",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": true
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example condition set, reviewed",
+                "description": "Reviewed synthetic concept set.",
+                "shared": false
+              }
+            }
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      },
+      "delete": {
+        "operationId": "deleteConceptSet",
+        "summary": "delete Concept Set",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": null
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      }
+    },
+    "/d2e-webapi/conceptset/{conceptSetId}/exists": {
+      "get": {
+        "operationId": "checkIfConceptSetExists",
+        "summary": "check If Concept Set Exists",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Example condition set"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 0
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      }
+    },
+    "/d2e-webapi/conceptset/{conceptSetId}/expression": {
+      "get": {
+        "operationId": "getConceptSetExpression",
+        "summary": "get Concept Set Expression",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "concept": {
+                        "CONCEPT_CLASS_ID": "Example Class",
+                        "CONCEPT_CODE": "EXAMPLE-001",
+                        "CONCEPT_ID": 100001,
+                        "CONCEPT_NAME": "Example condition",
+                        "DOMAIN_ID": "Condition",
+                        "INVALID_REASON": null,
+                        "INVALID_REASON_CAPTION": "Valid",
+                        "STANDARD_CONCEPT": "S",
+                        "STANDARD_CONCEPT_CAPTION": "Standard",
+                        "VOCABULARY_ID": "EXAMPLE",
+                        "VALID_START_DATE": "2000-01-01",
+                        "VALID_END_DATE": "2099-12-31"
+                      },
+                      "isExcluded": false,
+                      "includeDescendants": true,
+                      "includeMapped": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      }
+    },
+    "/d2e-webapi/conceptset/{conceptSetId}/items": {
+      "put": {
+        "operationId": "updateConceptSetItems",
+        "summary": "update Concept Set Items",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": true
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": [
+                {
+                  "conceptId": 100001,
+                  "isExcluded": false,
+                  "includeDescendants": true,
+                  "includeMapped": false
+                }
+              ]
+            }
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids."
+      }
+    },
+    "/d2e-webapi/conceptset/check": {
+      "post": {
+        "operationId": "function",
+        "summary": "Checks a concept set for diagnostic problems. At this time, this appears to be an endpoint used to check to see which tags are applied to a concept set.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "warnings": []
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "id": 12,
+                "name": "Example condition set",
+                "expression": {
+                  "items": [
+                    {
+                      "concept": {
+                        "CONCEPT_CLASS_ID": "Example Class",
+                        "CONCEPT_CODE": "EXAMPLE-001",
+                        "CONCEPT_ID": 100001,
+                        "CONCEPT_NAME": "Example condition",
+                        "DOMAIN_ID": "Condition",
+                        "INVALID_REASON": null,
+                        "INVALID_REASON_CAPTION": "Valid",
+                        "STANDARD_CONCEPT": "S",
+                        "STANDARD_CONCEPT_CAPTION": "Standard",
+                        "VOCABULARY_ID": "EXAMPLE",
+                        "VALID_START_DATE": "2000-01-01",
+                        "VALID_END_DATE": "2099-12-31"
+                      },
+                      "isExcluded": false,
+                      "includeDescendants": true,
+                      "includeMapped": false
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Manages local concept sets used by PA-Atlas import, export, save, and cohort-definition flows. Save/export flows load full concept-set details, not only ids.\n\nBackend placeholder: returns { warnings: [] } without running concept-set validation."
+      }
+    },
+    "/d2e-webapi/health": {
+      "get": {
+        "operationId": "function",
+        "summary": "Get health status of function",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "status": "healthy",
+                  "uptime": 12345
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/d2e-webapi/i18n": {
+      "get": {
+        "operationId": "function",
+        "summary": "Get i18n config for query lang",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "locale": "en",
+                  "translations": {}
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/d2e-webapi/i18n/locales": {
+      "get": {
+        "operationId": "getD2eWebapiI18nLocales",
+        "summary": "Get i18n locales",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  "en"
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/d2e-webapi/notifications": {
+      "get": {
+        "operationId": "getNotifications",
+        "summary": "get Notifications",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "hide_statuses",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "COMPLETED"
+          },
+          {
+            "name": "hideStatuses",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "COMPLETED"
+          },
+          {
+            "name": "refreshJobs",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": []
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Returns d2e-webapi notifications. The current backend implementation returns an empty list.\n\nBackend placeholder: returns an empty notification list and ignores notification filters."
+      }
+    },
+    "/d2e-webapi/source/daimon/priority": {
+      "get": {
+        "operationId": "function",
+        "summary": "Get the first daimon (ad associated source) that has priority. In the event of a tie, the first source searched wins.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "CDM": {
+                    "sourceId": 1,
+                    "sourceName": "Example dataset",
+                    "sourceDialect": "postgresql",
+                    "sourceKey": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "daimons": [
+                      {
+                        "sourceDaimonId": 1,
+                        "daimonType": "CDM",
+                        "tableQualifier": "example_cdm",
+                        "priority": 0
+                      }
+                    ]
+                  },
+                  "Vocabulary": {
+                    "sourceId": 1,
+                    "sourceName": "Example dataset",
+                    "sourceDialect": "postgresql",
+                    "sourceKey": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "daimons": [
+                      {
+                        "sourceDaimonId": 1,
+                        "daimonType": "CDM",
+                        "tableQualifier": "example_cdm",
+                        "priority": 0
+                      }
+                    ]
+                  },
+                  "Results": {
+                    "sourceId": 1,
+                    "sourceName": "Example dataset",
+                    "sourceDialect": "postgresql",
+                    "sourceKey": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "daimons": [
+                      {
+                        "sourceDaimonId": 1,
+                        "daimonType": "CDM",
+                        "tableQualifier": "example_cdm",
+                        "priority": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/d2e-webapi/source/sources": {
+      "get": {
+        "operationId": "getSources",
+        "summary": "get Sources",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "sourceId": 1,
+                    "sourceName": "Example dataset",
+                    "sourceDialect": "postgresql",
+                    "sourceKey": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                    "daimons": [
+                      {
+                        "sourceDaimonId": 1,
+                        "daimonType": "CDM",
+                        "tableQualifier": "example_cdm",
+                        "priority": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Lists WebAPI/Atlas-compatible sources for PA-Atlas. Source identifiers are compatibility values derived from portal datasets."
+      }
+    },
+    "/d2e-webapi/vocabulary/{datasetId}/concept/{conceptId}": {
+      "get": {
+        "operationId": "requestPromise",
+        "summary": "request Promise",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "conceptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "datasetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "CONCEPT_CLASS_ID": "Example Class",
+                  "CONCEPT_CODE": "EXAMPLE-001",
+                  "CONCEPT_ID": 100001,
+                  "CONCEPT_NAME": "Example condition",
+                  "DOMAIN_ID": "Condition",
+                  "INVALID_REASON": null,
+                  "INVALID_REASON_CAPTION": "Valid",
+                  "STANDARD_CONCEPT": "S",
+                  "STANDARD_CONCEPT_CAPTION": "Standard",
+                  "VOCABULARY_ID": "EXAMPLE",
+                  "VALID_START_DATE": "2000-01-01",
+                  "VALID_END_DATE": "2099-12-31"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{datasetId}/search": {
+      "post": {
+        "operationId": "if",
+        "summary": "if",
+        "tags": [
+          "backend-implemented",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "datasetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          },
+          {
+            "name": "rowsPerPage",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "CONCEPT_NAME"
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100001,
+                    "CONCEPT_NAME": "Example condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31",
+                    "SCORE": 0.99
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "QUERY": "example",
+                "CONCEPT_CLASS_ID": [
+                  "Example Class"
+                ],
+                "DOMAIN_ID": [
+                  "Condition"
+                ],
+                "VOCABULARY_ID": [
+                  "EXAMPLE"
+                ],
+                "STANDARD_CONCEPT": "S",
+                "INVALID_REASON": ""
+              }
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/concept/{id}/related": {
+      "get": {
+        "operationId": "getD2eWebapiVocabularySourceKeyConceptIdRelated",
+        "summary": "Get related concepts for the selected concept identifier from a source. Related concepts will include those concepts that have a relationshipto the selected concept identifier in the CONCEPT_RELATIONSHIP and CONCEPT_ANCESTOR tables.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100001,
+                    "CONCEPT_NAME": "Example condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31",
+                    "RELATIONSHIPS": [
+                      {
+                        "RELATIONSHIP_NAME": "Example relationship",
+                        "RELATIONSHIP_DISTANCE": 1
+                      }
+                    ],
+                    "RELATIONSHIP_CAPTION": "Example relationship"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/domains": {
+      "get": {
+        "operationId": "getD2eWebapiVocabularySourceKeyDomains",
+        "summary": "Get a collection of domains from the domain table in the vocabulary for the the selected source key.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "DOMAIN_NAME": "Condition",
+                    "DOMAIN_ID": "Condition",
+                    "DOMAIN_CONCEPT_ID": 100010
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/included-concepts/count": {
+      "post": {
+        "operationId": "function",
+        "summary": "Resolve a concept set expression to get the count of included concepts using the selected vocabulary source.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 2
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "items": [
+                  {
+                    "concept": {
+                      "CONCEPT_CLASS_ID": "Example Class",
+                      "CONCEPT_CODE": "EXAMPLE-001",
+                      "CONCEPT_ID": 100001,
+                      "CONCEPT_NAME": "Example condition",
+                      "DOMAIN_ID": "Condition",
+                      "INVALID_REASON": null,
+                      "INVALID_REASON_CAPTION": "Valid",
+                      "STANDARD_CONCEPT": "S",
+                      "STANDARD_CONCEPT_CAPTION": "Standard",
+                      "VOCABULARY_ID": "EXAMPLE",
+                      "VALID_START_DATE": "2000-01-01",
+                      "VALID_END_DATE": "2099-12-31"
+                    },
+                    "isExcluded": false,
+                    "includeDescendants": true,
+                    "includeMapped": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/info": {
+      "get": {
+        "operationId": "function",
+        "summary": "Get the vocabulary version using the dataset id",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "version": "Example vocabulary version",
+                  "dialect": "postgresql"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/lookup/identifiers": {
+      "post": {
+        "operationId": "postD2eWebapiVocabularySourceKeyLookupIdentifiers",
+        "summary": "Get concepts from concept identifiers (IDs) from a specific source",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100001,
+                    "CONCEPT_NAME": "Example condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": [
+                100001
+              ]
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/lookup/identifiers/ancestors": {
+      "post": {
+        "operationId": "postD2eWebapiVocabularySourceKeyLookupIdentifiersAncestors",
+        "summary": "Calculates the full set of ancestor and descendant concepts for a list of ancestor and descendant concepts specified. This is used by ATLAS when navigating the list of included concepts in a concept set - the full listof ancestors (as defined in the concept set) and the descendants (thoseconcepts included when resolving the concept set) are used to determine which descendant concepts share one or more ancestors.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "100001": [
+                    100002
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "ancestors": [
+                  100001
+                ],
+                "descendants": [
+                  100002
+                ]
+              }
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/lookup/mapped": {
+      "post": {
+        "operationId": "postD2eWebapiVocabularySourceKeyLookupMapped",
+        "summary": "Get concepts mapped to the selected concept identifiers from a specific source. Find all concepts mapped to the concept identifiers provided. This end-point will check the CONCEPT, CONCEPT_RELATIONSHIP and SOURCE_TO_CONCEPT_MAP tables.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100002,
+                    "CONCEPT_NAME": "Example mapped condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": [
+                100001
+              ]
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/lookup/recommended": {
+      "post": {
+        "operationId": "postD2eWebapiVocabularySourceKeyLookupRecommended",
+        "summary": "Get the recommended concepts for a selected list of concept ids for a selected source key",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100001,
+                    "CONCEPT_NAME": "Example condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31",
+                    "RELATIONSHIPS": [
+                      "Example relationship"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": [
+                100001
+              ]
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/resolveConceptSetExpression": {
+      "post": {
+        "operationId": "function",
+        "summary": "Resolve a concept set expression into a collection of concept identifiers using the selected vocabulary source.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  100001,
+                  100002
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "items": [
+                  {
+                    "concept": {
+                      "CONCEPT_CLASS_ID": "Example Class",
+                      "CONCEPT_CODE": "EXAMPLE-001",
+                      "CONCEPT_ID": 100001,
+                      "CONCEPT_NAME": "Example condition",
+                      "DOMAIN_ID": "Condition",
+                      "INVALID_REASON": null,
+                      "INVALID_REASON_CAPTION": "Valid",
+                      "STANDARD_CONCEPT": "S",
+                      "STANDARD_CONCEPT_CAPTION": "Standard",
+                      "VOCABULARY_ID": "EXAMPLE",
+                      "VALID_START_DATE": "2000-01-01",
+                      "VALID_END_DATE": "2099-12-31"
+                    },
+                    "isExcluded": false,
+                    "includeDescendants": true,
+                    "includeMapped": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/search": {
+      "get": {
+        "operationId": "getD2eWebapiVocabularySourceKeySearch",
+        "summary": "Search for a concept based on a query using the default vocabulary source. NOTE: This method uses the query as part of the URL query string",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "CONCEPT_CLASS_ID": "Example Class",
+                    "CONCEPT_CODE": "EXAMPLE-001",
+                    "CONCEPT_ID": 100001,
+                    "CONCEPT_NAME": "Example condition",
+                    "DOMAIN_ID": "Condition",
+                    "INVALID_REASON": null,
+                    "INVALID_REASON_CAPTION": "Valid",
+                    "STANDARD_CONCEPT": "S",
+                    "STANDARD_CONCEPT_CAPTION": "Standard",
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VALID_START_DATE": "2000-01-01",
+                    "VALID_END_DATE": "2099-12-31"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    },
+    "/d2e-webapi/vocabulary/{sourceKey}/vocabularies": {
+      "get": {
+        "operationId": "getD2eWebapiVocabularySourceKeyVocabularies",
+        "summary": "Get a collection of vocabularies from the vocabulary table in the selected source key.",
+        "tags": [
+          "backend-implemented",
+          "backend-only",
+          "backend:d2e-webapi",
+          "handler-found",
+          "service:d2e-webapi"
+        ],
+        "parameters": [
+          {
+            "name": "datasetid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "sourceKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "VOCABULARY_ID": "EXAMPLE",
+                    "VOCABULARY_NAME": "Example vocabulary",
+                    "VOCABULARY_REFERENCE": "Synthetic documentation vocabulary",
+                    "VOCABULARY_VERSION": "example-1",
+                    "VOCABULARY_CONCEPT_ID": 100020
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "description": "Resolves and searches OMOP vocabulary concepts for the selected dataset. Backend handlers use the datasetid header to select the dataset/CDM context."
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": true
+          },
+          {
+            "type": "array",
+            "items": true
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

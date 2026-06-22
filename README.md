@@ -57,3 +57,4 @@ Scripts and skills should use relative paths by default and allow overrides with
 ## Current Tools
 
 - [MRI Query Codec](tools/mri-query-codec/package.json): dependency-free Node helper for compressed MRI query payloads.
+- [D2E OpenAPI Spec](tools/d2e-openapi-spec/package.json): dependency-free Node generator for source-derived OpenAPI specs in [docs/openapi](docs/openapi).

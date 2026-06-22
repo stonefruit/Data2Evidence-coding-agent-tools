@@ -1,0 +1,17 @@
+{
+  "name": "d2e-openapi-spec",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Generate source-derived OpenAPI specs from Data2Evidence UI API calls.",
+  "bin": {
+    "d2e-openapi-spec": "./src/generate.js"
+  },
+  "scripts": {
+    "generate": "node src/generate.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

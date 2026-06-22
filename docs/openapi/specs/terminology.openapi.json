@@ -1,0 +1,1033 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Data2Evidence Terminology API",
+    "version": "0.1.0",
+    "description": "Source-derived OpenAPI spec for one Data2Evidence service/function. Tags describe UI usage, backend coverage, and handler trace state."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "service:terminology",
+      "description": "Operation belongs to the terminology service/function surface."
+    },
+    {
+      "name": "ui-used",
+      "description": "Operation is called by at least one Data2Evidence UI."
+    },
+    {
+      "name": "ui:concept-mapping",
+      "description": "Operation is called by the concept-mapping UI."
+    },
+    {
+      "name": "ui:concept-sets",
+      "description": "Operation is called by the concept-sets UI."
+    },
+    {
+      "name": "ui:vue-mri-ui-lib",
+      "description": "Operation is called by the vue-mri-ui-lib UI."
+    }
+  ],
+  "paths": {
+    "/terminology/concept-set": {
+      "get": {
+        "operationId": "getConceptSets",
+        "summary": "get Concept Sets",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "id": 12,
+                    "name": "Example condition set",
+                    "description": "Synthetic concept set for API documentation examples.",
+                    "shared": false,
+                    "concepts": [
+                      {
+                        "conceptId": 100001,
+                        "display": "Example condition",
+                        "domainId": "Condition",
+                        "vocabularyId": "EXAMPLE",
+                        "conceptClassId": "Example Class",
+                        "standardConcept": "S",
+                        "code": "EXAMPLE-001",
+                        "useDescendants": true,
+                        "useMapped": false,
+                        "isExcluded": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createConceptSet",
+        "summary": "create Concept Set",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 12
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example condition set",
+                "description": "Synthetic concept set for API documentation examples.",
+                "shared": false,
+                "concepts": [
+                  {
+                    "conceptId": 100001,
+                    "display": "Example condition",
+                    "domainId": "Condition",
+                    "vocabularyId": "EXAMPLE",
+                    "conceptClassId": "Example Class",
+                    "standardConcept": "S",
+                    "code": "EXAMPLE-001",
+                    "useDescendants": true,
+                    "useMapped": false,
+                    "isExcluded": false
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept-set/{conceptSetId}": {
+      "get": {
+        "operationId": "getConceptSet",
+        "summary": "get Concept Set",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "id": 12,
+                  "name": "Example condition set",
+                  "description": "Synthetic concept set for API documentation examples.",
+                  "shared": false,
+                  "concepts": [
+                    {
+                      "conceptId": 100001,
+                      "display": "Example condition",
+                      "domainId": "Condition",
+                      "vocabularyId": "EXAMPLE",
+                      "conceptClassId": "Example Class",
+                      "standardConcept": "S",
+                      "code": "EXAMPLE-001",
+                      "useDescendants": true,
+                      "useMapped": false,
+                      "isExcluded": false
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "removeConceptSet",
+        "summary": "remove Concept Set",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 12
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateConceptSet",
+        "summary": "update Concept Set",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 12
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "name": "Example condition set, reviewed",
+                "description": "Reviewed synthetic concept set.",
+                "concepts": [
+                  {
+                    "conceptId": 100001,
+                    "display": "Example condition",
+                    "domainId": "Condition",
+                    "vocabularyId": "EXAMPLE",
+                    "conceptClassId": "Example Class",
+                    "standardConcept": "S",
+                    "code": "EXAMPLE-001",
+                    "useDescendants": true,
+                    "useMapped": false,
+                    "isExcluded": false
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept/count": {
+      "get": {
+        "operationId": "getConceptsCount",
+        "summary": "get Concepts Count",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "{\"conceptClassId\":[\"Example Class\"],\"domainId\":[\"Condition\"],\"vocabularyId\":[\"EXAMPLE\"],\"standardConcept\":[\"S\"],\"validity\":[]}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": 42
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/terminology/concept/filter-options": {
+      "get": {
+        "operationId": "getAllFilterOptions",
+        "summary": "get All Filter Options",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-mapping",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "{\"domainId\":[\"Condition\"],\"standardConcept\":[\"S\"]}"
+          },
+          {
+            "name": "searchText",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "filterOptions": {
+                    "conceptClassId": [
+                      {
+                        "value": "Example Class",
+                        "count": 12
+                      }
+                    ],
+                    "domainId": [
+                      {
+                        "value": "Condition",
+                        "count": 42
+                      }
+                    ],
+                    "vocabularyId": [
+                      {
+                        "value": "EXAMPLE",
+                        "count": 40
+                      }
+                    ],
+                    "standardConcept": [
+                      {
+                        "value": "S",
+                        "count": 42
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/terminology/concept/getStandardConcepts": {
+      "post": {
+        "operationId": "getStandardConcepts",
+        "summary": "get Standard Concepts",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-mapping",
+          "ui:concept-sets"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "sourceCode": "SRC-001",
+                    "standardConcept": {
+                      "conceptId": 100001,
+                      "display": "Example condition",
+                      "domainId": "Condition",
+                      "vocabularyId": "EXAMPLE",
+                      "conceptClassId": "Example Class",
+                      "standardConcept": "S",
+                      "code": "EXAMPLE-001"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "data": [
+                  {
+                    "sourceCode": "SRC-001",
+                    "sourceName": "Example source condition"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept/hierarchy": {
+      "get": {
+        "operationId": "getConceptHierarchy",
+        "summary": "get Concept Hierarchy",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "concept": {
+                    "conceptId": 100001,
+                    "display": "Example condition",
+                    "domainId": "Condition",
+                    "vocabularyId": "EXAMPLE",
+                    "conceptClassId": "Example Class",
+                    "standardConcept": "S",
+                    "code": "EXAMPLE-001"
+                  },
+                  "parents": [],
+                  "children": [
+                    {
+                      "conceptId": 100002,
+                      "display": "Example child condition",
+                      "domainId": "Condition",
+                      "vocabularyId": "EXAMPLE",
+                      "conceptClassId": "Example Class",
+                      "standardConcept": "S",
+                      "code": "EXAMPLE-001"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/terminology/concept/recommended/list": {
+      "post": {
+        "operationId": "getRecommendedConcepts",
+        "summary": "get Recommended Concepts",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": [
+                  {
+                    "conceptId": 100001,
+                    "display": "Example condition",
+                    "domainId": "Condition",
+                    "vocabularyId": "EXAMPLE",
+                    "conceptClassId": "Example Class",
+                    "standardConcept": "S",
+                    "code": "EXAMPLE-001"
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "conceptIds": [
+                  100001
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept/searchByCode": {
+      "post": {
+        "operationId": "getConceptByCode",
+        "summary": "get Concept By Code",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "conceptId": 100001,
+                  "display": "Example condition",
+                  "domainId": "Condition",
+                  "vocabularyId": "EXAMPLE",
+                  "conceptClassId": "Example Class",
+                  "standardConcept": "S",
+                  "code": "EXAMPLE-001"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "conceptCode": "EXAMPLE-001"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept/searchById": {
+      "post": {
+        "operationId": "getConceptById",
+        "summary": "get Concept By Id",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "conceptId": 100001,
+                  "display": "Example condition",
+                  "domainId": "Condition",
+                  "vocabularyId": "EXAMPLE",
+                  "conceptClassId": "Example Class",
+                  "standardConcept": "S",
+                  "code": "EXAMPLE-001"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "conceptId": 100001
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/concept/searchByName": {
+      "post": {
+        "operationId": "getConceptByName",
+        "summary": "get Concept By Name",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:vue-mri-ui-lib"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "conceptId": 100001,
+                  "display": "Example condition",
+                  "domainId": "Condition",
+                  "vocabularyId": "EXAMPLE",
+                  "conceptClassId": "Example Class",
+                  "standardConcept": "S",
+                  "code": "EXAMPLE-001"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnknownJson"
+              },
+              "example": {
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "conceptName": "Example condition"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/terminology/fhir/4_0_0/conceptmap/$translate": {
+      "get": {
+        "operationId": "getTerminologyConnections",
+        "summary": "get Terminology Connections",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "conceptId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100001
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "resourceType": "Parameters",
+                  "parameter": [
+                    {
+                      "name": "result",
+                      "valueBoolean": true
+                    },
+                    {
+                      "name": "match",
+                      "part": [
+                        {
+                          "name": "concept",
+                          "valueCoding": {
+                            "conceptId": 100001,
+                            "display": "Example condition",
+                            "domainId": "Condition",
+                            "vocabularyId": "EXAMPLE",
+                            "conceptClassId": "Example Class",
+                            "standardConcept": "S",
+                            "code": "EXAMPLE-001"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    },
+    "/terminology/fhir/4_0_0/valueset/$expand": {
+      "get": {
+        "operationId": "getTerminologies",
+        "summary": "get Terminologies",
+        "tags": [
+          "service:terminology",
+          "ui-used",
+          "ui:concept-sets"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "example"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "datasetId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "{\"conceptClassId\":[\"Example Class\"],\"domainId\":[\"Condition\"],\"vocabularyId\":[\"EXAMPLE\"],\"standardConcept\":[\"S\"],\"validity\":[]}"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnknownJson"
+                },
+                "example": {
+                  "resourceType": "ValueSet",
+                  "expansion": {
+                    "total": 1,
+                    "offset": 0,
+                    "contains": [
+                      {
+                        "conceptId": 100001,
+                        "display": "Example condition",
+                        "domainId": "Condition",
+                        "vocabularyId": "EXAMPLE",
+                        "conceptClassId": "Example Class",
+                        "standardConcept": "S",
+                        "code": "EXAMPLE-001"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UnknownJson": {
+        "description": "Shape not inferred from UI or backend source.",
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": true
+          },
+          {
+            "type": "array",
+            "items": true
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
