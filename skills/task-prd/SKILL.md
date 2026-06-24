@@ -16,6 +16,12 @@ Use for multi-file features, ambiguous requirements, or work needing product/arc
 5. Include overview, user stories, requirements, success criteria, out of scope, open questions, and technical notes.
 6. Keep absolute paths out of the PRD; use workspace-relative paths such as `repos/Data2Evidence` and `repos/docs`.
 
+## Scope Guardrails
+
+- This skill is documentation-only.
+- Do not implement or modify application code, tests, configs, or runtime behavior when running this skill.
+- The output should be PRD artifacts only (for example: project folder, issue tracker, and `<issue-number>-prd.md`).
+
 ## Review Loop
 
 For PRDs with meaningful product or architecture uncertainty, run a bounded review loop before treating the PRD as ready.
