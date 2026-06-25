@@ -103,6 +103,27 @@ Keywords:
 - `dataset`
 - `trex.functions.api`
 
+### Logto Auth And Token Lifetime
+
+Type: troubleshooting
+
+Read `logto-auth.md` when:
+- the task mentions Logto, OIDC, JWT expiry, access-token TTL, token timeout, or `LOGTO__RESOURCE`
+- long-running agentic/API workflows need bearer tokens that will not expire mid-task
+- debugging `401` responses that appear after a previously valid Logto token aged out
+
+Related skills:
+- `skills/dev-functions/SKILL.md`
+
+Keywords:
+- Logto
+- JWT
+- access token TTL
+- `accessTokenTtl`
+- `access_token_ttl`
+- `LOGTO__RESOURCE`
+- `LOGTO__CUSTOM_JWT`
+
 ### single-spa Portal Integration
 
 Type: architecture
