@@ -28,6 +28,9 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
 3. Add temporary diagnostics at the places of interest.
    - Use a unique prefix such as `[codex-debug analytics-cohort]` so logs can be filtered cheaply.
    - Log function entry, normalized inputs, key branch decisions, outgoing Trex channel or database calls, result counts, timings, caught errors, and return summaries.
+   - Add intermediate logs at boundaries where data changes shape: after request decoding, after config/query generation, before and after DB calls, before response formatting, and immediately before side effects such as audit writes or outgoing service calls.
+   - When debugging mismatched behavior, log both the producer and consumer shapes. For example, if an API response has rows but a later logger sees none, log the returned dataset shape and the exact array passed into the logger.
+   - For stream paths, log stream shape before attaching handlers or piping: constructor name, whether it is a Web `ReadableStream` or Node stream, selected attributes, entity name, and expected count source. Do not consume the stream just to inspect it unless the implementation safely tees or transforms it.
    - Prefer IDs, booleans, counts, lengths, enum values, status codes, elapsed milliseconds, and sanitized shapes over whole objects.
    - Never log PHI, tokens, cookies, secrets, raw credentials, `.env` values, full SQL with sensitive parameters, or full request/response bodies.
    - Keep temporary logs grouped and easy to remove, or put longer-lived diagnostics behind an existing debug flag.
@@ -56,12 +59,15 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
    - A temporary non-PHI marker at the specific method boundary can prove the loaded trex runtime reached the edited code. Keep markers small: method name, route/channel, counts, booleans, and correlation hints only.
    - Marker logs are not the same as real feature logs. For example, an audit marker can prove `AuditLogger.log()` was reached even when the configured audit transport is disabled.
    - Correlate at least three signals before calling a runtime validation successful: authorization/study access, successful API status, and the expected filtered log line after the request.
+   - Compare marker payloads against the response shape. If the API returned rows but the marker logged `rowCount: 0`, continue debugging the intermediate data flow before calling the endpoint validated.
+   - Replay the exact captured request when validating a code fix. Do not rebuild or "simplify" payloads unless request construction is the thing being tested; small payload changes can fail in query generation before the target code path.
    - For Cohort Builder patient-list validation, the plugin route `/d2e/analytics-svc/api/services/patient?mriquery=<compressed>&datasetId=<dataset-uuid>` is often a better probe than hand-building legacy `analytics.xsjs?action=patientdetail`. Build `mriquery` the same way the UI does: JSON stringify, zlib deflate, base64, then URL encode.
 
 8. Iterate in small loops.
    - Make one focused change, restart trex, reproduce, inspect filtered logs, and decide the next edit.
    - If startup registration, module caching, import maps, or generated bundles may be involved, verify the container is using the file or build artifact just edited.
    - For async or race-sensitive issues, add paired start/end logs with elapsed time around awaited calls.
+   - If keeping temporary diagnostics for follow-up work, stage only verified production hunks and leave debug hunks unstaged. Confirm with both `git diff --cached` and `git diff`.
 
 9. Clean up before finishing.
    - Remove temporary logs unless the user asked to keep them or they are appropriate behind a debug flag.
