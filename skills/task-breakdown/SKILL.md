@@ -16,6 +16,12 @@ Use after a PRD is approved or stable enough to implement.
 5. Include acceptance criteria, testing approach, risk level, dependencies, and cross-service impacts.
 6. Keep implementation instructions decision-complete but avoid excessive file inventories unless needed for safety.
 
+## Scope Guardrails
+
+- This skill is documentation-only.
+- Do not implement or modify application code, tests, configs, or runtime behavior when running this skill.
+- The output should be planning artifacts only (for example: `plan-implementation.md`, phase files, and blocked notes).
+
 ## Review Loop
 
 For plans with cross-service impact, risky sequencing, or unclear verification, run a bounded review loop before treating the breakdown as ready.
