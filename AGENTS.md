@@ -21,6 +21,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 ## Skill-First Rule
 
 - Before running repository searches or answering codebase-location questions, identify and load any matching skill `SKILL.md` first.
+- Workspace skills are exposed through the agent-specific adapters under `.codex/skills/`, `.claude/skills/`, and `.opencode/skills/`; those adapters point back to canonical workflows under `skills/`. For example, function-side D2E debugging should use `skills/dev-functions/SKILL.md`.
 - If a requested skill workflow is blocked (for example, Docker permissions), stop and ask the user whether to unblock it or choose another path.
 
 ## Tooling Guidelines
@@ -28,6 +29,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
 - Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/<tool-name>`.
+- For user-specific Data2Evidence code work, use the existing `repos/Data2Evidence` checkout by default. Do not create a separate git worktree or alternate checkout unless the user explicitly asks for one or the current checkout cannot safely be used.
 - When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.
 - Prefer small, reproducible entrypoints such as `docker compose run`, `make`, or a documented CLI command.
 - Store generated indexes, databases, caches, and model artifacts outside source-controlled paths or under ignored directories.
