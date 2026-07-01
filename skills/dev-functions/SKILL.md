@@ -1,11 +1,11 @@
 ---
 name: dev-functions
-description: Use for D2E backend function development and debugging under repos/Data2Evidence/plugins/functions, including Trex-hosted Deno/Express services, function route tracing through plugins/functions/package.json, temporary diagnostic logging, restarting trex to load function changes, and reading filtered Docker logs.
+description: Use for D2E backend function development and debugging under repos/Data2Evidence/plugins/functions, including Trex-hosted Deno/Express services, function route tracing through plugins/functions/package.json, temporary diagnostic logging, WATCH-mode function reloads, trex restart fallback, and filtered Docker logs.
 ---
 
 # D2E Functions
 
-Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno services, so local verification usually needs a trex restart after code edits and focused Docker log inspection.
+Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno services; for local iteration, prefer per-function `WATCH` mode so edited functions reload without a full trex restart. Fall back to a trex restart when watch mode is unavailable, not active, or fails to prove the edited code loaded.
 
 ## Context
 
@@ -35,10 +35,15 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
    - Never log PHI, tokens, cookies, secrets, raw credentials, `.env` values, full SQL with sensitive parameters, or full request/response bodies.
    - Keep temporary logs grouped and easy to remove, or put longer-lived diagnostics behind an existing debug flag.
 
-4. Restart trex after function code changes.
+4. Prefer `WATCH` mode for local function reloads.
    - Use the `d2e-trex` container for local D2E function debugging unless the user explicitly names another stack.
-   - Prefer the local stack's documented restart command when known; otherwise restart the trex container directly.
-   - After restart, confirm the new code loaded by checking boot/plugin/function logs before retesting.
+   - In `docker-compose-local.yml`, set `WATCH` to `true` only for the involved function env keys from the route map, such as `analytics-svc`, `cdw-svc`, `dataset`, or `fhir-gateway`.
+   - Recreate/start trex once with the local stack command so the edited `WATCH` environment is active. Prefer `npm run start` from `repos/Data2Evidence`, because it loads `.env.local` and the generated compose options; avoid raw `docker compose ... up` unless you have already confirmed the exact env/profile set.
+   - Confirm activation with `docker exec d2e-trex sh -lc 'printf "%s" "$WATCH" | grep -E "<function-env-1>|<function-env-2>"'`.
+   - After `WATCH` is active, do not restart trex for ordinary function code edits. Change the source, replay the endpoint, and use filtered logs to confirm a worker `Shutdown`/`Boot` and the updated marker.
+   - Expect the first request after an edit to be less responsive because the watched worker may be recreated on demand.
+   - If `WATCH` cannot be enabled, the target code is startup/init-only, the worker keeps serving stale code, or logs do not prove the edited marker loaded after a replay, restart trex as the fallback.
+   - When falling back, prefer the local stack's documented restart/start command when known; otherwise restart the trex container directly. After restart, confirm the new code loaded by checking boot/plugin/function logs before retesting.
 
 5. Read logs with filters only.
    - Do not read unbounded Docker logs. Use `--since` or `--tail`, then filter for the debug prefix plus relevant errors.
@@ -66,7 +71,7 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
    - For Cohort Builder patient-list validation, the plugin route `/d2e/analytics-svc/api/services/patient?mriquery=<compressed>&datasetId=<dataset-uuid>` is often a better probe than hand-building legacy `analytics.xsjs?action=patientdetail`. Build `mriquery` the same way the UI does: JSON stringify, zlib deflate, base64, then URL encode.
 
 8. Iterate in small loops.
-   - Make one focused change, restart trex, reproduce, inspect filtered logs, and decide the next edit.
+   - Make one focused change, replay the request under `WATCH`, inspect filtered logs, and decide the next edit. Restart trex only when the watch-first loop is blocked or disproven.
    - If startup registration, module caching, import maps, or generated bundles may be involved, verify the container is using the file or build artifact just edited.
    - For async or race-sensitive issues, add paired start/end logs with elapsed time around awaited calls.
    - If keeping temporary diagnostics for follow-up work, stage only verified production hunks and leave debug hunks unstaged. Confirm with both `git diff --cached` and `git diff`.
@@ -74,9 +79,9 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
 9. Clean up before finishing.
    - Remove temporary logs unless the user asked to keep them or they are appropriate behind a debug flag.
    - Keep high-signal permanent logs only when they help future operations and are privacy-safe.
-   - Restart trex after removing temporary function diagnostics so the local runtime is clean.
+   - Under active `WATCH`, replay the touched endpoint after removing temporary diagnostics so the watched worker reloads clean source. If watch mode was not active or cleanup touches startup/init behavior, restart trex so the local runtime is clean.
    - Confirm temporary marker strings no longer exist in source and that any notes do not contain token-looking strings.
-   - Report the reproduce command/path, restart method, filtered log query, and verification result.
+   - Report the reproduce command/path, whether `WATCH` was used or restart fallback was needed, the filtered log query, and the verification result.
 
 ## Function Patterns
 
@@ -90,7 +95,7 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
 ## Verification
 
 - Run the narrowest available unit, lint, build, or Deno check for the touched function when practical.
-- For runtime behavior, restart trex and repeat the original request or UI action.
+- For runtime behavior, prefer `WATCH` mode and repeat the original request or UI action. Restart trex only as a fallback when watch mode is unavailable or fails to load the edit.
 - Use Docker logs to confirm both success and failure paths are understood; capture only filtered snippets in the final summary.
 - If tests cannot run because dependencies or services are missing, state that clearly and include the containerized command or runtime step that would verify it.
 

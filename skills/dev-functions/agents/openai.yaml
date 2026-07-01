@@ -1,4 +1,4 @@
 interface:
   display_name: "D2E Functions"
   short_description: "Develop and debug D2E functions"
-  default_prompt: "Use $dev-functions to debug a D2E function change with trex logs."
+  default_prompt: "Use $dev-functions to debug a D2E function change with WATCH reloads and trex logs."
