@@ -65,16 +65,13 @@ Some endpoint descriptions are enriched from traced backend behavior and durable
 
 ## Update Process
 
-1. Fetch the current Data2Evidence `origin/develop` before deciding the source commit to document.
-2. Note any dirty local Data2Evidence working-tree changes separately. Do not let uncommitted local changes influence the reviewed baseline unless the spec update is explicitly for those changes.
-3. Compare Data2Evidence source changes from the "correct as of" commit SHA above to fetched `origin/develop`, and use that diff as the primary review input.
-4. Review source changes before relying on generated output. Treat API-related changes broadly: route declarations, controller/router behavior, UI HTTP calls, request DTOs, response behavior, auth/proxy exposure, service route wiring, and examples/descriptions.
-5. Trace the backend code for the services being documented. Use the generator output as a checklist, not as proof by itself.
-6. Generate from a clean checkout or archive of the fetched Data2Evidence commit, not from a dirty working tree. For example, export `origin/develop` to a temporary directory and run `D2E_APP_REPO=/tmp/Data2Evidence npm run generate`.
-7. Run `npm test` and `npm run generate`.
-8. Review all generated specs as a batch, including tags, examples, missing-backend markers, external absolute URL false positives, and licensed terminology safety.
-9. Update the "correct as of" commit SHA in this README only after the fetched commit has been traced and the generated specs have been reviewed.
-10. Commit the reviewed spec batch and tool/style-guide changes together.
+Agent workflow details live in `skills/dev-openapi-spec/SKILL.md`. In short:
+
+1. Fetch and review Data2Evidence source changes from the "correct as of" commit to latest `origin/develop`.
+2. Trace API-related source changes before relying on generated output.
+3. Generate from a clean checkout or archive of the traced Data2Evidence commit.
+4. Run `npm test`, `npm run generate`, and the style checks below.
+5. Update the "correct as of" commit SHA only after source tracing and spec review.
 
 ## Test
 
