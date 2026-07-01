@@ -18,6 +18,12 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - `repos/docs/`: personal or team docs, usually a separate Git repository and ignored by this repo
 - `lima/`: local VM/container setup notes and configs
 
+The workspace-relative folder names are the default convention. The upstream
+repository name can differ, but the checkout or copy should usually live at the
+expected path when other instructions refer to it. If a checkout must live
+elsewhere, use the supported overrides such as `D2E_APP_REPO` or
+`D2E_DOCS_REPO`.
+
 ## Skill-First Rule
 
 - Before running repository searches or answering codebase-location questions, identify and load any matching skill `SKILL.md` first.
@@ -29,6 +35,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Keep tools isolated from the main `Data2Evidence` repo unless integration is intentional.
 - Make the Data2Evidence repo path configurable instead of hardcoding user-specific paths.
 - Prefer workspace-relative paths such as `repos/Data2Evidence`, `repos/docs`, and `tools/<tool-name>`.
+- When a task needs `repos/Data2Evidence` or `repos/docs` and that path is missing, pause the task and help the user set up the missing checkout before continuing. Ask them to clone/copy the repository into the expected folder or provide an override such as `D2E_APP_REPO` or `D2E_DOCS_REPO`. Do not create alternate checkouts, search unrelated paths, or proceed with partial context unless the user explicitly chooses that path.
 - For user-specific Data2Evidence code work, use the existing `repos/Data2Evidence` checkout by default. Do not create a separate git worktree or alternate checkout unless the user explicitly asks for one or the current checkout cannot safely be used.
 - When a script must cross repository boundaries, default to relative paths and allow overrides such as `D2E_WORKSPACE_ROOT`, `D2E_APP_REPO`, and `D2E_DOCS_REPO`.
 - Prefer small, reproducible entrypoints such as `docker compose run`, `make`, or a documented CLI command.
@@ -69,6 +76,7 @@ The goal is to reduce dependency drift, local system setup differences, and hidd
 - Use `knowledge/` for source-controlled durable agent knowledge.
 - Use `repos/docs/` for personal or team docs; this may be a normal local folder or a separate personal Git repository.
 - Prefer documenting project investigations, issue notes, PR context, and working summaries in `repos/docs/` by default.
+- Expect `repos/docs/` to contain `projects/` for issue notes, PRDs, implementation plans, and reports; `templates/` for reusable document templates; optional `knowledge/` for local/team notes; and `archive/` for historical material that should be ignored unless explicitly requested.
 - Ignore `repos/docs/archive/` by default unless the user explicitly asks for archived material.
 - Do not write durable knowledge to `knowledge/` without following the `maint-knowledge-curator` skill.
 - Do not edit `human-notes.md`; write brief companion notes to `human-notes-responses.md` if needed.
