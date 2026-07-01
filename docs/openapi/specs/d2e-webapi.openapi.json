@@ -126,7 +126,7 @@
             }
           }
         },
-        "description": "Returns concept record counts for the selected dataset. The sourceKey path value is accepted for Atlas compatibility, while datasetid drives backend lookup."
+        "description": "Returns concept record counts for the selected dataset. The sourceKey path value is accepted for Atlas compatibility, while datasetid drives backend lookup. If the Data Characterization concept-count table has not been built, the backend returns empty counts instead of failing the request."
       }
     },
     "/d2e-webapi/cohortdefinition": {

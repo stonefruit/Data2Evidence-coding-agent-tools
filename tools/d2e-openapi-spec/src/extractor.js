@@ -71,7 +71,7 @@ const PATH_DESCRIPTION_RULES = [
   {
     test: (pathKey) => pathKey.startsWith("/d2e-webapi/cdmresults"),
     description:
-      "Returns concept record counts for the selected dataset. The sourceKey path value is accepted for Atlas compatibility, while datasetid drives backend lookup."
+      "Returns concept record counts for the selected dataset. The sourceKey path value is accepted for Atlas compatibility, while datasetid drives backend lookup. If the Data Characterization concept-count table has not been built, the backend returns empty counts instead of failing the request."
   },
   {
     test: (pathKey) => pathKey === "/d2e-webapi/notifications",
@@ -1469,16 +1469,20 @@ function extractFetchCalls(source, relPath, appName, constants) {
 
 function normalizeEndpoint(operation) {
   const rawBaseUrl = cleanUrl(operation.baseURL);
+  let lookupBaseUrl = rawBaseUrl;
   let combined = cleanUrl(joinUrl(rawBaseUrl, operation.url || ""));
   if (!combined) return null;
 
   if (/^https?:\/\//i.test(combined)) {
-    const url = new URL(combined.replace(/\{([^}]+)\}/g, "placeholder"));
-    combined = `${url.origin}${url.pathname}`;
+    const url = parseAbsoluteUrl(combined);
+    if (!url) return null;
+    combined = `${url.pathname}${url.search}`;
+    lookupBaseUrl = /^https?:\/\//i.test(rawBaseUrl) ? "" : rawBaseUrl;
+    if (!findKnownPrefix(combined, lookupBaseUrl)) return null;
   }
 
   const [withoutQuery, queryString] = combined.split("?", 2);
-  const knownPrefix = findKnownPrefix(withoutQuery, rawBaseUrl);
+  const knownPrefix = findKnownPrefix(withoutQuery, lookupBaseUrl);
   if (!knownPrefix && /^[A-Za-z_$][\w$]*$/.test(withoutQuery)) return null;
   const serviceBase = knownPrefix || firstPathSegment(withoutQuery);
   if (!serviceBase) return null;
@@ -1505,6 +1509,14 @@ function normalizeEndpoint(operation) {
     queryParams: [...new Set(queryParams)].sort(),
     pathParams: extractPathParams(openApiPath)
   };
+}
+
+function parseAbsoluteUrl(value) {
+  try {
+    return new URL(value.replace(/\{([^}]+)\}/g, "placeholder"));
+  } catch {
+    return null;
+  }
 }
 
 function addOperation(spec, normalized, original) {
@@ -1941,6 +1953,15 @@ function fallbackRequestExample(method, pathKey, operation) {
   if (pathKey.startsWith("/strategus-results")) return { studyId: EXAMPLE_STUDY_ID, datasetId: EXAMPLE_DATASET_ID, viewerCode: "print('example')" };
   if (pathKey.startsWith("/white-rabbit/api/test-connection")) return { databaseCode: EXAMPLE_DATABASE_CODE, schema: EXAMPLE_SCHEMA_NAME };
   if (pathKey.startsWith("/white-rabbit/api/conversion")) return { flow_run_id: EXAMPLE_FLOW_RUN_ID, file_id: EXAMPLE_RESOURCE_ID, file_name: "scan-report.json" };
+  if (pathKey === "/jobplugins/dqd/data-characterization/flow-run") {
+    return {
+      datasetId: EXAMPLE_DATASET_ID,
+      comment: "Run data characterization for synthetic documentation data.",
+      releaseId: "example-release",
+      excludeAnalysisIds: "",
+      executeConceptRecordCount: true
+    };
+  }
   if (pathKey.includes("/query")) return { datasetId: EXAMPLE_DATASET_ID, query: { type: "example" }, options: {} };
   if (pathKey.includes("/chat")) return { messages: [{ role: "user", content: "Summarize this synthetic dataset note." }] };
   if (pathKey.includes("/test-connection") || pathKey.endsWith("/test")) {

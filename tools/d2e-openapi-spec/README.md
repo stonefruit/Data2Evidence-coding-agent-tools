@@ -6,7 +6,7 @@ OpenAPI operations are grouped with the standard `tags` field. The generator wri
 
 See [OPENAPI_STYLE.md](../../docs/openapi/OPENAPI_STYLE.md) for the expected output style, including tag usage, examples, and rules for avoiding licensed terminology content in public specs.
 
-The reviewed OpenAPI specs in this repository are correct as of Data2Evidence source commit `4d960478ee1c731ae6f72b1b2b1f7c6cc13d8042`.
+The reviewed OpenAPI specs in this repository are correct as of Data2Evidence source commit `481dfd7320f154b39cf062a7e05975acce0ff5c8`.
 
 ## Role of This Tool
 

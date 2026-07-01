@@ -2394,11 +2394,11 @@
                 "$ref": "#/components/schemas/UnknownJson"
               },
               "example": {
-                "options": {
-                  "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
-                  "flowId": "example-flow",
-                  "mode": "example"
-                }
+                "datasetId": "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e",
+                "comment": "Run data characterization for synthetic documentation data.",
+                "releaseId": "example-release",
+                "excludeAnalysisIds": "",
+                "executeConceptRecordCount": true
               }
             }
           }

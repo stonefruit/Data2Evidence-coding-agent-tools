@@ -58,6 +58,34 @@ test("extracts object calls through local client wrapper", () => {
   assert.equal(operations[0].url, "/cohortdefinition/{cohortDefinitionId}/report/{sourceKey}?mode={modeId}");
 });
 
+test("ignores absolute external URLs while keeping absolute D2E paths", () => {
+  const specs = buildServiceSpecs([
+    {
+      sourcePath: "plugins/ui/apps/webr-notebook/scripts/prepare-offline-assets.mjs",
+      sourceLine: 106,
+      appName: "webr-notebook",
+      operationName: "preparePyodide",
+      method: "get",
+      baseURL: "",
+      url: "https://pypi.org/pypi/{name}/json"
+    },
+    {
+      sourcePath: "plugins/ui/apps/webr-notebook/src/components/CodingAssistant.tsx",
+      sourceLine: 28,
+      appName: "webr-notebook",
+      operationName: "createSend",
+      method: "post",
+      baseURL: "",
+      url: "https://localhost:41100/code-suggestion/chat?datasetId={datasetId}",
+      dataExpression: "JSON.stringify({ context, userInput: prompt })"
+    }
+  ]);
+
+  assert.equal(specs.has("https"), false);
+  assert.equal(specs.has("pypi"), false);
+  assert.ok(specs.get("code-suggestion").paths["/chat"].post);
+});
+
 test("groups operations into service specs and query parameters", () => {
   const specs = buildServiceSpecs([
     {
@@ -296,6 +324,16 @@ test("adds d2e-webapi examples with synthetic values", () => {
         baseURL: "d2e-webapi",
         url: "/conceptset/{conceptSetId}",
         paramsExpression: ""
+      },
+      {
+        sourcePath: "plugins/ui/apps/concept-sets/src/axios/d2e-webapi.ts",
+        sourceLine: 60,
+        appName: "concept-sets",
+        operationName: "getConceptRecordCounts",
+        method: "post",
+        baseURL: "d2e-webapi",
+        url: "/cdmresults/{datasetId}/conceptRecordCount",
+        dataExpression: "conceptIds"
       }
     ],
     []
@@ -307,6 +345,9 @@ test("adds d2e-webapi examples with synthetic values", () => {
   assert.equal(searchOperation.requestBody.content["application/json"].example.VOCABULARY_ID[0], "EXAMPLE");
   assert.equal(searchOperation.responses["200"].content["application/json"].example[0].CONCEPT_CODE, "EXAMPLE-001");
   assert.equal(searchOperation.parameters.some((param) => param.description), false);
+
+  const countsOperation = spec.paths["/d2e-webapi/cdmresults/{datasetId}/conceptRecordCount"].post;
+  assert.match(countsOperation.description, /returns empty counts instead of failing/);
 
   const expressionOperation = spec.paths["/d2e-webapi/conceptset/{conceptSetId}/expression"].get;
   assert.equal(expressionOperation.parameters.find((param) => param.name === "datasetid")?.example, "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e");
@@ -320,6 +361,29 @@ test("adds d2e-webapi examples with synthetic values", () => {
     spec.components.schemas.UnknownJson.type,
     "object"
   );
+});
+
+test("adds data-characterization flow-run request example", () => {
+  const spec = buildCombinedSpec(
+    [
+      {
+        sourcePath: "plugins/ui/apps/portal/src/axios/jobplugins.ts",
+        sourceLine: 20,
+        appName: "portal",
+        operationName: "createDcFlowRun",
+        method: "post",
+        baseURL: "jobplugins",
+        url: "/dqd/data-characterization/flow-run",
+        dataExpression: "data"
+      }
+    ],
+    []
+  );
+
+  const operation = spec.paths["/jobplugins/dqd/data-characterization/flow-run"].post;
+  const example = operation.requestBody.content["application/json"].example;
+  assert.equal(example.datasetId, "4f05abcf-36d6-4e88-a44d-ad1ee3a0b06e");
+  assert.equal(example.executeConceptRecordCount, true);
 });
 
 test("extracts Danet controller routes as traced backend handlers", () => {
