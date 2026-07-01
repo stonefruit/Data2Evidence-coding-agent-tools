@@ -42,6 +42,8 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
    - Confirm activation with `docker exec d2e-trex sh -lc 'printf "%s" "$WATCH" | grep -E "<function-env-1>|<function-env-2>"'`.
    - After `WATCH` is active, do not restart trex for ordinary function code edits. Change the source, replay the endpoint, and use filtered logs to confirm a worker `Shutdown`/`Boot` and the updated marker.
    - Expect the first request after an edit to be less responsive because the watched worker may be recreated on demand.
+   - WATCH-mode route workers intentionally use a shorter request timeout than normal mode so old edited workers do not linger with stale code or resources. In `services/trex/core/server/plugin/function.ts`, route workers currently use `1 * 60 * 1000` under `WATCH` and `30 * 60 * 1000` otherwise.
+   - If an otherwise valid long-running WATCH repro fails with `WorkerRequestCancelled: request has been cancelled by supervisor`, consider temporarily raising the WATCH `workerTimeoutMs` to match non-WATCH mode. This is Trex core server code, not watched function code: no image rebuild is needed when local compose bind-mounts `./services/trex/core`, but restart/recreate Trex with `npm run start` so the running Trex server reloads the changed timeout. Revert the timeout after the repro unless the user explicitly wants a product change.
    - If `WATCH` cannot be enabled, the target code is startup/init-only, the worker keeps serving stale code, or logs do not prove the edited marker loaded after a replay, restart trex as the fallback.
    - When falling back, prefer the local stack's documented restart/start command when known; otherwise restart the trex container directly. After restart, confirm the new code loaded by checking boot/plugin/function logs before retesting.
 
@@ -72,6 +74,7 @@ Use this workflow for D2E function-side changes. Functions are Trex-hosted Deno 
 
 8. Iterate in small loops.
    - Make one focused change, replay the request under `WATCH`, inspect filtered logs, and decide the next edit. Restart trex only when the watch-first loop is blocked or disproven.
+   - Edits to Trex core server files, such as `services/trex/core/server/plugin/function.ts`, are outside per-function WATCH reload. In local compose these files are usually bind-mounted into `/usr/src/core`, so a rebuild is not needed, but the Trex server process must be restarted/recreated before the change takes effect.
    - If startup registration, module caching, import maps, or generated bundles may be involved, verify the container is using the file or build artifact just edited.
    - For async or race-sensitive issues, add paired start/end logs with elapsed time around awaited calls.
    - If keeping temporary diagnostics for follow-up work, stage only verified production hunks and leave debug hunks unstaged. Confirm with both `git diff --cached` and `git diff`.
